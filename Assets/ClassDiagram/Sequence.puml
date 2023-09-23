@@ -1,0 +1,16 @@
+﻿@startuml
+
+autonumber
+
+GameScenManager -> InGameManager : StartInGame
+InGameManager -> PlayerRobotManager : StartGame
+PlayerRobotManager -> PlayerRobotManager : StartLaunchMovie
+PlayerRobotManager -> PlayerRobotManager : StartLaunch
+PlayerRobotManager -> EnemyManager : StartMoveMob(0)
+PlayerRobotManager -> EnemyManager : StartMoveMob(1)
+PlayerRobotManager -> EnemyManager : StartMoveBoss(0)
+BossEnemy -> InGameManager : Goal
+InGameMnager -> InGameManager : ShowScore
+InGameManager -> GameScenManager : GoToTitle
+
+@enduml
