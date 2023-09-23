@@ -1,8 +1,7 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Splines;
 
-namespace Character
+namespace Utils
 {
     public class MoverOnSpline : MonoBehaviour
     {
