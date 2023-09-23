@@ -1,0 +1,31 @@
+﻿@startuml
+
+class GameSceneManagers
+namespace GameManagers{
+class InGameMnager
+}
+GameSceneManagers - GameSceneManagers.InGameMnager
+
+class MoveOnSpline
+namespace Enemys{
+
+EnemyManager -- MobEnemy
+EnemyManager -- BossEnemy
+
+interface IAttackable
+class EnemyManager
+
+class MobEnemy extends IAttackable
+class BossEnemy extends IAttackable
+}
+
+namespace PlayerRobots{
+
+class PlayerRobotManager 
+class PlayerAttackerComponent
+
+}
+
+
+
+@enduml
