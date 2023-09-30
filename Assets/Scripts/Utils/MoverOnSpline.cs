@@ -23,7 +23,7 @@ namespace Utils
 
 #endif
 
-        private void MoveOnSpline()
+        public void MoveOnSpline()
         {
             // スプライン上の位置・向き・上ベクトルを取得
             if (!spline.Evaluate(_t, out var position, out var tangent, out var upVector))
