@@ -4,6 +4,5 @@ namespace Enemys
 {
     public class MobEnemy : MonoBehaviour
     {
-        
     }
 }

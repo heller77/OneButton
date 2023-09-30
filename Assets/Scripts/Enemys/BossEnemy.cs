@@ -2,8 +2,11 @@
 
 namespace Enemys
 {
-    public class BossEnemy : MonoBehaviour
+    public class BossEnemy : MonoBehaviour, ITrapable
     {
-        
+        public void Boot()
+        {
+            
+        }
     }
 }
