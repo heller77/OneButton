@@ -7,7 +7,11 @@ namespace GameManagers{
 }
 
 namespace uitls{
+MoveOnSpline o-- SpeedChanger
     class MoveOnSpline
+    class SpeedChanger{
+         - speed
+    }
 }
 namespace Enemys{
     
@@ -15,12 +19,19 @@ namespace Enemys{
     EnemyManager -- BossEnemy
     
     interface IAttackable
+    interface ITrapable
+    
     class EnemyManager
+    class Detector
     
     class MobEnemy
     class BossEnemy
+
     BossEnemy ..|> IAttackable
+    BossEnemy ..|> ITrapable
     MobEnemy ..|> IAttackable
+    MobEnemy ..|> ITrapable
+
 }
 
 namespace PlayerRobots{
@@ -36,7 +47,8 @@ namespace PlayerRobots{
 }
 
 GameManagers.GameSceneManager o- GameManagers.InGameManager
-PlayerRobots.CollisionNotificatorToEnemy -o  Enemys.EnemyManager
+PlayerRobots.CollisionNotificatorToEnemy -o  Enemys.Detector
+Enemys.Detector ---o Enemys.ITrapable
 GameManagers.InGameManager o- PlayerRobots.PlayerRobotManager
 
 
