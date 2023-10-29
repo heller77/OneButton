@@ -65,6 +65,8 @@ namespace GameManagers
             await UniTask.WaitForSeconds(1.0f);
         }
 
+        [SerializeField] private PlayerDetector depature_endPoint;
+
         /// <summary>
         /// 出発
         /// </summary>
@@ -72,6 +74,9 @@ namespace GameManagers
         {
             Debug.Log("出発");
             _playerRobotManager.StartMove();
+            //終点に到着
+            await depature_endPoint.WaitDetect();
+            Debug.Log("終了");
         }
     }
 }
