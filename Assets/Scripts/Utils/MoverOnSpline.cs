@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Splines;
 
 namespace Utils
@@ -9,9 +10,23 @@ namespace Utils
 
         // 経路上の位置
         [SerializeField, Range(0, 1)] private float _t;
+        private bool isPlay = false;
+        [SerializeField] private float completetime = 1.0f;
+
+        private float splineLength = 0.0f;
+
+        private void Start()
+        {
+            splineLength = spline.CalculateLength();
+        }
 
         private void Update()
         {
+            if (isPlay)
+            {
+                _t += Time.deltaTime / completetime;
+                MoveOnSpline();
+            }
         }
 #if UNITY_EDITOR
 
@@ -33,6 +48,16 @@ namespace Utils
                 position,
                 Quaternion.LookRotation(tangent, upVector)
             );
+        }
+
+        public void Play()
+        {
+            isPlay = true;
+        }
+
+        public void Pause()
+        {
+            isPlay = false;
         }
     }
 }
