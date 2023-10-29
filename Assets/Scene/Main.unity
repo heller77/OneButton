@@ -3421,6 +3421,7 @@ GameObject:
   - component: {fileID: 401394909}
   - component: {fileID: 401394911}
   - component: {fileID: 401394910}
+  - component: {fileID: 401394912}
   m_Layer: 0
   m_Name: BeyondGate
   m_TagString: Untagged
@@ -3471,12 +3472,39 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &401394912
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 401394908}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 14
+  m_CollisionDetection: 0
 --- !u!1 &402489913 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4429224315215562811, guid: db255c128f1a3d44092acf2f12e048bd, type: 3}
@@ -4961,38 +4989,6 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
---- !u!1 &437856238
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 437856239}
-  m_Layer: 0
-  m_Name: LightProbe
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &437856239
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 437856238}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 457.84943, y: 80.439995, z: -0.78}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1425691078}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &445164158
 GameObject:
   m_ObjectHideFlags: 0
@@ -7788,7 +7784,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 838510820}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.049258813, y: -0.000000834465, z: 0.00000003806781, w: 0.9987861}
+  m_LocalRotation: {x: 0.049256444, y: -0, z: -0, w: 0.99878615}
   m_LocalPosition: {x: 0.0000013038516, y: 1.5860075, z: 0.028974295}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -12222,56 +12218,6 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
---- !u!1 &1425691077
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1425691078}
-  - component: {fileID: 1425691079}
-  m_Layer: 0
-  m_Name: Light Probe Group
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1425691078
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1425691077}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 437856239}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!220 &1425691079
-LightProbeGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1425691077}
-  m_Enabled: 1
-  m_SourcePositions:
-  - {x: 1, y: 1, z: 1}
-  - {x: 1, y: 1, z: -1}
-  - {x: 1, y: -1, z: 1}
-  - {x: 1, y: -1, z: -1}
-  - {x: -1, y: 1, z: 1}
-  - {x: -1, y: 1, z: -1}
-  - {x: -1, y: -1, z: 1}
-  - {x: -1, y: -1, z: -1}
-  m_Dering: 1
 --- !u!1 &1428254495 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1132727011250307308, guid: db255c128f1a3d44092acf2f12e048bd, type: 3}
@@ -12593,6 +12539,7 @@ GameObject:
   - component: {fileID: 1485417952}
   - component: {fileID: 1485417953}
   - component: {fileID: 1485417954}
+  - component: {fileID: 1485417955}
   m_Layer: 0
   m_Name: ' Player'
   m_TagString: Untagged
@@ -12608,8 +12555,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1485417948}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0017134402, y: -0.70717484, z: 0.007486166, w: 0.70699704}
-  m_LocalPosition: {x: 486.55573, y: 81.51243, z: 2.3488455}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 492.37997, y: 81.55999, z: 2.3499997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12657,7 +12604,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccc3cc0568794f23b13ae050a2bc7907, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _splineAnimate: {fileID: 1485417952}
   _moverOnSpline: {fileID: 1485417954}
 --- !u!114 &1485417954
 MonoBehaviour:
@@ -12672,9 +12618,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spline: {fileID: 411888226}
-  _t: 0.003
-  isPlay: 1
+  _t: 0
   completetime: 111
+--- !u!65 &1485417955
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1485417948}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 1.15, z: 0}
 --- !u!1 &1492541834 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2834707496519599728, guid: c90c6501915213f49bc289929876871f, type: 3}
@@ -37008,7 +36974,6 @@ SceneRoots:
   - {fileID: 977517985}
   - {fileID: 479758656}
   - {fileID: 2058687305}
-  - {fileID: 437856239}
   - {fileID: 919806455}
   - {fileID: 1336837590}
   - {fileID: 1986886313}
