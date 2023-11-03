@@ -1,34 +1,9 @@
 fileFormatVersion: 2
-guid: aceec467dddc84546a19dfd0ba9c9f89
+guid: 114ce29616d33b94caeef8ba5f57d03c
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: ButtonHuti
-    second: {fileID: 2100000, guid: cf0c9698be885f548afee18222243951, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: ButtonYello
-    second: {fileID: 2100000, guid: 81e0877ef3ba11a40baeca8e43cad540, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: DefaultBlack
-    second: {fileID: 2100000, guid: d047000530e80a145a7a35bb42446015, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: displayMaterial
-    second: {fileID: 2100000, guid: 74bea74718ff72744ae72cd68d70f6a5, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: glass
-    second: {fileID: 2100000, guid: a55252dcf4437a74e8458ac7e53cb59d, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
