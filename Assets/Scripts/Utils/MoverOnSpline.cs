@@ -4,13 +4,14 @@ using UnityEngine.Splines;
 
 namespace Utils
 {
+    [ExecuteAlways]
     public class MoverOnSpline : MonoBehaviour
     {
         [SerializeField] private SplineContainer spline;
 
         // 経路上の位置
         [SerializeField, Range(0, 1)] private float _t;
-        private bool isPlay = false;
+        [SerializeField] private bool isPlay = false;
         [SerializeField] private float completetime = 1.0f;
 
         private float splineLength = 0.0f;
@@ -24,7 +25,7 @@ namespace Utils
         {
             if (isPlay)
             {
-                _t += Time.deltaTime / completetime;
+                // _t += Time.deltaTime / completetime;
                 MoveOnSpline();
             }
         }
