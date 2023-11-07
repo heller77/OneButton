@@ -6,12 +6,22 @@ namespace Character.LockOns
 {
     public class LockOn : MonoBehaviour
     {
+        [SerializeField] private EnemyManager _enemyManager;
+
+
         [SerializeField] private Transform targettransform;
         [SerializeField] private RectTransform lockonUiTransform;
 
         private void Update()
         {
-            DisplayLockOnUI(targettransform.position);
+            var nearEnemy = _enemyManager.GetMostNearEnemy(transform);
+            if (nearEnemy)
+            {
+                DisplayLockOnUI(nearEnemy.transform.position);
+            }
+            else
+            {
+            }
         }
 
         public ITarget GetTarget()
@@ -42,6 +52,11 @@ namespace Character.LockOns
             }
 
             Debug.DrawRay(ray.origin, ray.direction * 10, Color.blue, 5, false);
+        }
+
+        public void HideLockOnUI()
+        {
+            lockonUiTransform.anchoredPosition = new Vector2(-1, -1);
         }
     }
 }
