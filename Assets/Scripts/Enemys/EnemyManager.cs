@@ -6,7 +6,7 @@ namespace Enemys
 {
     public class EnemyManager : MonoBehaviour
     {
-        private List<MobEnemy> _mobEnemies;
+        private List<MobEnemy> _mobEnemies = new List<MobEnemy>();
 
         public void Add(MobEnemy mobEnemy)
         {
