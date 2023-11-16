@@ -14,10 +14,29 @@ namespace Enemys
         }
 
         public MobEnemy GetMostNearEnemy(Transform origin)
+        /// <summary>
+        /// カメラの向きにある
+        /// </summary>
+        /// <param name="origin"></param>
+        /// <param name="cameraDir"></param>
+        /// <returns></returns>
+        public MobEnemy GetMostNearEnemyInCameraDirection(Transform origin, Vector3 cameraDir)
         {
             var distanceDict = CaluculateEnemysDistance(origin);
             if (distanceDict.Count != 0)
             {
+                foreach (var distance_enemy in distanceDict)
+                {
+                    //カメラの向いてる向きとカメラから敵の位置のベクトルの内積を計算
+                    var dot = Vector3.Dot(Vector3.Normalize(cameraDir),
+                        Vector3.Normalize(distance_enemy.Value.transform.position - origin.position));
+                    // pi/2　より小さければカメラ内にあるとする
+                    if (dot > MathF.Cos(MathF.PI / 2))
+                    {
+                        return distance_enemy.Value;
+                    }
+                }
+
                 return distanceDict.FirstOrDefault().Value;
             }
             else
