@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49def240e89e415badf8bf0cea700f90, type: 3}
   m_Name: enemydata
   m_EditorClassIdentifier: 
-  maxhp: 0
+  _maxhp: 1
