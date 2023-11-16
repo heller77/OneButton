@@ -12,6 +12,12 @@ namespace Character.LockOns
         [SerializeField] private Transform targettransform;
         [SerializeField] private RectTransform lockonUiTransform;
 
+        [SerializeField] private MobEnemy targetEnemy;
+        public MobEnemy GetTarget()
+        {
+            return this.targetEnemy;
+        }
+
         private void Update()
         {
             var nearEnemy = _enemyManager.GetMostNearEnemy(transform);
@@ -24,10 +30,6 @@ namespace Character.LockOns
             }
         }
 
-        public ITarget GetTarget()
-        {
-            return null;
-        }
 
         /// <summary>
         /// ロックオンするUIを表示する
