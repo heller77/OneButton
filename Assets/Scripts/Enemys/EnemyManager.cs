@@ -13,7 +13,16 @@ namespace Enemys
             _mobEnemies.Add(mobEnemy);
         }
 
-        public MobEnemy GetMostNearEnemy(Transform origin)
+        /// <summary>
+        /// 敵のリストから引数で指定した敵を削除
+        /// </summary>
+        /// <param name="mobEnemy"></param>
+        /// <returns></returns>
+        public bool RemoveEnemy(MobEnemy mobEnemy)
+        {
+            return _mobEnemies.Remove(mobEnemy);
+        }
+
         /// <summary>
         /// カメラの向きにある
         /// </summary>
