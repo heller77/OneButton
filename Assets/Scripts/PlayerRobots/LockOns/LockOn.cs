@@ -54,9 +54,12 @@ namespace Character.LockOns
             Debug.DrawRay(ray.origin, ray.direction * 10, Color.blue, 5, false);
         }
 
+        /// <summary>
+        /// ロックオンUIを非表示にする（画面外に持ってくる）
+        /// </summary>
         public void HideLockOnUI()
         {
-            lockonUiTransform.anchoredPosition = new Vector2(-1, -1);
+            lockonUiTransform.anchoredPosition = new Vector2(-100, -100);
         }
     }
 }
