@@ -9,10 +9,17 @@ namespace Character.LockOns
         [SerializeField] private EnemyManager _enemyManager;
 
 
-        [SerializeField] private Transform targettransform;
         [SerializeField] private RectTransform lockonUiTransform;
+        private Transform cameraTransform;
 
         [SerializeField] private MobEnemy targetEnemy;
+
+
+        private void Start()
+        {
+            cameraTransform = UnityEngine.Camera.main.transform;
+        }
+
         public MobEnemy GetTarget()
         {
             return this.targetEnemy;
@@ -20,16 +27,17 @@ namespace Character.LockOns
 
         private void Update()
         {
-            var nearEnemy = _enemyManager.GetMostNearEnemy(transform);
+            var nearEnemy = _enemyManager.GetMostNearEnemyInCameraDirection(transform, cameraTransform.forward);
             if (nearEnemy)
             {
                 DisplayLockOnUI(nearEnemy.transform.position);
+                targetEnemy = nearEnemy;
             }
             else
             {
+                HideLockOnUI();
             }
         }
-
 
         /// <summary>
         /// ロックオンするUIを表示する
@@ -47,9 +55,11 @@ namespace Character.LockOns
                 if (rayhit.collider.gameObject.TryGetComponent<Display>(out var display))
                 {
                     Vector2 uv = rayhit.textureCoord;
-                    Debug.Log(rayhit.textureCoord);
                     lockonUiTransform.anchoredPosition = new Vector2(uv.x * 1920, uv.y * 1080);
-                    Debug.Log(uv.x * 1920 + " ," + uv.y * 1080);
+                }
+                else
+                {
+                    HideLockOnUI();
                 }
             }
 
