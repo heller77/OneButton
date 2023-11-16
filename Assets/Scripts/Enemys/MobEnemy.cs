@@ -9,7 +9,7 @@ namespace Enemys
         [SerializeField] private EnemyManager _enemyManager;
 
         [SerializeField] private EnemyParameterAsset _parameterAsset;
-        [SerializeField] private int hp;
+        [SerializeField] private float hp;
 
         private void Start()
         {
