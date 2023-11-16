@@ -8,6 +8,6 @@
         /// <summary>
         /// 攻撃を受ける
         /// </summary>
-        public void Hitted();
+        public void Hitted(float damage);
     }
 }

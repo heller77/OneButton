@@ -23,10 +23,26 @@ namespace Enemys
         }
 
         /// <summary>
-        /// 攻撃された
+        /// 攻撃される
         /// </summary>
-        public void Hitted()
+        /// <param name="damage"></param>
+        /// <exception cref="NotImplementedException"></exception>
+        public void Hitted(float damage)
         {
+            this.hp -= damage;
+            //hpが0以下なら倒れる
+            if (this.hp <= 0)
+            {
+                this.Destruction();
+            }
+        }
+
+        private void Destruction()
+        {
+            Debug.Log("death");
+            _enemyManager.RemoveEnemy(this);
+
+            Destroy(gameObject);
         }
     }
 }
