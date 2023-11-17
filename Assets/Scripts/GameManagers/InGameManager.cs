@@ -21,6 +21,9 @@ namespace GameManagers
             StartGame();
         }
 
+        /// <summary>
+        /// ゲームを始める
+        /// </summary>
         private async void StartGame()
         {
             await StartRideScene();
