@@ -10,7 +10,6 @@ namespace Character
         {
             if (other.TryGetComponent<Detector>(out var detector))
             {
-                Debug.Log("衝突");
                 detector.Detect();
             }
         }

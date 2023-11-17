@@ -21,7 +21,6 @@ namespace Enemys
 
         public void Boot()
         {
-            Debug.Log("boot");
             MoveStart();
         }
     }
