@@ -1,7 +1,9 @@
 ﻿using System;
 using Character.LockOns;
 using Enemys;
+using MyInputs;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Splines;
 using Utils;
 
@@ -34,17 +36,21 @@ namespace Character
             _moverOnSpline.Pause();
         }
 
-        private void Update()
+        private MyInputs.MyInputMap input;
+
+        private void Start()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            input = new MyInputMap();
+            input.Player.PushButton.started += Attack;
+            input.Enable();
+        }
+
+        private void Attack(InputAction.CallbackContext callbackContext)
+        {
+            var targetenemy = _lockOn.GetTarget();
+            if (targetenemy)
             {
-                Debug.Log("playerrobot space");
-                var targetenemy = _lockOn.GetTarget();
-                if (targetenemy)
-                {
-                    
-                    _playerAttackComponent.Attack(targetenemy, 3);
-                }
+                _playerAttackComponent.Attack(targetenemy, 3);
             }
         }
     }
