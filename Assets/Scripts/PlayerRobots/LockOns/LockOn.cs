@@ -13,6 +13,8 @@ namespace Character.LockOns
         private Transform cameraTransform;
 
         [SerializeField] private MobEnemy targetEnemy;
+        [SerializeField] private Transform debugObjecttransform;
+        [SerializeField] private Transform debugTarget;
 
 
         private void Start()
@@ -32,6 +34,7 @@ namespace Character.LockOns
             {
                 DisplayLockOnUI(nearEnemy.transform.position);
                 targetEnemy = nearEnemy;
+                debugObjecttransform.transform.position = targetEnemy.transform.position;
             }
             else
             {
@@ -48,22 +51,33 @@ namespace Character.LockOns
             var rayhit = new RaycastHit();
             var position = this.transform.position;
             var ray = new Ray(position, target - position);
+            // var ray = new Ray(position, new Vector3(-1, 0, 0));
+            // var ray = new Ray(position, debugTarget.position - position);
+
+            int DisplaylayerMask = 1 << 6;
 
             if (Physics.Raycast(ray, out rayhit))
             {
                 //ターゲットかどうか
                 if (rayhit.collider.gameObject.TryGetComponent<Display>(out var display))
                 {
+                    Debug.Log("hit Display");
                     Vector2 uv = rayhit.textureCoord;
                     lockonUiTransform.anchoredPosition = new Vector2(uv.x * 1920, uv.y * 1080);
+                    // Debug.Log(uv);
+                    Debug.DrawRay(ray.origin, ray.direction * 40, Color.red, 1, false);
                 }
                 else
                 {
-                    HideLockOnUI();
+                    Debug.Log("not hit to display", rayhit.collider.gameObject);
+                    // HideLockOnUI();
                 }
             }
-
-            Debug.DrawRay(ray.origin, ray.direction * 10, Color.blue, 5, false);
+            else
+            {
+                Debug.Log("non hit to anyobject");
+                Debug.DrawRay(ray.origin, ray.direction * 40, Color.green, 1, false);
+            }
         }
 
         /// <summary>
