@@ -1,0 +1,34 @@
+{
+    "name": "MyInputMap",
+    "maps": [
+        {
+            "name": "Player",
+            "id": "d923a2fd-8bfc-4206-9e57-eacb4438347e",
+            "actions": [
+                {
+                    "name": "PushButton",
+                    "type": "Button",
+                    "id": "30495709-d572-415a-ab7f-7347ca13f883",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "bd358511-d51c-4673-a21d-e38a6e2a3f1e",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PushButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
