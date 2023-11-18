@@ -1,4 +1,5 @@
 ﻿using Character;
+using Cinemachine;
 using Cysharp.Threading.Tasks;
 using GameManagers.EventImplements;
 using GameManagers.EventImplements.PlayerDetector;
@@ -33,12 +34,28 @@ namespace GameManagers
             await Departure();
         }
 
+        [SerializeField] private CinemachineVirtualCamera ridescne_virtualcamera;
 
         /// <summary>
         /// ライド
         /// </summary>
         private async UniTask StartRideScene()
         {
+            float pathposition = 0.0f;
+            var dolly = ridescne_virtualcamera.GetCinemachineComponent<CinemachineTrackedDolly>();
+            float speed = 0.2f;
+            while (true)
+            {
+                dolly.m_PathPosition = pathposition;
+                pathposition += speed * Time.deltaTime;
+                await UniTask.DelayFrame(1);
+                if (pathposition > 1.0f)
+                {
+                    break;
+                }
+            }
+
+            ridescne_virtualcamera.gameObject.SetActive(false);
         }
 
         [SerializeField] private PlayerDetector _playerDetector_beyondDoor;
