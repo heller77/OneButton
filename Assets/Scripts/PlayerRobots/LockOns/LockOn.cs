@@ -27,7 +27,7 @@ namespace Character.LockOns
             return this.targetEnemy;
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             var nearEnemy = _enemyManager.GetMostNearEnemyInCameraDirection(transform, cameraTransform.forward);
             if (nearEnemy)
@@ -56,7 +56,7 @@ namespace Character.LockOns
 
             int DisplaylayerMask = 1 << 6;
 
-            if (Physics.Raycast(ray, out rayhit))
+            if (Physics.Raycast(ray, out rayhit, 10))
             {
                 //ターゲットかどうか
                 if (rayhit.collider.gameObject.TryGetComponent<Display>(out var display))
