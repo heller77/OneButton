@@ -3,6 +3,7 @@ using Cysharp.Threading.Tasks;
 using GameManagers.EventImplements;
 using GameManagers.EventImplements.PlayerDetector;
 using UnityEngine;
+using UnityEngine.Playables;
 
 namespace GameManagers
 {
@@ -48,16 +49,18 @@ namespace GameManagers
         private async UniTask StartOpenStartDoorScene()
         {
             //todo : ドアを開ける
-            await _firstPositionDoorOpen.OpenDoor();
-
-            //ドアをあけたら
-            _playerRobotManager.StartMove();
-
-            //ドアの向こうにプレイヤーが来るまでまって、来たら止める
-            await _playerDetector_beyondDoor.WaitDetect();
-            Debug.Log("stop by ingamemanager");
-            this._playerRobotManager.StopMove();
+            // await _firstPositionDoorOpen.OpenDoor();
+            //
+            // //ドアをあけたら
+            // _playerRobotManager.StartMove();
+            //
+            // //ドアの向こうにプレイヤーが来るまでまって、来たら止める
+            // // await _playerDetector_beyondDoor.WaitDetect();
+            // Debug.Log("stop by ingamemanager");
+            // this._playerRobotManager.StopMove();
         }
+
+        [SerializeField] private PlayableDirector robotdepartureDirector;
 
         /// <summary>
         /// 出発前の説明
@@ -65,6 +68,7 @@ namespace GameManagers
         private async UniTask IntroductionDeparture()
         {
             Debug.Log("倒してこい！");
+            robotdepartureDirector.Play();
             await UniTask.WaitForSeconds(1.0f);
         }
 
