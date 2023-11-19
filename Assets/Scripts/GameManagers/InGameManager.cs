@@ -32,6 +32,7 @@ namespace GameManagers
             await StartOpenStartDoorScene();
             await IntroductionDeparture();
             await Departure();
+            await GetOutOfRobot();
         }
 
         [SerializeField] private CinemachineVirtualCamera ridescne_virtualcamera;
@@ -101,6 +102,29 @@ namespace GameManagers
             //終点に到着
             await depature_endPoint.WaitDetect();
             Debug.Log("終了");
+        }
+
+        [SerializeField] private CinemachineVirtualCamera getoutofvirtualCamera;
+
+        /// <summary>
+        /// 終了地点についたので、乗り物に降りる
+        /// </summary>
+        public async UniTask GetOutOfRobot()
+        {
+            getoutofvirtualCamera.gameObject.SetActive(true);
+            float pathposition = 0.0f;
+            var dolly = getoutofvirtualCamera.GetCinemachineComponent<CinemachineTrackedDolly>();
+            float speed = 0.2f;
+            while (true)
+            {
+                dolly.m_PathPosition = pathposition;
+                pathposition += speed * Time.deltaTime;
+                await UniTask.DelayFrame(1);
+                if (pathposition > 1.0f)
+                {
+                    break;
+                }
+            }
         }
     }
 }
