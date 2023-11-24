@@ -1,59 +1,9 @@
 fileFormatVersion: 2
-guid: 79b520da9479fd5488b1f61586e7a0cc
+guid: 6dd355b5c74f7e949bf933c50fa54a02
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Marble Material
-    second: {fileID: 2100000, guid: 31dd4e7169a77ab44bff156c9babc90e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Wood
-    second: {fileID: 2100000, guid: 1c8acaefb470ca14f951eecd21d71db7, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Wood.001
-    second: {fileID: 2100000, guid: 1c8acaefb470ca14f951eecd21d71db7, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: building
-    second: {fileID: 2100000, guid: fe5555f41e5336347802cb5b50bf2244, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: human
-    second: {fileID: 2100000, guid: cc4e9333aa932d146a09498365e95931, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: human.001
-    second: {fileID: 2100000, guid: cc4e9333aa932d146a09498365e95931, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: human.002
-    second: {fileID: 2100000, guid: cc4e9333aa932d146a09498365e95931, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: road
-    second: {fileID: 2100000, guid: 8b8e966a0d901144ab7480a574fca1db, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: wood_side
-    second: {fileID: 2100000, guid: 87c56762dfde07f4a8473444691a952c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: "\u5165\u53E3"
-    second: {fileID: 2100000, guid: 06beaeaa62d39834484e5473cda3eda8, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -98,7 +48,7 @@ ModelImporter:
     nodeNameCollisionStrategy: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
-    generateSecondaryUV: 1
+    generateSecondaryUV: 0
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 1
