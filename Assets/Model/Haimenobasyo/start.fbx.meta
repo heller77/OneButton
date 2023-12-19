@@ -7,6 +7,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Marble Material
+    second: {fileID: 2100000, guid: 31dd4e7169a77ab44bff156c9babc90e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Wood
     second: {fileID: 2100000, guid: 1c8acaefb470ca14f951eecd21d71db7, type: 2}
   - first:
@@ -17,8 +22,28 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: YukaBulletin board Outer
+    second: {fileID: 2100000, guid: b3edea4ec522b56468f59aa30dbcfd1b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Yuka_bulletin board.002
+    second: {fileID: 2100000, guid: aecb361121215f745a87d5b3ea5a93cd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Yuka_bulletin board.003
+    second: {fileID: 2100000, guid: aecb361121215f745a87d5b3ea5a93cd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: building
     second: {fileID: 2100000, guid: fe5555f41e5336347802cb5b50bf2244, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: floor side
+    second: {fileID: 2100000, guid: 68447f39332e3794f81d5854fdc492ed, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule

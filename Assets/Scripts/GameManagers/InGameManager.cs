@@ -1,8 +1,10 @@
 ﻿using Character;
+using Cinemachine;
 using Cysharp.Threading.Tasks;
 using GameManagers.EventImplements;
 using GameManagers.EventImplements.PlayerDetector;
 using UnityEngine;
+using UnityEngine.Playables;
 
 namespace GameManagers
 {
@@ -30,14 +32,31 @@ namespace GameManagers
             await StartOpenStartDoorScene();
             await IntroductionDeparture();
             await Departure();
+            await GetOutOfRobot();
         }
 
+        [SerializeField] private CinemachineVirtualCamera ridescne_virtualcamera;
 
         /// <summary>
         /// ライド
         /// </summary>
         private async UniTask StartRideScene()
         {
+            float pathposition = 0.0f;
+            var dolly = ridescne_virtualcamera.GetCinemachineComponent<CinemachineTrackedDolly>();
+            float speed = 0.2f;
+            while (true)
+            {
+                dolly.m_PathPosition = pathposition;
+                pathposition += speed * Time.deltaTime;
+                await UniTask.DelayFrame(1);
+                if (pathposition > 1.0f)
+                {
+                    break;
+                }
+            }
+
+            ridescne_virtualcamera.gameObject.SetActive(false);
         }
 
         [SerializeField] private PlayerDetector _playerDetector_beyondDoor;
@@ -48,16 +67,18 @@ namespace GameManagers
         private async UniTask StartOpenStartDoorScene()
         {
             //todo : ドアを開ける
-            await _firstPositionDoorOpen.OpenDoor();
-
-            //ドアをあけたら
-            _playerRobotManager.StartMove();
-
-            //ドアの向こうにプレイヤーが来るまでまって、来たら止める
-            await _playerDetector_beyondDoor.WaitDetect();
-            Debug.Log("stop by ingamemanager");
-            this._playerRobotManager.StopMove();
+            // await _firstPositionDoorOpen.OpenDoor();
+            //
+            // //ドアをあけたら
+            // _playerRobotManager.StartMove();
+            //
+            // //ドアの向こうにプレイヤーが来るまでまって、来たら止める
+            // // await _playerDetector_beyondDoor.WaitDetect();
+            // Debug.Log("stop by ingamemanager");
+            // this._playerRobotManager.StopMove();
         }
+
+        [SerializeField] private PlayableDirector robotdepartureDirector;
 
         /// <summary>
         /// 出発前の説明
@@ -65,6 +86,7 @@ namespace GameManagers
         private async UniTask IntroductionDeparture()
         {
             Debug.Log("倒してこい！");
+            robotdepartureDirector.Play();
             await UniTask.WaitForSeconds(1.0f);
         }
 
@@ -80,6 +102,29 @@ namespace GameManagers
             //終点に到着
             await depature_endPoint.WaitDetect();
             Debug.Log("終了");
+        }
+
+        [SerializeField] private CinemachineVirtualCamera getoutofvirtualCamera;
+
+        /// <summary>
+        /// 終了地点についたので、乗り物に降りる
+        /// </summary>
+        public async UniTask GetOutOfRobot()
+        {
+            getoutofvirtualCamera.gameObject.SetActive(true);
+            float pathposition = 0.0f;
+            var dolly = getoutofvirtualCamera.GetCinemachineComponent<CinemachineTrackedDolly>();
+            float speed = 0.2f;
+            while (true)
+            {
+                dolly.m_PathPosition = pathposition;
+                pathposition += speed * Time.deltaTime;
+                await UniTask.DelayFrame(1);
+                if (pathposition > 1.0f)
+                {
+                    break;
+                }
+            }
         }
     }
 }
