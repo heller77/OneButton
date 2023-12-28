@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boidsCount: 111
   minSpeed: 0.1
-  maxSpeed: 1
-  nearboidsDistance: 131.5
+  maxSpeed: 0.5
+  nearboidsDistance: 34.02
   restrictionSphereRadius: 206.6
   restrictionStartDistance: 118.6
-  powerToBoidsCenter: 110.9
-  separetePower: 1
-  alignmentPower: 3.19
-  cohesionPower: 20.6
+  powerToBoidsCenter: 1
+  separetePower: 4
+  alignmentPower: 1
+  cohesionPower: 1
+  toTargetPower: 97.27

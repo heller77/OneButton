@@ -14,6 +14,8 @@ namespace Enemys.Boids
         [SerializeField] private GameObject boidPrefab;
         [SerializeField] private BoidParameter _boidParameter;
 
+        [SerializeField] private Transform target;
+
         private void Start()
         {
             for (int i = 0; i < _boidParameter.boidsCount; i++)
@@ -53,21 +55,25 @@ namespace Enemys.Boids
                 var powerToCenter = CalculateRestrictionSpherePower(boid.transform.position);
 
                 var nearboids = GetNearBoids(boid);
+                Vector3 newAccel = Vector3.zero;
                 if (nearboids.Count > 0)
                 {
                     var separatePower = CalculateSeparatePower(boid, nearboids);
                     var alignmentPower = CalculateAlignmentPower(nearboids);
                     var cohesionPower = CalculateCohesion(boid, nearboids);
+                    var toTargetPower = CalculateToTargetPower(boid);
 
-
-                    Vector3 newAccel = preAccel + powerToCenter + separatePower + alignmentPower + cohesionPower;
-                    boid.SetAcceleration(newAccel);
+                    newAccel = preAccel + (powerToCenter + separatePower + alignmentPower + cohesionPower +
+                                           toTargetPower) * Time.deltaTime;
                 }
                 else
                 {
-                    Vector3 newAccel = preAccel + powerToCenter;
-                    boid.SetAcceleration(newAccel);
+                    var toTargetPower = CalculateToTargetPower(boid);
+
+                    newAccel = preAccel + (powerToCenter + toTargetPower) * Time.deltaTime;
                 }
+
+                boid.SetAcceleration(newAccel.normalized);
             }
         }
 
@@ -157,10 +163,15 @@ namespace Enemys.Boids
 
             centerNearBoid /= nearBoid.Count;
 
-            cohesionPower = (centerNearBoid - target.transform.position);
+            cohesionPower = (centerNearBoid - target.transform.position).normalized;
             return cohesionPower * _boidParameter.cohesionPower;
         }
 
+        private Vector3 CalculateToTargetPower(Boid target)
+        {
+            var power = (this.target.position - target.transform.position).normalized;
+            return power * _boidParameter.toTargetPower;
+        }
 
         /// <summary>
         /// ギズモを表示

@@ -29,5 +29,7 @@ namespace Enemys.Boids
         public float separetePower;
         public float alignmentPower;
         public float cohesionPower;
+
+        public float toTargetPower;
     }
 }
