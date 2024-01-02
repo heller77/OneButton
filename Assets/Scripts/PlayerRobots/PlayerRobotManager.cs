@@ -2,6 +2,7 @@
 using Character.LockOns;
 using Enemys;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.Splines;
 using Utils;
 
@@ -11,7 +12,7 @@ namespace Character
     {
         // [SerializeField] private SplineAnimate _splineAnimate;
         [SerializeField] private MoverOnSpline _moverOnSpline;
-        [SerializeField] private PlayerAttackComponent _playerAttackComponent;
+        [FormerlySerializedAs("_playerAttackComponent")] [SerializeField] private AttackComponent attackComponent;
 
         [SerializeField] private EnemyManager _enemyManager;
 
@@ -43,7 +44,7 @@ namespace Character
                 if (targetenemy)
                 {
                     
-                    _playerAttackComponent.Attack(targetenemy, 3);
+                    attackComponent.Attack(targetenemy, 3);
                 }
             }
         }

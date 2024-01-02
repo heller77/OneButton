@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Character
 {
-    public class PlayerAttackComponent : MonoBehaviour
+    public class AttackComponent : MonoBehaviour
     {
         public void Attack(IHitable target, float AttackPower)
         {
