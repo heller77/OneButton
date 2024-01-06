@@ -1,5 +1,10 @@
 ﻿using System;
 using Enemys.EnemyParameter;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 using UnityEngine;
 
 namespace Enemys
@@ -44,5 +49,15 @@ namespace Enemys
 
             Destroy(gameObject);
         }
+#if UNITY_EDITOR
+        private void OnDrawGizmos()
+        {
+            //テキストの設定
+            var guiStyle = new GUIStyle { fontSize = 20, normal = { textColor = Color.red } };
+
+            //名前をシーンビュー上に表示
+            Handles.Label(transform.position + new Vector3(0, 10, 0), this.gameObject.name, guiStyle);
+        }
+#endif
     }
 }
