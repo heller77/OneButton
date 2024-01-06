@@ -18,6 +18,9 @@ namespace Enemys.Boids
 
         private void Start()
         {
+            //シード値を指定
+            Random.InitState(10);
+
             for (int i = 0; i < _boidParameter.boidsCount; i++)
             {
                 AddBoid();
