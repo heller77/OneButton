@@ -5,6 +5,9 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.Splines;
 using Utils;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace Character
 {
@@ -12,7 +15,9 @@ namespace Character
     {
         // [SerializeField] private SplineAnimate _splineAnimate;
         [SerializeField] private MoverOnSpline _moverOnSpline;
-        [FormerlySerializedAs("_playerAttackComponent")] [SerializeField] private AttackComponent attackComponent;
+
+        [FormerlySerializedAs("_playerAttackComponent")] [SerializeField]
+        private AttackComponent attackComponent;
 
         [SerializeField] private EnemyManager _enemyManager;
 
@@ -43,10 +48,19 @@ namespace Character
                 var targetenemy = _lockOn.GetTarget();
                 if (targetenemy)
                 {
-                    
                     attackComponent.Attack(targetenemy, 3);
                 }
             }
         }
+#if UNITY_EDITOR
+        private void OnDrawGizmos()
+        {
+            //テキストの設定
+            var guiStyle = new GUIStyle
+                { fontSize = 20, normal = { textColor = Color.green }, alignment = TextAnchor.UpperCenter };
+            //名前をシーンビュー上に表示
+            Handles.Label(transform.position + new Vector3(0, 10, 0), this.gameObject.name, guiStyle);
+        }
+#endif
     }
 }
