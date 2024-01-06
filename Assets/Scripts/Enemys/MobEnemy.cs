@@ -53,7 +53,8 @@ namespace Enemys
         private void OnDrawGizmos()
         {
             //テキストの設定
-            var guiStyle = new GUIStyle { fontSize = 20, normal = { textColor = Color.red } };
+            var guiStyle = new GUIStyle
+                { fontSize = 20, normal = { textColor = Color.red }, alignment = TextAnchor.UpperCenter };
 
             //名前をシーンビュー上に表示
             Handles.Label(transform.position + new Vector3(0, 10, 0), this.gameObject.name, guiStyle);
