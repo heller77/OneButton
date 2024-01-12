@@ -1,5 +1,6 @@
 ﻿using System;
 using Enemys.EnemyParameter;
+using GameManagers;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -46,6 +47,8 @@ namespace Enemys
         {
             Debug.Log("death");
             _enemyManager.RemoveEnemy(this);
+
+            BattleResultManager.GetInstance().AddKnockMobEnemy();
 
             Destroy(gameObject);
         }

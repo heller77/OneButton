@@ -1,6 +1,7 @@
 ﻿using System;
 using Character.LockOns;
 using Enemys;
+using GameManagers;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.Splines;
@@ -50,6 +51,9 @@ namespace Character
                 {
                     attackComponent.Attack(targetenemy, 3);
                     attackComponent.FireBullet(targetenemy.transform);
+
+                    //弾を使った数を記録
+                    BattleResultManager.GetInstance().AddConsumeBullet();
                 }
             }
         }
