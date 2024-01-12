@@ -49,6 +49,7 @@ namespace Character
                 if (targetenemy)
                 {
                     attackComponent.Attack(targetenemy, 3);
+                    attackComponent.FireBullet(targetenemy.transform);
                 }
             }
         }
