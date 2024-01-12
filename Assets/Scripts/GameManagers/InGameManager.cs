@@ -1,10 +1,14 @@
-﻿using Character;
+﻿using System;
+using Character;
 using Cinemachine;
 using Cysharp.Threading.Tasks;
 using GameManagers.EventImplements;
 using GameManagers.EventImplements.PlayerDetector;
+using GameManagers.ScoreCalculater;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
 
 namespace GameManagers
 {
@@ -16,6 +20,8 @@ namespace GameManagers
         [SerializeField] private PlayerRobotManager _playerRobotManager;
 
         [SerializeField] private FirstPositionDoorOpen _firstPositionDoorOpen;
+
+        [SerializeField] private TextMeshProUGUI resultTextui;
 
 
         private void Start()
@@ -33,6 +39,9 @@ namespace GameManagers
             await IntroductionDeparture();
             await Departure();
             await GetOutOfRobot();
+            await DisplayScore();
+            await UniTask.Delay(TimeSpan.FromSeconds(10));
+            SceneManager.LoadScene("Title");
         }
 
         [SerializeField] private CinemachineVirtualCamera ridescne_virtualcamera;
@@ -104,6 +113,11 @@ namespace GameManagers
             Debug.Log("終了");
         }
 
+        public PlayerDetector GetEndPointDetector()
+        {
+            return depature_endPoint;
+        }
+
         [SerializeField] private CinemachineVirtualCamera getoutofvirtualCamera;
 
         /// <summary>
@@ -111,20 +125,28 @@ namespace GameManagers
         /// </summary>
         public async UniTask GetOutOfRobot()
         {
-            getoutofvirtualCamera.gameObject.SetActive(true);
-            float pathposition = 0.0f;
-            var dolly = getoutofvirtualCamera.GetCinemachineComponent<CinemachineTrackedDolly>();
-            float speed = 0.2f;
-            while (true)
-            {
-                dolly.m_PathPosition = pathposition;
-                pathposition += speed * Time.deltaTime;
-                await UniTask.DelayFrame(1);
-                if (pathposition > 1.0f)
-                {
-                    break;
-                }
-            }
+            // getoutofvirtualCamera.gameObject.SetActive(true);
+            // float pathposition = 0.0f;
+            // var dolly = getoutofvirtualCamera.GetCinemachineComponent<CinemachineTrackedDolly>();
+            // float speed = 0.2f;
+            // while (true)
+            // {
+            //     dolly.m_PathPosition = pathposition;
+            //     pathposition += speed * Time.deltaTime;
+            //     await UniTask.DelayFrame(1);
+            //     if (pathposition > 1.0f)
+            //     {
+            //         break;
+            //     }
+            // }
+        }
+
+        public async UniTask DisplayScore()
+        {
+            var battledata = BattleResultManager.GetInstance().GetBattleResultData();
+            Debug.Log(battledata);
+            var score = ScoreCalculater.ScoreCalculater.Calculate(battledata);
+            this.resultTextui.text = score.ToString();
         }
     }
 }
