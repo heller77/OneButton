@@ -1,4 +1,5 @@
 ﻿using System;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Splines;
 
@@ -42,7 +43,7 @@ namespace Utils
         public void MoveOnSpline()
         {
             // スプライン上の位置・向き・上ベクトルを取得
-            if (!spline.Evaluate(_t, out var position, out var tangent, out var upVector))
+            if (spline is null || !spline.Evaluate(_t, out var position, out var tangent, out var upVector))
                 return;
             // Transformに反映
             transform.SetPositionAndRotation(
@@ -54,11 +55,32 @@ namespace Utils
         public void Play()
         {
             isPlay = true;
+            
         }
 
         public void Pause()
         {
             isPlay = false;
+        }
+
+        /// <summary>
+        /// 別のスプラインに乗る場合
+        /// </summary>
+        /// <param name="newsplienvalue"></param>
+        /// <param name="new_spline"></param>
+        /// <param name="movetime_tonewspline"></param>
+        public void ChangeSpline(SplineContainer new_spline, float movetime_tonewspline)
+        {
+            this.spline = new_spline;
+            var newsplienvalue =
+                SplineUtility.GetNearestPoint(new_spline.Spline, this.transform.position, out var position, out var t);
+
+            //移動方向をみル
+            transform.DOLookAt(position, 0.1f);
+
+            float duration = 1.0f;
+            transform.DOMove(position, duration);
+            transform.DOLookAt(position, 0.1f);
         }
     }
 }
