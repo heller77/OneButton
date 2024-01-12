@@ -380,6 +380,7 @@ GameObject:
   - component: {fileID: 4735882570732732613}
   - component: {fileID: 8514992059120872027}
   - component: {fileID: 6771809658599314771}
+  - component: {fileID: 2093826995941472773}
   m_Layer: 0
   m_Name: PlayerSideRobot
   m_TagString: Untagged
@@ -445,9 +446,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spline: {fileID: 0}
-  _t: 0.001
+  _t: 0.741
   isPlay: 1
   completetime: 1
+--- !u!95 &2093826995941472773
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5215814180259755819}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6481037886622850483
 GameObject:
   m_ObjectHideFlags: 0
