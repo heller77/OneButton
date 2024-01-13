@@ -38,6 +38,11 @@ namespace Utils
             MoveOnSpline();
         }
 
+        public float GetT()
+        {
+            return this._t;
+        }
+
 #endif
 
         public void MoveOnSpline()
@@ -55,7 +60,6 @@ namespace Utils
         public void Play()
         {
             isPlay = true;
-            
         }
 
         public void Pause()
