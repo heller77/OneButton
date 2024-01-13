@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2eb330a5c284ac49992737cdd94ffc0, type: 3}
   m_Name: boidparameter
   m_EditorClassIdentifier: 
-  boidsCount: 20
+  boidsCount: 100
   minSpeed: 0.1
   maxSpeed: 0.5
-  nearboidsDistance: 34.02
-  restrictionSphereRadius: 206.6
-  restrictionStartDistance: 118.6
-  powerToBoidsCenter: 0
-  separetePower: 4
-  alignmentPower: 1
-  cohesionPower: 1
-  toTargetPower: 87.58
+  nearboidsDistance: 30
+  restrictionSphereRadius: 200
+  restrictionStartDistance: 100
+  powerToBoidsCenter: 0.1
+  separetePower: 15.61
+  alignmentPower: 2
+  cohesionPower: 2
+  toTargetPower: 10
