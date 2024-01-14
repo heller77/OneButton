@@ -10,5 +10,11 @@
     "CommentText": "母艦\nここから敵が出てくる\n",
     "AssetGUID": "0beae9f2d860c6847b470883d8f08105",
     "UniqueItemID": "GlobalObjectId_V1-2-0beae9f2d860c6847b470883d8f08105-83559425-0"
+  },
+  "GlobalObjectId_V1-2-0beae9f2d860c6847b470883d8f08105-156009831-0": {
+    "GameObjectId": "GlobalObjectId_V1-2-0beae9f2d860c6847b470883d8f08105-156009831-0",
+    "CommentText": "プレイヤー",
+    "AssetGUID": "0beae9f2d860c6847b470883d8f08105",
+    "UniqueItemID": "GlobalObjectId_V1-2-0beae9f2d860c6847b470883d8f08105-156009831-0"
   }
 }
