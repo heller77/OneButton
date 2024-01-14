@@ -5,7 +5,7 @@ using Random = System.Random;
 
 namespace Enemys
 {
-    public class BossEnemy : MonoBehaviour, ITrapable
+    public class BossEnemy : MonoBehaviour, ITrapable, IHitable
     {
         [SerializeField] private GameObject defaultObject;
 
@@ -16,10 +16,8 @@ namespace Enemys
         [SerializeField] private Transform powerOriginTransform;
         [SerializeField] private ParticleSystem _particleSystem;
 
-        private void Start()
-        {
-            Destruction();
-        }
+        [SerializeField] private float hp = 1;
+
 
         public void Boot()
         {
@@ -33,9 +31,22 @@ namespace Enemys
             foreach (var part in parts)
             {
                 var powerDir = part.transform.position - powerOriginTransform.transform.position;
-                Debug.Log(powerDir);
                 part.AddForce(destructionPower * powerDir);
             }
+        }
+
+        public void Hitted(float damage)
+        {
+            hp -= damage;
+            if (hp <= 0)
+            {
+                this.Destruction();
+            }
+        }
+
+        public Transform GetTransform()
+        {
+            return transform;
         }
     }
 }

@@ -7,7 +7,9 @@ namespace Enemys
 {
     public class EnemyManager : MonoBehaviour
     {
-        private List<MobEnemy> _mobEnemies = new List<MobEnemy>();
+        [SerializeField] private List<MobEnemy> _mobEnemies = new List<MobEnemy>();
+        [SerializeField] private BossEnemy _bossEnemy;
+
 
         public void Add(MobEnemy mobEnemy)
         {
@@ -30,7 +32,7 @@ namespace Enemys
         /// <param name="origin"></param>
         /// <param name="cameraDir"></param>
         /// <returns></returns>
-        public MobEnemy GetMostNearEnemyInCameraDirection(Transform origin, Vector3 cameraDir)
+        public IHitable GetMostNearEnemyInCameraDirection(Transform origin, Vector3 cameraDir)
         {
             var distanceDict = CaluculateEnemysDistance(origin);
             if (distanceDict.Count != 0)
@@ -39,7 +41,7 @@ namespace Enemys
                 {
                     //カメラの向いてる向きとカメラから敵の位置のベクトルの内積を計算
                     var dot = Vector3.Dot(Vector3.Normalize(cameraDir),
-                        Vector3.Normalize(distance_enemy.Value.transform.position - origin.position));
+                        Vector3.Normalize(distance_enemy.Value.GetTransform().position - origin.position));
                     // pi/2　より小さければカメラ内にあるとする
                     if (dot > MathF.Cos(MathF.PI / 2))
                     {
@@ -61,10 +63,10 @@ namespace Enemys
         /// <param name="origin"></param>
         /// <param name="searchDistance"></param>
         /// <returns></returns>
-        public List<MobEnemy> SearchEnemy(Transform origin, float searchDistance)
+        public List<IHitable> SearchEnemy(Transform origin, float searchDistance)
         {
             //searchDistance以内に居る敵のリスト
-            List<MobEnemy> returnMobEnemies = new List<MobEnemy>();
+            List<IHitable> returnMobEnemies = new List<IHitable>();
 
             var enemyanddistanceDict = CaluculateEnemysDistance(origin);
             foreach (var distance_enemy in enemyanddistanceDict)
@@ -82,9 +84,9 @@ namespace Enemys
         /// 敵との距離を計算し、
         /// </summary>
         /// <returns></returns>
-        public SortedDictionary<float, MobEnemy> CaluculateEnemysDistance(Transform origin)
+        public SortedDictionary<float, IHitable> CaluculateEnemysDistance(Transform origin)
         {
-            SortedDictionary<float, MobEnemy>　enemyanddistanceDict = new SortedDictionary<float, MobEnemy>();
+            SortedDictionary<float, IHitable>　enemyanddistanceDict = new SortedDictionary<float, IHitable>();
             Vector3 originPosition = origin.position;
 
             //originとの距離がsearchDistance以内の敵を収集
@@ -93,6 +95,9 @@ namespace Enemys
                 float distance = Vector3.Distance(originPosition, mobEnemy.transform.position);
                 enemyanddistanceDict.Add(distance, mobEnemy);
             }
+
+            float bossdistance = Vector3.Distance(originPosition, _bossEnemy.transform.position);
+            enemyanddistanceDict.Add(bossdistance, _bossEnemy);
 
             return enemyanddistanceDict;
         }

@@ -43,6 +43,11 @@ namespace Enemys
             }
         }
 
+        public Transform GetTransform()
+        {
+            return this.transform;
+        }
+
         private void Destruction()
         {
             Debug.Log("death");

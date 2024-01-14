@@ -12,7 +12,7 @@ namespace Character.LockOns
         [SerializeField] private RectTransform lockonUiTransform;
         private Transform cameraTransform;
 
-        [SerializeField] private MobEnemy targetEnemy;
+        [SerializeField] private IHitable targetEnemy;
         [SerializeField] private Transform debugObjecttransform;
         [SerializeField] private Transform debugTarget;
 
@@ -22,7 +22,7 @@ namespace Character.LockOns
             cameraTransform = UnityEngine.Camera.main.transform;
         }
 
-        public MobEnemy GetTarget()
+        public IHitable GetTarget()
         {
             return this.targetEnemy;
         }
@@ -30,11 +30,13 @@ namespace Character.LockOns
         private void FixedUpdate()
         {
             var nearEnemy = _enemyManager.GetMostNearEnemyInCameraDirection(transform, cameraTransform.forward);
-            if (nearEnemy)
+            if (nearEnemy != null)
             {
-                DisplayLockOnUI(nearEnemy.transform.position);
+                DisplayLockOnUI(nearEnemy.GetTransform().position);
                 targetEnemy = nearEnemy;
-                debugObjecttransform.transform.position = targetEnemy.transform.position;
+#if UNITY_EDITOR
+                debugObjecttransform.transform.position = targetEnemy.GetTransform().position;
+#endif
             }
             else
             {

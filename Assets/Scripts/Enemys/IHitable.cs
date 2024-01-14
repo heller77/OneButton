@@ -1,4 +1,6 @@
-﻿namespace Enemys
+﻿using UnityEngine;
+
+namespace Enemys
 {
     /// <summary>
     /// 攻撃が当たる
@@ -9,5 +11,7 @@
         /// 攻撃を受ける
         /// </summary>
         public void Hitted(float damage);
+
+        public Transform GetTransform();
     }
 }

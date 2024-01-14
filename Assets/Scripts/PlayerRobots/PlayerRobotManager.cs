@@ -47,10 +47,11 @@ namespace Character
             {
                 Debug.Log("playerrobot space");
                 var targetenemy = _lockOn.GetTarget();
-                if (targetenemy)
+                if (targetenemy != null)
                 {
+                    Debug.Log("攻撃成功！");
                     attackComponent.Attack(targetenemy, 3);
-                    attackComponent.FireBullet(targetenemy.transform);
+                    attackComponent.FireBullet(targetenemy.GetTransform());
 
                     //弾を使った数を記録
                     BattleResultManager.GetInstance().AddConsumeBullet();
