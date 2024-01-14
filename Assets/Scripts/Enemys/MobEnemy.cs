@@ -52,6 +52,13 @@ namespace Enemys
 
             Destroy(gameObject);
         }
+
+        public void SetEnemyManager(EnemyManager enemyManager)
+        {
+            this._enemyManager = enemyManager;
+        }
+
+
 #if UNITY_EDITOR
         private void OnDrawGizmos()
         {
