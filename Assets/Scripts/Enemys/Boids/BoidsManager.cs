@@ -16,6 +16,8 @@ namespace Enemys.Boids
 
         [SerializeField] private Transform target;
 
+        [SerializeField] private EnemyManager _enemyManager;
+
         private void Start()
         {
             //シード値を指定
@@ -37,8 +39,11 @@ namespace Enemys.Boids
         /// </summary>
         public void AddBoid()
         {
-            GameObject boid = Instantiate(boidPrefab, 10 * Random.onUnitSphere, Random.rotation);
+            GameObject boid = Instantiate(boidPrefab, transform.position + 10 * Random.onUnitSphere, Random.rotation);
             var boidcomponent = boid.GetComponent<Boid>();
+            var mobenemy = boid.GetComponent<MobEnemy>();
+            mobenemy.SetEnemyManager(_enemyManager);
+
             boidList.Add(boidcomponent);
             boidcomponent.SetBoidParameter(this._boidParameter);
             //初期加速度設定
