@@ -16,6 +16,8 @@ namespace Character.LockOns
         [SerializeField] private Transform debugObjecttransform;
         [SerializeField] private Transform debugTarget;
 
+        [SerializeField] private GameObject targetgameob;
+
 
         private void Start()
         {
@@ -30,17 +32,20 @@ namespace Character.LockOns
         private void FixedUpdate()
         {
             var nearEnemy = _enemyManager.GetMostNearEnemyInCameraDirection(transform, cameraTransform.forward);
+            // IHitable nearEnemy = null;
+
+            // targetgameob = nearEnemy.GetTransform().gameObject;
             if (nearEnemy != null)
             {
                 DisplayLockOnUI(nearEnemy.GetTransform().position);
                 targetEnemy = nearEnemy;
-#if UNITY_EDITOR
+
                 debugObjecttransform.transform.position = targetEnemy.GetTransform().position;
-#endif
             }
             else
             {
                 HideLockOnUI();
+                debugObjecttransform.gameObject.SetActive(false);
             }
         }
 
