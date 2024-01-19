@@ -17,6 +17,7 @@ namespace Enemys
         [SerializeField] private ParticleSystem _particleSystem;
 
         [SerializeField] private float hp = 1;
+        [SerializeField] private EnemyManager _enemyManager;
 
 
         public void Boot()
@@ -26,6 +27,7 @@ namespace Enemys
         public void Destruction()
         {
             _particleSystem.Play();
+            _enemyManager.RemoveBoss();
             defaultObject.SetActive(false);
             destructionObject.SetActive(true);
             foreach (var part in parts)
@@ -47,6 +49,25 @@ namespace Enemys
         public Transform GetTransform()
         {
             return transform;
+        }
+
+        /// <summary>
+        /// ボスを攻撃できる距離の範囲（はたしてボスがもっているのが正しいのか？）
+        /// </summary>
+        [SerializeField] private float bossAttackableRadius = 1000.0f;
+
+        public float GetBossAttackableRadius()
+        {
+            return this.bossAttackableRadius;
+        }
+
+        /// <summary>
+        /// ボスを攻撃できる範囲をギズモで表示
+        /// </summary>
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position, bossAttackableRadius);
         }
     }
 }

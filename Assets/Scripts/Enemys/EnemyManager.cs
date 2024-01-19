@@ -26,6 +26,11 @@ namespace Enemys
             return _mobEnemies.Remove(mobEnemy);
         }
 
+        public void RemoveBoss()
+        {
+            this._bossEnemy = null;
+        }
+
         /// <summary>
         /// カメラの向きにある
         /// </summary>
@@ -49,7 +54,9 @@ namespace Enemys
                     }
                 }
 
-                return distanceDict.FirstOrDefault().Value;
+                //todo 意味が分からなかったのでコメントアウト。何もターゲットがいなければnullにすべきでは
+                // return distanceDict.FirstOrDefault().Value;
+                return null;
             }
             else
             {
@@ -81,7 +88,7 @@ namespace Enemys
         }
 
         /// <summary>
-        /// 敵との距離を計算し、
+        /// 有効な敵との距離を計算し、辞書を返す
         /// </summary>
         /// <returns></returns>
         public SortedDictionary<float, IHitable> CaluculateEnemysDistance(Transform origin)
@@ -96,8 +103,14 @@ namespace Enemys
                 enemyanddistanceDict.Add(distance, mobEnemy);
             }
 
-            float bossdistance = Vector3.Distance(originPosition, _bossEnemy.transform.position);
-            enemyanddistanceDict.Add(bossdistance, _bossEnemy);
+            if (_bossEnemy != null)
+            {
+                float bossdistance = Vector3.Distance(originPosition, _bossEnemy.transform.position);
+                if (bossdistance < _bossEnemy.GetBossAttackableRadius())
+                {
+                    enemyanddistanceDict.Add(bossdistance, _bossEnemy);
+                }
+            }
 
             return enemyanddistanceDict;
         }
