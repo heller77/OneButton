@@ -1,6 +1,7 @@
 ﻿using System;
 using GameManagers;
 using MyInputs;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,9 +16,10 @@ namespace TitleScene
         private void Start()
         {
             input = new GameInputs();
-            input.Player.PushButton.started += GoToInGame;
+            // input.Player.PushButton.started += GoToInGame;
             input.Enable();
         }
+
 
         /// <summary>
         /// インゲームを

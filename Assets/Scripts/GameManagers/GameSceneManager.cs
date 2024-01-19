@@ -8,7 +8,7 @@ namespace GameManagers
     {
         private void Start()
         {
-            DontDestroyOnLoad(this);
+            // DontDestroyOnLoad(this);
         }
 
         /// <summary>
