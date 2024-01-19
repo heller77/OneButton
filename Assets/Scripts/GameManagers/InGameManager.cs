@@ -34,7 +34,7 @@ namespace GameManagers
         /// </summary>
         private async void StartGame()
         {
-            await StartRideScene();
+            // await StartRideScene();
             await StartOpenStartDoorScene();
             await IntroductionDeparture();
             await Departure();
