@@ -7,6 +7,9 @@ using UnityEngine.InputSystem;
 
 namespace TitleScene
 {
+    /// <summary>
+    /// タイトルシーンの管理をする
+    /// </summary>
     public class TitleSceneManager : MonoBehaviour
     {
         private GameInputs input;

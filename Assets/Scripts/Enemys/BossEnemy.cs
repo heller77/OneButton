@@ -5,6 +5,9 @@ using Random = System.Random;
 
 namespace Enemys
 {
+    /// <summary>
+    /// 敵の母艦
+    /// </summary>
     public class BossEnemy : MonoBehaviour, ITrapable, IHitable
     {
         [SerializeField] private GameObject defaultObject;
