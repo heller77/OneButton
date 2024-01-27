@@ -47,5 +47,20 @@ namespace Character.LockOns
         public void ChangeVisualizeToDecisionMode()
         {
         }
+
+        /// <summary>
+        /// カメラをずっと見てる
+        /// </summary>
+        private void BillBoard()
+        {
+            var cameraposition = UnityEngine.Camera.main.transform.position;
+            cameraposition.y = transform.position.y;
+            transform.LookAt(cameraposition);
+        }
+
+        private void Update()
+        {
+            BillBoard();
+        }
     }
 }
