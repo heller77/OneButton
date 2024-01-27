@@ -12,6 +12,9 @@ using UnityEditor;
 
 namespace Character
 {
+    /// <summary>
+    /// ロボットの動きや攻撃を管理する
+    /// </summary>
     public class PlayerRobotManager : MonoBehaviour
     {
         // [SerializeField] private SplineAnimate _splineAnimate;
@@ -46,18 +49,21 @@ namespace Character
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Debug.Log("playerrobot space");
-                var targetenemy = _lockOn.GetTarget();
-                if (targetenemy != null)
-                {
-                    Debug.Log("攻撃成功！");
-                    attackComponent.Attack(targetenemy, 3);
-                    attackComponent.FireBullet(targetenemy.GetTransform());
-
-                    //弾を使った数を記録
-                    BattleResultManager.GetInstance().AddConsumeBullet();
-                }
+                // var targetenemy = _lockOn.GetTarget();
+                // if (targetenemy != null)
+                // {
+                //     _lockOn.DecideEnemy();
+                //     Debug.Log("攻撃成功！");
+                //     attackComponent.Attack(targetenemy, 3);
+                //     attackComponent.FireBullet(targetenemy.GetTransform());
+                //
+                //     //弾を使った数を記録
+                //     BattleResultManager.GetInstance().AddConsumeBullet();
+                // }
+                _lockOn.DecideEnemy();
             }
         }
+
 #if UNITY_EDITOR
         private void OnDrawGizmos()
         {

@@ -1,27 +1,96 @@
 ﻿using System;
+using Cysharp.Threading.Tasks;
 using Enemys;
 using UnityEngine;
 
 namespace Character.LockOns
 {
+    /// <summary>
+    /// 敵にカーソルを表示したりする。
+    /// </summary>
     public class LockOn : MonoBehaviour
     {
+        [SerializeField] private Cursor cursor;
+
+        /// <summary>
+        /// 攻撃可能距離
+        /// </summary>
+        [SerializeField] private float attackableDistance = 100.0f;
+
+        [SerializeField] private float cursorChangeTime = 1.0f;
+
         [SerializeField] private EnemyManager _enemyManager;
 
-
-        [SerializeField] private RectTransform lockonUiTransform;
+        // [SerializeField] private RectTransform lockonUiTransform;
         private Transform cameraTransform;
+        private IHitable targetEnemy;
 
-        [SerializeField] private IHitable targetEnemy;
-        [SerializeField] private Transform debugObjecttransform;
-        [SerializeField] private Transform debugTarget;
+        [SerializeField] private LockOnState _lockOnState;
 
-        [SerializeField] private GameObject targetgameob;
+        /// <summary>
+        /// ロックオンの状態を表す
+        /// None 何もしない、SelectEnemy　攻撃する敵を選んでいる最中、 
+        /// </summary>
+        enum LockOnState
+        {
+            /// <summary>
+            /// 何もしない
+            /// </summary>
+            None,
 
+            /// <summary>
+            /// 攻撃する敵を選んでいる最中
+            /// </summary>
+            SelectEnemy,
+
+            /// <summary>
+            /// 攻撃する敵を決めた状態
+            /// </summary>
+            DecideAttackTarget
+        }
 
         private void Start()
         {
             cameraTransform = UnityEngine.Camera.main.transform;
+            this._lockOnState = LockOnState.SelectEnemy;
+            ChangeCursorPositionEverySomeSeconds();
+        }
+
+        /// <summary>
+        /// 何秒かに一回カーソルを移動。攻撃できる対象の敵の上にカーソルを表示。
+        /// </summary>
+        private async UniTask ChangeCursorPositionEverySomeSeconds()
+        {
+            int index = 0;
+
+            while (true)
+            {
+                if (this._lockOnState == LockOnState.SelectEnemy)
+                {
+                    //選択候補の敵取得
+                    var enemies = this._enemyManager.SearchEnemy(transform, attackableDistance);
+                    //次にカーソルを合わせる敵を取得
+                    if (enemies.Count <= index)
+                    {
+                        //indexがenemiesの数より大きかったリセット
+                        index = 0;
+                    }
+
+                    var target = enemies[index++];
+
+                    //カーソルを表示し、移動
+                    cursor.Display();
+                    cursor.MoveToTarget(target.GetTransform());
+
+                    //cursorChangeTime秒だけまって、またカーソルを移動させる
+                    await UniTask.Delay(TimeSpan.FromSeconds(this.cursorChangeTime));
+                }
+                else
+                {
+                    //cursorChangeTime秒だけまって、またカーソルを移動させる
+                    await UniTask.Delay(TimeSpan.FromSeconds(this.cursorChangeTime));
+                }
+            }
         }
 
         public IHitable GetTarget()
@@ -29,70 +98,33 @@ namespace Character.LockOns
             return this.targetEnemy;
         }
 
-        private void FixedUpdate()
+        /// <summary>
+        /// 敵にカーソルを表示する
+        /// DecideEnemyメソッドでカーソルのあってる敵を攻撃対象に出来る。
+        /// </summary>
+        private void DisplayCursor(Transform target)
         {
-            var nearEnemy = _enemyManager.GetMostNearEnemyInCameraDirection(transform, cameraTransform.forward);
-            // IHitable nearEnemy = null;
-
-            // targetgameob = nearEnemy.GetTransform().gameObject;
-            if (nearEnemy != null)
-            {
-                DisplayLockOnUI(nearEnemy.GetTransform().position);
-                targetEnemy = nearEnemy;
-
-                debugObjecttransform.transform.position = targetEnemy.GetTransform().position;
-            }
-            else
-            {
-                HideLockOnUI();
-                debugObjecttransform.gameObject.SetActive(false);
-            }
+            cursor.ChangeVisualizeToSelectMode();
+            cursor.MoveToTarget(target);
+            cursor.Display();
         }
 
         /// <summary>
-        /// ロックオンするUIを表示する
+        /// 攻撃対象を決定
         /// </summary>
-        public void DisplayLockOnUI(Vector3 target)
+        public void DecideEnemy()
         {
-            //ロックオンUIを表示するディスプレイ上の位置を計算
-            var rayhit = new RaycastHit();
-            var position = this.transform.position;
-            var ray = new Ray(position, target - position);
-            // var ray = new Ray(position, new Vector3(-1, 0, 0));
-            // var ray = new Ray(position, debugTarget.position - position);
-
-            int DisplaylayerMask = 1 << 6;
-
-            if (Physics.Raycast(ray, out rayhit, 10))
-            {
-                //ターゲットかどうか
-                if (rayhit.collider.gameObject.TryGetComponent<Display>(out var display))
-                {
-                    Debug.Log("hit Display");
-                    Vector2 uv = rayhit.textureCoord;
-                    lockonUiTransform.anchoredPosition = new Vector2(uv.x * 1920, uv.y * 1080);
-                    // Debug.Log(uv);
-                    Debug.DrawRay(ray.origin, ray.direction * 40, Color.red, 1, false);
-                }
-                else
-                {
-                    Debug.Log("not hit to display", rayhit.collider.gameObject);
-                    // HideLockOnUI();
-                }
-            }
-            else
-            {
-                Debug.Log("non hit to anyobject");
-                Debug.DrawRay(ray.origin, ray.direction * 40, Color.green, 1, false);
-            }
+            this._lockOnState = LockOnState.DecideAttackTarget;
+            cursor.ChangeVisualizeToDecisionMode();
         }
 
         /// <summary>
-        /// ロックオンUIを非表示にする（画面外に持ってくる）
+        /// 攻撃対象を決定している状態をやめる
+        /// 攻撃し終えた時に呼ばれることを想定
+        /// カーソルでどの敵に攻撃するか選ぶ状態に戻す。
         /// </summary>
-        public void HideLockOnUI()
+        public void CancellationDecideEnemy()
         {
-            lockonUiTransform.anchoredPosition = new Vector2(-100, -100);
         }
     }
 }
