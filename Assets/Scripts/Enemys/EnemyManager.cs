@@ -78,7 +78,7 @@ namespace Enemys
             var enemyanddistanceDict = CaluculateEnemysDistance(origin);
             foreach (var distance_enemy in enemyanddistanceDict)
             {
-                if (distance_enemy.Key > searchDistance)
+                if (distance_enemy.Key < searchDistance)
                 {
                     returnMobEnemies.Add(distance_enemy.Value);
                 }
