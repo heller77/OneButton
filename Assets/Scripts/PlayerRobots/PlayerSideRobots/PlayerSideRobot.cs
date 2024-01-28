@@ -24,7 +24,7 @@ namespace Character.PlayerSideRobots
             this._moverOnSpline.Play();
         }
 
-        // <summary>
+        /// <summary>
         /// 動きを止める
         /// </summary>
         public void StopMove()
