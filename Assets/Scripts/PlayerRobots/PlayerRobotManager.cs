@@ -63,10 +63,13 @@ namespace Character
                     //     BattleResultManager.GetInstance().AddConsumeBullet();
                     // }
                     _lockOn.DecideEnemy();
+                    //攻撃までチャージする
+                    attackComponent.StartCharge();
                 }
                 else if (_lockOn.GetState() == LockOn.LockOnState.DecideAttackTarget)
                 {
                     //攻撃！
+                    attackComponent.ChargeAttack(_lockOn.GetTarget());
 
                     _lockOn.CancellationDecideEnemy();
                 }

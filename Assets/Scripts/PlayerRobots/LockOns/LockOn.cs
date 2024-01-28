@@ -82,6 +82,9 @@ namespace Character.LockOns
                     cursor.Display();
                     cursor.MoveToTarget(target.GetTransform());
 
+                    //今ターゲットにしている敵を取得できるようにフィールドに代入。
+                    this.targetEnemy = target;
+
                     //cursorChangeTime秒だけまって、またカーソルを移動させる
                     await UniTask.Delay(TimeSpan.FromSeconds(this.cursorChangeTime));
                 }
