@@ -51,7 +51,7 @@ namespace Character
         {
             if (chargePercentage > CannonMinPower)
             {
-                cannon.Attack();
+                cannon.Attack(target);
             }
             else
             {
