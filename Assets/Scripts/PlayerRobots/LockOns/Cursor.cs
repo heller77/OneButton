@@ -8,6 +8,9 @@ namespace Character.LockOns
     public class Cursor : MonoBehaviour
     {
         [SerializeField] private GameObject cursorGameObject;
+        [SerializeField] private Animator _animator;
+        private static readonly int Decide = Animator.StringToHash("decide");
+        private static readonly int Selectmode = Animator.StringToHash("selectmode");
 
         /// <summary>
         /// カーソルを表示する
@@ -39,6 +42,7 @@ namespace Character.LockOns
         /// </summary>
         public void ChangeVisualizeToSelectMode()
         {
+            _animator.SetTrigger(Selectmode);
         }
 
         /// <summary>
@@ -46,6 +50,7 @@ namespace Character.LockOns
         /// </summary>
         public void ChangeVisualizeToDecisionMode()
         {
+            _animator.SetTrigger(Decide);
         }
 
         /// <summary>
