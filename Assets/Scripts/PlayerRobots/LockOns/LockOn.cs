@@ -31,7 +31,7 @@ namespace Character.LockOns
         /// ロックオンの状態を表す
         /// None 何もしない、SelectEnemy　攻撃する敵を選んでいる最中、 
         /// </summary>
-        enum LockOnState
+        public enum LockOnState
         {
             /// <summary>
             /// 何もしない
@@ -125,6 +125,22 @@ namespace Character.LockOns
         /// </summary>
         public void CancellationDecideEnemy()
         {
+            this._lockOnState = LockOnState.SelectEnemy;
+            cursor.ChangeVisualizeToSelectMode();
+        }
+
+        public LockOnState GetState()
+        {
+            return this._lockOnState;
+        }
+
+        /// <summary>
+        /// ギズモを表示
+        /// </summary>
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(transform.position, this.attackableDistance);
         }
     }
 }
