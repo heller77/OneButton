@@ -61,10 +61,13 @@ namespace Character.LockOns
         /// </summary>
         private async UniTask ChangeCursorPositionEverySomeSeconds()
         {
+            //startで読んでしまうと、_enemyManager.SearchEnemyが
+            await UniTask.DelayFrame(1);
             int index = 0;
 
             while (true)
             {
+                Debug.Log("ChangeCursorPositionEverySomeSeconds update");
                 if (this._lockOnState == LockOnState.SelectEnemy)
                 {
                     //選択候補の敵取得
@@ -76,6 +79,12 @@ namespace Character.LockOns
                         index = 0;
                     }
 
+                    if (enemies.Count == 0)
+                    {
+                        await UniTask.Delay(TimeSpan.FromSeconds(this.cursorChangeTime));
+                        continue;
+                    }
+
                     var target = enemies[index++];
 
                     //カーソルを表示し、移動
@@ -84,15 +93,10 @@ namespace Character.LockOns
 
                     //今ターゲットにしている敵を取得できるようにフィールドに代入。
                     this.targetEnemy = target;
+                }
 
-                    //cursorChangeTime秒だけまって、またカーソルを移動させる
-                    await UniTask.Delay(TimeSpan.FromSeconds(this.cursorChangeTime));
-                }
-                else
-                {
-                    //cursorChangeTime秒だけまって、またカーソルを移動させる
-                    await UniTask.Delay(TimeSpan.FromSeconds(this.cursorChangeTime));
-                }
+                //cursorChangeTime秒だけまって、またカーソルを移動させる
+                await UniTask.Delay(TimeSpan.FromSeconds(this.cursorChangeTime));
             }
         }
 
