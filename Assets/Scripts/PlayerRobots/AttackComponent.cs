@@ -4,6 +4,7 @@ using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Enemys;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Character
 {
@@ -14,7 +15,9 @@ namespace Character
 
         private float CannonMinPower = 0.5f;
         [SerializeField] private Cannon cannon;
-        [SerializeField] private NormalBullet _normalBullet;
+
+        [FormerlySerializedAs("_normalBullet")] [SerializeField]
+        private NormalGun normalGun;
 
         [SerializeField] private float chargePercentage = 0.0f;
         [SerializeField] private float chargeSpeed = 1.0f;
@@ -55,7 +58,7 @@ namespace Character
             }
             else
             {
-                _normalBullet.Attack();
+                normalGun.Attack(target);
             }
         }
 
