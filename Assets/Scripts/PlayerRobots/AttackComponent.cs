@@ -54,11 +54,13 @@ namespace Character
         {
             if (chargePercentage > CannonMinPower)
             {
-                cannon.Attack(target);
+                var cannonAttackPower = 10;
+                cannon.Attack(target, cannonAttackPower);
             }
             else
             {
-                normalGun.Attack(target);
+                var normalGunAttackPower = 1;
+                normalGun.Attack(target, normalGunAttackPower);
             }
         }
 

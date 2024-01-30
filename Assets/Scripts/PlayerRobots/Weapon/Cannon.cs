@@ -14,8 +14,11 @@ namespace Character.Weapon
         [SerializeField] private GameObject bullet;
         [SerializeField] private Transform bulletInstatiatePosition;
 
-        public async void Attack(IHitable target)
+        public async void Attack(IHitable target, float attackPower)
         {
+            target.Hitted(attackPower);
+
+
             fireEffect.Play();
             var bulletInstance = Instantiate(bullet, bulletInstatiatePosition.position, Quaternion.identity);
 

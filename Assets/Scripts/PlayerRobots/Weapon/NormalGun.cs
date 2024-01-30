@@ -12,8 +12,10 @@ namespace Character.Weapon
         /// <summary>
         /// 
         /// </summary>
-        public async void Attack(IHitable target)
+        public async void Attack(IHitable target, float attackPower)
         {
+            target.Hitted(attackPower);
+
             var bulletInstance = Instantiate(bulletPrefab, bulletInstancePosition.position, Quaternion.identity);
 
             float elapsedTime = 0;
