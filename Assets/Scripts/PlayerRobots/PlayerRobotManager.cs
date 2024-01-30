@@ -2,7 +2,9 @@
 using Character.LockOns;
 using Enemys;
 using GameManagers;
+using MyInputs;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
 using UnityEngine.Splines;
 using Utils;
@@ -27,6 +29,16 @@ namespace Character
 
         [SerializeField] private LockOn _lockOn;
 
+        private GameInputs _inputs;
+
+        private void Start()
+        {
+            //入力設定
+            _inputs = new GameInputs();
+            _inputs.Enable();
+            _inputs.Player.PushButton.performed += PushButton;
+        }
+
         /// <summary>
         /// 動きをスタート
         /// </summary>
@@ -44,37 +56,23 @@ namespace Character
             _moverOnSpline.Pause();
         }
 
-        private void Update()
+        private void PushButton(InputAction.CallbackContext callbackContext)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (_lockOn.GetState() == LockOn.LockOnState.SelectEnemy)
             {
-                if (_lockOn.GetState() == LockOn.LockOnState.SelectEnemy)
-                {
-                    Debug.Log("playerrobot space");
-                    // var targetenemy = _lockOn.GetTarget();
-                    // if (targetenemy != null)
-                    // {
-                    //     _lockOn.DecideEnemy();
-                    //     Debug.Log("攻撃成功！");
-                    //     attackComponent.Attack(targetenemy, 3);
-                    //     attackComponent.FireBullet(targetenemy.GetTransform());
-                    //
-                    //     //弾を使った数を記録
-                    //     BattleResultManager.GetInstance().AddConsumeBullet();
-                    // }
-                    _lockOn.DecideEnemy();
-                    //攻撃までチャージする
-                    attackComponent.StartCharge();
-                }
-                else if (_lockOn.GetState() == LockOn.LockOnState.DecideAttackTarget)
-                {
-                    //攻撃する敵を決めた状態でさらにボタンを押したら。
+                Debug.Log("playerrobot space");
+                _lockOn.DecideEnemy();
+                //攻撃までチャージする
+                attackComponent.StartCharge();
+            }
+            else if (_lockOn.GetState() == LockOn.LockOnState.DecideAttackTarget)
+            {
+                //攻撃する敵を決めた状態でさらにボタンを押したら。
 
-                    //攻撃！
-                    attackComponent.ChargeAttack(_lockOn.GetTarget());
+                //攻撃！
+                attackComponent.ChargeAttack(_lockOn.GetTarget());
 
-                    _lockOn.CancellationDecideEnemy();
-                }
+                _lockOn.CancellationDecideEnemy();
             }
         }
 
