@@ -20,7 +20,7 @@ namespace Character.Weapon
             var bulletInstance = Instantiate(bullet, bulletInstatiatePosition.position, Quaternion.identity);
 
             float elapsedTime = 0;
-            float duration = 0.04f;
+            float duration = 1.0f;
             while (elapsedTime <= duration)
             {
                 Debug.Log(target.GetTransform().position);
