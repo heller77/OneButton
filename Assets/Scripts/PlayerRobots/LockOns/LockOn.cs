@@ -71,7 +71,8 @@ namespace Character.LockOns
                 if (this._lockOnState == LockOnState.SelectEnemy)
                 {
                     //選択候補の敵取得
-                    var enemies = this._enemyManager.SearchEnemy(transform, attackableDistance);
+                    var enemies =
+                        this._enemyManager.SearchEnemyInCamera(transform, attackableDistance, cameraTransform.forward);
                     //次にカーソルを合わせる敵を取得
                     if (enemies.Count <= index)
                     {

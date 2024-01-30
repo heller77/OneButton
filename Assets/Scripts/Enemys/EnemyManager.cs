@@ -10,7 +10,6 @@ namespace Enemys
         [SerializeField] private List<MobEnemy> _mobEnemies = new List<MobEnemy>();
         [SerializeField] private BossEnemy _bossEnemy;
 
-
         public void Add(MobEnemy mobEnemy)
         {
             _mobEnemies.Add(mobEnemy);
@@ -81,6 +80,30 @@ namespace Enemys
                 if (distance_enemy.Key < searchDistance)
                 {
                     returnMobEnemies.Add(distance_enemy.Value);
+                }
+            }
+
+            return returnMobEnemies;
+        }
+
+        public List<IHitable> SearchEnemyInCamera(Transform origin, float searchDistance, Vector3 cameraDir)
+        {
+            //searchDistance以内に居る敵のリスト
+            List<IHitable> returnMobEnemies = new List<IHitable>();
+
+            var enemyanddistanceDict = CaluculateEnemysDistance(origin);
+            foreach (var distance_enemy in enemyanddistanceDict)
+            {
+                if (distance_enemy.Key < searchDistance)
+                {
+                    //カメラの向いてる向きとカメラから敵の位置のベクトルの内積を計算
+                    var dot = Vector3.Dot(Vector3.Normalize(cameraDir),
+                        Vector3.Normalize(distance_enemy.Value.GetTransform().position - origin.position));
+                    // pi/2　より小さければカメラ内にあるとする
+                    if (dot > MathF.Cos(MathF.PI / 2))
+                    {
+                        returnMobEnemies.Add(distance_enemy.Value);
+                    }
                 }
             }
 
