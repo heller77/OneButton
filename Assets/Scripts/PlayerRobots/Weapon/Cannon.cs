@@ -16,9 +16,6 @@ namespace Character.Weapon
 
         public async void Attack(IHitable target, float attackPower)
         {
-            target.Hitted(attackPower);
-
-
             fireEffect.Play();
             var bulletInstance = Instantiate(bullet, bulletInstatiatePosition.position, Quaternion.identity);
 
@@ -43,6 +40,8 @@ namespace Character.Weapon
                 await UniTask.DelayFrame(1);
                 elapsedTime += Time.deltaTime;
             }
+
+            target.Hitted(attackPower);
         }
     }
 }

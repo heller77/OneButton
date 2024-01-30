@@ -14,8 +14,6 @@ namespace Character.Weapon
         /// </summary>
         public async void Attack(IHitable target, float attackPower)
         {
-            target.Hitted(attackPower);
-
             var bulletInstance = Instantiate(bulletPrefab, bulletInstancePosition.position, Quaternion.identity);
 
             float elapsedTime = 0;
@@ -40,6 +38,8 @@ namespace Character.Weapon
                 await UniTask.DelayFrame(1);
                 elapsedTime += Time.deltaTime;
             }
+
+            target.Hitted(attackPower);
         }
     }
 }
