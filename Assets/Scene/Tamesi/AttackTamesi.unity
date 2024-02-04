@@ -6449,6 +6449,10 @@ PrefabInstance:
       propertyPath: _enemyManager
       value: 
       objectReference: {fileID: 1907127250}
+    - target: {fileID: 7251318413210176648, guid: 56a736f969124a746a9fb9a92191f272, type: 3}
+      propertyPath: ExplosionEffect
+      value: 
+      objectReference: {fileID: 6538551318824843039, guid: 8e9a170e07fa2b94eafdd09d8cadca50, type: 3}
     - target: {fileID: 8254689992159976146, guid: 56a736f969124a746a9fb9a92191f272, type: 3}
       propertyPath: m_Name
       value: Player
@@ -7241,6 +7245,63 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!1001 &5505484512903986612
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6296256029146808314, guid: 8e9a170e07fa2b94eafdd09d8cadca50, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 54.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 6296256029146808314, guid: 8e9a170e07fa2b94eafdd09d8cadca50, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6296256029146808314, guid: 8e9a170e07fa2b94eafdd09d8cadca50, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 19.82
+      objectReference: {fileID: 0}
+    - target: {fileID: 6296256029146808314, guid: 8e9a170e07fa2b94eafdd09d8cadca50, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6296256029146808314, guid: 8e9a170e07fa2b94eafdd09d8cadca50, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6296256029146808314, guid: 8e9a170e07fa2b94eafdd09d8cadca50, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6296256029146808314, guid: 8e9a170e07fa2b94eafdd09d8cadca50, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6296256029146808314, guid: 8e9a170e07fa2b94eafdd09d8cadca50, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6296256029146808314, guid: 8e9a170e07fa2b94eafdd09d8cadca50, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6296256029146808314, guid: 8e9a170e07fa2b94eafdd09d8cadca50, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6538551318824843039, guid: 8e9a170e07fa2b94eafdd09d8cadca50, type: 3}
+      propertyPath: m_Name
+      value: CannonBulletExplosion
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8e9a170e07fa2b94eafdd09d8cadca50, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -7260,3 +7321,4 @@ SceneRoots:
   - {fileID: 905673284}
   - {fileID: 1916898426}
   - {fileID: 740533616}
+  - {fileID: 5505484512903986612}

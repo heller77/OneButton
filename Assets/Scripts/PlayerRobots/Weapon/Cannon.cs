@@ -1,5 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
 using Enemys;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace Character.Weapon
@@ -13,6 +14,8 @@ namespace Character.Weapon
 
         [SerializeField] private GameObject bullet;
         [SerializeField] private Transform bulletInstatiatePosition;
+
+        [SerializeField] private GameObject ExplosionEffect;
 
         public async void Attack(IHitable target, float attackPower)
         {
@@ -42,6 +45,13 @@ namespace Character.Weapon
             }
 
             target.Hitted(attackPower);
+            GenerateExpolosion(target);
+        }
+
+        private void GenerateExpolosion(IHitable target)
+        {
+            Instantiate(ExplosionEffect, target.GetTransform().position,
+                Quaternion.LookRotation(target.GetTransform().position - this.transform.position));
         }
     }
 }
