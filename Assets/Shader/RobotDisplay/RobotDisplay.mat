@@ -58,5 +58,7 @@ Material:
     - _QueueOffset: 0
     - _Smoothness: 1
     - _alphaThreshold: 0.046
+    - _metalic: 0
+    - _netakuc: 0.088
     m_Colors: []
   m_BuildTextureStacks: []
