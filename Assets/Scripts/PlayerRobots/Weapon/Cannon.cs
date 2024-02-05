@@ -1,4 +1,5 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using Character.Weapon.CannonBulletExplosions;
+using Cysharp.Threading.Tasks;
 using Enemys;
 using Unity.Mathematics;
 using UnityEngine;
@@ -16,6 +17,7 @@ namespace Character.Weapon
         [SerializeField] private Transform bulletInstatiatePosition;
 
         [SerializeField] private GameObject ExplosionEffect;
+        [SerializeField] private EnemyManager _enemyManager;
 
         public async void Attack(IHitable target, float attackPower)
         {
@@ -37,7 +39,7 @@ namespace Character.Weapon
                 }
 
                 var newpos = nowPosition + t * diff;
-                Debug.Log(string.Format("diff {0} , new {1}", diff, newpos));
+                // Debug.Log(string.Format("diff {0} , new {1}", diff, newpos));
                 bulletInstance.transform.position = newpos;
 
                 await UniTask.DelayFrame(1);
@@ -50,8 +52,11 @@ namespace Character.Weapon
 
         private void GenerateExpolosion(IHitable target)
         {
-            Instantiate(ExplosionEffect, target.GetTransform().position,
-                Quaternion.LookRotation(target.GetTransform().position - this.transform.position));
+            var cannonExplosion = Instantiate(ExplosionEffect, target.GetTransform().position,
+                    Quaternion.LookRotation(target.GetTransform().position - this.transform.position))
+                .GetComponent<CannonBulletExplosion>();
+            cannonExplosion.SetEnemyManager(_enemyManager);
+            cannonExplosion.Explosion();
         }
     }
 }
