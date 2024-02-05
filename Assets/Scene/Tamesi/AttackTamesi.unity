@@ -6450,6 +6450,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1907127250}
     - target: {fileID: 7251318413210176648, guid: 56a736f969124a746a9fb9a92191f272, type: 3}
+      propertyPath: _enemyManager
+      value: 
+      objectReference: {fileID: 1907127250}
+    - target: {fileID: 7251318413210176648, guid: 56a736f969124a746a9fb9a92191f272, type: 3}
       propertyPath: ExplosionEffect
       value: 
       objectReference: {fileID: 6538551318824843039, guid: 8e9a170e07fa2b94eafdd09d8cadca50, type: 3}
