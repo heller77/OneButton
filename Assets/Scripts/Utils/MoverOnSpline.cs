@@ -19,7 +19,10 @@ namespace Utils
 
         private void Start()
         {
-            splineLength = spline.CalculateLength();
+            if (spline != null)
+            {
+                splineLength = spline.CalculateLength();
+            }
         }
 
         private void Update()
