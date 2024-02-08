@@ -1,0 +1,11 @@
+<map id="GameManagers.InGameManager.DisplayScore" name="GameManagers.InGameManager.DisplayScore">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,69,223,109"/>
+<area shape="rect" id="Node000002" href="$class_game_managers_1_1_score_calculater_1_1_score_calculater.html#aa14456460ddbee8aebe81ea39cfdefc3" title=" " alt="" coords="271,5,485,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="197,67,281,46,283,51,198,72"/>
+<area shape="rect" id="Node000003" href="$class_game_managers_1_1_battle_result_manager.html#a8d508faf00a39f0186b171b4b2506cae" title=" " alt="" coords="281,69,475,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="223,87,267,87,267,92,223,92"/>
+<area shape="rect" id="Node000004" href="$class_game_managers_1_1_battle_result_manager.html#a2a27e30b1525a9cfe0295831138bd154" title=" " alt="" coords="283,133,473,173"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="198,107,283,128,281,133,197,112"/>
+<area shape="rect" id="Node000005" href="$class_game_managers_1_1_battle_result_manager.html#a87df16d9754aff0349325c9516c7072d" title=" " alt="" coords="533,133,731,173"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="473,151,520,151,520,156,473,156"/>
+</map>

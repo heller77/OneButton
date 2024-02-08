@@ -1,0 +1,5 @@
+<map id="Enemys.MobEnemyGroup.Boot" name="Enemys.MobEnemyGroup.Boot">
+<area shape="rect" id="Node000001" title="起動する" alt="" coords="5,13,212,38"/>
+<area shape="rect" id="Node000002" href="$class_enemys_1_1_mob_enemy_group.html#ababa1b41a39f2a32c4d3bb4e148d1bbe" title=" " alt="" coords="260,5,469,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="212,23,246,23,246,28,212,28"/>
+</map>

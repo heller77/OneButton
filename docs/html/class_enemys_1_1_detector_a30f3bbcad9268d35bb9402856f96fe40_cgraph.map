@@ -1,0 +1,5 @@
+<map id="Enemys.Detector.Detect" name="Enemys.Detector.Detect">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,171,31"/>
+<area shape="rect" id="Node000002" href="$interface_enemys_1_1_i_trapable.html#a6e95d83ba1c770159cc9df69b6bd35b9" title="起動する" alt="" coords="219,5,376,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="171,15,205,15,205,21,171,21"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="Enemys.BossEnemy" name="Enemys.BossEnemy">
+<area shape="rect" id="Node000001" title="敵の母艦" alt="" coords="105,79,251,104"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,116,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="93,35,160,76,157,81,90,40"/>
+<area shape="rect" id="Node000003" href="$interface_enemys_1_1_i_trapable.html" title="あるとき発動する罠のようなもの" alt="" coords="141,5,215,31"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="181,44,181,79,175,79,175,44"/>
+<area shape="rect" id="Node000004" href="$interface_enemys_1_1_i_hitable.html" title="攻撃が当たる" alt="" coords="240,5,305,31"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="248,41,195,81,192,76,245,37"/>
+</map>

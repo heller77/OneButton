@@ -1,0 +1,7 @@
+<map id="Enemys.IHitable" name="Enemys.IHitable">
+<area shape="rect" id="Node000001" title="攻撃が当たる" alt="" coords="102,5,219,31"/>
+<area shape="rect" id="Node000002" href="$class_enemys_1_1_boss_enemy.html" title="敵の母艦" alt="" coords="5,79,151,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="139,42,93,80,90,76,135,38"/>
+<area shape="rect" id="Node000003" href="$class_enemys_1_1_mob_enemy.html" title=" " alt="" coords="175,79,315,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="186,38,233,76,229,80,183,42"/>
+</map>

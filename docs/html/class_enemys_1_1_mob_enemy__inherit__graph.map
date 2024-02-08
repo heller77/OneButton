@@ -1,0 +1,9 @@
+<map id="Enemys.MobEnemy" name="Enemys.MobEnemy">
+<area shape="rect" id="Node000001" title=" " alt="" coords="101,79,241,104"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,5,116,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="91,36,155,76,152,81,89,40"/>
+<area shape="rect" id="Node000003" href="$interface_enemys_1_1_i_target.html" title="ターゲット" alt="" coords="141,5,202,31"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="174,44,174,79,169,79,169,44"/>
+<area shape="rect" id="Node000004" href="$interface_enemys_1_1_i_hitable.html" title="攻撃が当たる" alt="" coords="227,5,292,31"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="236,41,187,81,184,76,233,37"/>
+</map>

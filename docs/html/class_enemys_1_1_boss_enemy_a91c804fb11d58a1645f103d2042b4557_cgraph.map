@@ -1,0 +1,7 @@
+<map id="Enemys.BossEnemy.Hitted" name="Enemys.BossEnemy.Hitted">
+<area shape="rect" id="Node000001" title="攻撃を受ける" alt="" coords="5,5,188,31"/>
+<area shape="rect" id="Node000002" href="$class_enemys_1_1_boss_enemy.html#a53e5e9c4195023b5f3ccb2ac7ef062bd" title=" " alt="" coords="236,5,451,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="188,15,222,15,222,21,188,21"/>
+<area shape="rect" id="Node000003" href="$class_enemys_1_1_enemy_manager.html#a760cc6d32091b470a79b820a52b23647" title=" " alt="" coords="499,5,744,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="451,15,485,15,485,21,451,21"/>
+</map>

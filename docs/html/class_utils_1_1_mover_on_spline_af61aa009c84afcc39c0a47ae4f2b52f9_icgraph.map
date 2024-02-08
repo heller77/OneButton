@@ -1,0 +1,7 @@
+<map id="Utils.MoverOnSpline.Play" name="Utils.MoverOnSpline.Play">
+<area shape="rect" id="Node000001" title=" " alt="" coords="260,45,429,70"/>
+<area shape="rect" id="Node000002" href="$class_character_1_1_player_robot_manager.html#a5e79dfd0621db739ad9dcd1e8bfa5de4" title="動きをスタート" alt="" coords="5,5,212,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="246,47,212,42,213,37,247,41"/>
+<area shape="rect" id="Node000003" href="$class_character_1_1_player_side_robots_1_1_player_side_robot.html#ae85021c50bb43909d272d289a1b559f8" title="動きをスタート" alt="" coords="13,69,204,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="247,73,204,79,204,74,246,68"/>
+</map>

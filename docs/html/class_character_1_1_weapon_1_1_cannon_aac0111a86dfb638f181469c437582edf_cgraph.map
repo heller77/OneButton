@@ -1,0 +1,7 @@
+<map id="Character.Weapon.Cannon.Attack" name="Character.Weapon.Cannon.Attack">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,23,188,63"/>
+<area shape="rect" id="Node000002" href="$interface_enemys_1_1_i_hitable.html#a595f0043caba2530f7dfc837380d74f4" title=" " alt="" coords="236,5,435,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="188,31,222,27,223,33,189,36"/>
+<area shape="rect" id="Node000003" href="$interface_enemys_1_1_i_hitable.html#a35c370b70a4c04e2eebd1f479396509c" title="攻撃を受ける" alt="" coords="258,55,413,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="189,50,244,56,244,61,188,55"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="Character.LockOns.LockOn.CancellationDecideEnemy" name="Character.LockOns.LockOn.CancellationDecideEnemy">
+<area shape="rect" id="Node000001" title="攻撃対象を決定している状態をやめる 攻撃し終えた時に呼ばれることを想定 カーソルでどの敵に攻撃するか選ぶ状態に戻す。" alt="" coords="5,5,192,45"/>
+<area shape="rect" id="Node000002" href="$class_character_1_1_lock_ons_1_1_cursor.html#a1b11b947fc9aa047fd8533e19a8ec2b3" title="カーソルを敵を選択する時の見た目にする" alt="" coords="240,5,443,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="192,23,226,23,226,28,192,28"/>
+</map>

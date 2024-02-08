@@ -1,0 +1,13 @@
+<map id="Enemys.BossEnemy.GetBossAttackableRadius" name="Enemys.BossEnemy.GetBossAttackableRadius">
+<area shape="rect" id="Node000001" title=" " alt="" coords="827,69,1027,109"/>
+<area shape="rect" id="Node000002" href="$class_enemys_1_1_enemy_manager.html#a5151629ef08e54e275bad9b8536778ef" title="有効な敵との距離を計算し、辞書を返す" alt="" coords="548,69,779,109"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="813,92,779,92,779,87,813,87"/>
+<area shape="rect" id="Node000003" href="$class_enemys_1_1_enemy_manager.html#a8dfc5e60e8cc9d5782efe94438a4abce" title="カメラの向きにある" alt="" coords="281,5,500,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="564,69,476,48,477,43,565,64"/>
+<area shape="rect" id="Node000004" href="$class_enemys_1_1_enemy_manager.html#a4513f5d6ab1cac16ad7d0b6917f7f573" title="敵を探す" alt="" coords="285,69,496,109"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="534,92,496,92,496,87,534,87"/>
+<area shape="rect" id="Node000006" href="$class_enemys_1_1_enemy_manager.html#ab912d500b89a65ed62db5a8464261475" title=" " alt="" coords="285,133,496,173"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="565,115,477,136,476,131,564,110"/>
+<area shape="rect" id="Node000005" href="$class_character_1_1_weapon_1_1_cannon_bullet_explosions_1_1_cannon_bullet_explosion.html#aaf7a4280a0f97d498dee5949d16a4764" title=" " alt="" coords="5,62,233,117"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="272,92,234,92,234,87,272,87"/>
+</map>

@@ -1,0 +1,10 @@
+<map id="Enemys.IHitable.GetTransform" name="Enemys.IHitable.GetTransform">
+<area shape="rect" id="Node000001" title=" " alt="" coords="495,45,693,70"/>
+<area shape="rect" id="Node000002" href="$class_character_1_1_weapon_1_1_cannon.html#aac0111a86dfb638f181469c437582edf" title=" " alt="" coords="254,5,437,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="481,46,437,40,437,34,482,40"/>
+<area shape="rect" id="Node000004" href="$class_character_1_1_weapon_1_1_normal_gun.html#af3687ae967da6541795a692b0b8c9ffc" title=" " alt="" coords="244,69,447,109"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="482,74,447,79,447,74,481,69"/>
+<area shape="rect" id="Node000003" href="$class_character_1_1_attack_component.html#afcd5f9f93102211b223dfc927564d40f" title=" " alt="" coords="5,37,196,77"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="241,42,197,48,196,42,240,36"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="230,77,196,72,197,67,231,72"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="Utils.MoverOnSpline.Pause" name="Utils.MoverOnSpline.Pause">
+<area shape="rect" id="Node000001" title=" " alt="" coords="260,45,440,70"/>
+<area shape="rect" id="Node000002" href="$class_character_1_1_player_robot_manager.html#a1754f3c1ef91da26a2bfd9dfe418c679" title="動きを止める" alt="" coords="5,5,212,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="246,46,212,42,213,36,247,41"/>
+<area shape="rect" id="Node000003" href="$class_character_1_1_player_side_robots_1_1_player_side_robot.html#abd3ab3d41507615edd1db720d9960385" title="動きを止める" alt="" coords="13,69,204,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="247,74,204,79,204,74,246,68"/>
+</map>

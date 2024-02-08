@@ -1,0 +1,9 @@
+<map id="Character.PlayerSideRobots.PlayerSideRobot.Attack" name="Character.PlayerSideRobots.PlayerSideRobot.Attack">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,37,196,77"/>
+<area shape="rect" id="Node000002" href="$class_character_1_1_attack_component.html#a0e6534e8da55038a22e61bc88b771f4c" title=" " alt="" coords="244,5,435,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="196,42,230,37,231,43,197,47"/>
+<area shape="rect" id="Node000004" href="$class_character_1_1_attack_component.html#acea40698d2609d47384135311e3f1d29" title="弾を撃つ" alt="" coords="244,69,435,109"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="197,67,231,72,230,77,196,73"/>
+<area shape="rect" id="Node000003" href="$interface_enemys_1_1_i_hitable.html#a35c370b70a4c04e2eebd1f479396509c" title="攻撃を受ける" alt="" coords="483,13,637,38"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="435,23,469,23,469,28,435,28"/>
+</map>

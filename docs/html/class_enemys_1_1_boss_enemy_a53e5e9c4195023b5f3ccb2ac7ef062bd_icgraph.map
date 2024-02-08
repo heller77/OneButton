@@ -1,0 +1,5 @@
+<map id="Enemys.BossEnemy.Destruction" name="Enemys.BossEnemy.Destruction">
+<area shape="rect" id="Node000001" title=" " alt="" coords="236,5,451,31"/>
+<area shape="rect" id="Node000002" href="$class_enemys_1_1_boss_enemy.html#a91c804fb11d58a1645f103d2042b4557" title="攻撃を受ける" alt="" coords="5,5,188,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="222,21,188,21,188,15,222,15"/>
+</map>

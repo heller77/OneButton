@@ -1,0 +1,5 @@
+<map id="Enemys.Boids.BoidsManager.AddBoid" name="Enemys.Boids.BoidsManager.AddBoid">
+<area shape="rect" id="Node000001" title="Boidを生成" alt="" coords="5,5,204,45"/>
+<area shape="rect" id="Node000002" href="$class_enemys_1_1_mob_enemy.html#a429cda7799032abf4b60ee977a1bfe94" title=" " alt="" coords="252,5,457,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="204,23,238,23,238,28,204,28"/>
+</map>

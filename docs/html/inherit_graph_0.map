@@ -1,0 +1,69 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$interface_enemys_1_1_i_hitable.html" title="攻撃が当たる" alt="" coords="10,55,127,80"/>
+<area shape="rect" id="Node000001" href="$class_enemys_1_1_boss_enemy.html" title="敵の母艦" alt="" coords="227,55,373,80"/>
+<area shape="poly" id="edge1_Node000000_Node000001" title=" " alt="" coords="141,65,227,65,227,70,141,70"/>
+<area shape="rect" id="Node000023" href="$class_enemys_1_1_mob_enemy.html" title=" " alt="" coords="230,5,370,31"/>
+<area shape="poly" id="edge2_Node000000_Node000023" title=" " alt="" coords="137,49,179,39,233,28,234,33,181,45,138,54"/>
+<area shape="rect" id="Node000024" href="$interface_enemys_1_1_i_target.html" title="ターゲット" alt="" coords="12,5,125,31"/>
+<area shape="poly" id="edge3_Node000024_Node000023" title=" " alt="" coords="139,15,230,15,230,21,139,21"/>
+<area shape="rect" id="Node000002" href="$interface_enemys_1_1_i_trapable.html" title="あるとき発動する罠のようなもの" alt="" coords="5,104,132,129"/>
+<area shape="poly" id="edge4_Node000002_Node000001" title=" " alt="" coords="137,98,179,89,233,77,234,83,181,94,138,103"/>
+<area shape="rect" id="Node000003" href="$class_enemys_1_1_mob_enemy_group.html" title=" " alt="" coords="213,104,387,129"/>
+<area shape="poly" id="edge5_Node000002_Node000003" title=" " alt="" coords="146,114,212,114,212,119,146,119"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="13,717,124,743"/>
+<area shape="poly" id="edge22_Node000004_Node000001" title=" " alt="" coords="68,703,74,574,91,390,106,295,124,209,148,138,162,110,178,89,201,74,226,65,228,71,203,79,182,93,167,113,153,140,129,210,111,296,97,390,80,574,73,703"/>
+<area shape="poly" id="edge25_Node000004_Node000023" title=" " alt="" coords="70,703,85,556,110,345,142,148,160,79,169,55,178,40,202,24,229,16,230,21,204,29,182,44,174,57,165,80,148,150,116,346,90,556,75,704"/>
+<area shape="poly" id="edge26_Node000004_Node000003" title=" " alt="" coords="68,703,76,583,95,413,109,327,127,248,150,183,163,158,178,139,194,127,212,119,214,124,196,131,182,143,168,161,155,185,132,249,114,328,100,414,82,583,74,704"/>
+<area shape="rect" id="Node000005" href="$class_character_1_1_attack_component.html" title=" " alt="" coords="207,628,393,653"/>
+<area shape="poly" id="edge6_Node000004_Node000005" title=" " alt="" coords="98,707,136,684,179,664,221,651,222,656,181,668,138,689,101,712"/>
+<area shape="rect" id="Node000006" href="$class_character_1_1_button_animation_manager.html" title=" " alt="" coords="211,678,389,718"/>
+<area shape="poly" id="edge7_Node000004_Node000006" title=" " alt="" coords="138,718,210,708,211,713,138,723"/>
+<area shape="rect" id="Node000007" href="$class_character_1_1_camera_1_1_target_look_camera.html" title=" " alt="" coords="203,742,397,782"/>
+<area shape="poly" id="edge8_Node000004_Node000007" title=" " alt="" coords="138,737,203,746,202,751,137,742"/>
+<area shape="rect" id="Node000008" href="$class_character_1_1_collision_notificatior_to_enemy.html" title=" " alt="" coords="204,806,396,846"/>
+<area shape="poly" id="edge9_Node000004_Node000008" title=" " alt="" coords="101,748,139,771,181,792,214,803,213,808,179,796,136,775,99,753"/>
+<area shape="rect" id="Node000009" href="$class_character_1_1_lock_ons_1_1_cursor.html" title="ロボットに乗った時に" alt="" coords="212,871,388,896"/>
+<area shape="poly" id="edge10_Node000004_Node000009" title=" " alt="" coords="86,753,125,806,151,833,181,856,213,869,211,874,179,860,148,837,121,809,82,756"/>
+<area shape="rect" id="Node000010" href="$class_character_1_1_lock_ons_1_1_display.html" title=" " alt="" coords="209,920,391,945"/>
+<area shape="poly" id="edge11_Node000004_Node000010" title=" " alt="" coords="81,754,95,789,116,830,145,871,182,905,210,919,208,924,178,910,141,875,112,833,90,791,76,756"/>
+<area shape="rect" id="Node000011" href="$class_character_1_1_lock_ons_1_1_lock_on.html" title="敵にカーソルを表示したりする。" alt="" coords="209,969,391,995"/>
+<area shape="poly" id="edge12_Node000004_Node000011" title=" " alt="" coords="77,756,89,800,109,854,139,909,159,933,182,955,210,970,207,974,178,959,155,937,135,912,104,856,84,801,72,757"/>
+<area shape="rect" id="Node000012" href="$class_character_1_1_player_bullet_controller_1_1_player_bullet_sphere_controller.html" title="弾のチャージの率を表す球の管理" alt="" coords="195,1019,405,1059"/>
+<area shape="poly" id="edge13_Node000004_Node000012" title=" " alt="" coords="75,756,85,809,103,876,135,945,156,976,182,1004,201,1017,198,1021,178,1008,152,980,130,948,98,878,79,810,70,757"/>
+<area shape="rect" id="Node000013" href="$class_character_1_1_player_robot_manager.html" title="ロボットの動きや攻撃を管理する" alt="" coords="199,1084,401,1109"/>
+<area shape="poly" id="edge14_Node000004_Node000013" title=" " alt="" coords="73,756,77,820,93,905,107,950,126,994,150,1034,182,1069,200,1082,197,1086,178,1073,146,1038,121,997,102,952,88,907,72,821,67,756"/>
+<area shape="rect" id="Node000014" href="$class_character_1_1_player_side_robots_1_1_player_side_robot.html" title=" " alt="" coords="205,1134,395,1174"/>
+<area shape="poly" id="edge15_Node000004_Node000014" title=" " alt="" coords="72,757,74,829,88,926,102,978,122,1029,148,1077,182,1119,206,1135,203,1140,178,1123,143,1080,117,1031,97,980,83,927,69,829,67,757"/>
+<area shape="rect" id="Node000015" href="$class_character_1_1_player_side_robots_1_1_player_side_robot_manager.html" title=" " alt="" coords="205,1198,395,1238"/>
+<area shape="poly" id="edge16_Node000004_Node000015" title=" " alt="" coords="75,756,88,851,110,980,124,1045,141,1104,161,1152,182,1184,206,1201,203,1205,178,1188,156,1154,136,1106,119,1046,105,981,83,852,70,757"/>
+<area shape="rect" id="Node000016" href="$class_character_1_1_weapon_1_1_cannon.html" title=" " alt="" coords="211,1263,389,1288"/>
+<area shape="poly" id="edge17_Node000004_Node000016" title=" " alt="" coords="75,756,85,864,105,1012,119,1087,137,1156,158,1211,182,1248,196,1259,212,1266,209,1271,193,1263,178,1252,153,1214,132,1157,114,1088,99,1013,79,864,69,757"/>
+<area shape="rect" id="Node000017" href="$class_character_1_1_weapon_1_1_cannon_bullet_explosions_1_1_cannon_bullet_explosion.html" title=" " alt="" coords="188,1313,412,1353"/>
+<area shape="poly" id="edge18_Node000004_Node000017" title=" " alt="" coords="74,756,83,872,103,1035,117,1118,135,1194,157,1256,169,1280,182,1298,197,1310,194,1314,178,1301,164,1282,152,1258,130,1195,112,1119,97,1035,78,872,69,756"/>
+<area shape="rect" id="Node000018" href="$class_character_1_1_weapon_1_1_normal_gun.html" title=" " alt="" coords="201,1377,399,1403"/>
+<area shape="poly" id="edge19_Node000004_Node000018" title=" " alt="" coords="73,756,80,885,97,1067,111,1161,130,1247,153,1316,167,1343,182,1363,202,1377,199,1381,178,1367,162,1346,148,1318,125,1248,106,1162,92,1068,75,885,68,757"/>
+<area shape="rect" id="Node000019" href="$class_enemys_1_1_boids_1_1_boid.html" title=" " alt="" coords="231,1427,369,1452"/>
+<area shape="poly" id="edge20_Node000004_Node000019" title=" " alt="" coords="73,757,78,894,94,1092,108,1194,127,1287,151,1363,166,1392,182,1413,204,1429,232,1437,230,1442,202,1434,178,1417,161,1395,146,1365,121,1288,102,1195,88,1093,73,895,68,757"/>
+<area shape="rect" id="Node000020" href="$class_enemys_1_1_boids_1_1_boids_manager.html" title="Boidsクラスを管理" alt="" coords="203,1476,397,1501"/>
+<area shape="poly" id="edge21_Node000004_Node000020" title=" " alt="" coords="73,756,76,902,91,1116,104,1225,124,1326,149,1408,165,1439,182,1463,204,1478,201,1483,178,1467,160,1442,144,1410,118,1327,99,1226,85,1116,71,903,67,756"/>
+<area shape="rect" id="Node000021" href="$class_enemys_1_1_detector.html" title=" " alt="" coords="239,153,361,179"/>
+<area shape="poly" id="edge23_Node000004_Node000021" title=" " alt="" coords="69,704,78,592,98,438,112,359,130,287,152,228,164,205,178,188,206,170,238,162,239,168,208,175,182,192,169,208,157,230,135,289,117,360,103,438,84,593,74,704"/>
+<area shape="rect" id="Node000022" href="$class_enemys_1_1_enemy_manager.html" title=" " alt="" coords="217,203,383,228"/>
+<area shape="poly" id="edge24_Node000004_Node000022" title=" " alt="" coords="70,704,80,601,101,461,116,391,133,326,154,273,178,237,196,225,216,216,218,221,199,229,182,241,159,276,138,328,121,392,106,462,86,602,75,704"/>
+<area shape="rect" id="Node000025" href="$class_for_debug_1_1_display_text_in_editor.html" title=" " alt="" coords="203,252,397,277"/>
+<area shape="poly" id="edge27_Node000004_Node000025" title=" " alt="" coords="70,703,83,611,105,486,120,423,137,366,156,320,178,288,201,273,204,277,182,292,161,322,142,368,125,425,110,487,88,612,76,704"/>
+<area shape="rect" id="Node000027" href="$class_game_managers_1_1_event_implements_1_1_first_position_door_open.html" title=" " alt="" coords="189,302,411,342"/>
+<area shape="poly" id="edge29_Node000004_Node000027" title=" " alt="" coords="67,704,70,634,85,540,99,489,118,439,144,393,178,352,194,340,197,344,182,356,149,396,123,442,104,491,90,541,75,634,72,704"/>
+<area shape="rect" id="Node000028" href="$class_game_managers_1_1_event_implements_1_1_player_detector_1_1_player_detector.html" title="プレイヤーを検知する" alt="" coords="189,366,411,406"/>
+<area shape="poly" id="edge30_Node000004_Node000028" title=" " alt="" coords="69,703,76,644,93,567,107,526,126,486,149,449,178,416,194,404,198,408,182,420,153,452,130,488,112,528,98,568,81,645,74,704"/>
+<area shape="rect" id="Node000029" href="$class_game_managers_1_1_game_scene_manager.html" title=" " alt="" coords="180,431,420,456"/>
+<area shape="poly" id="edge31_Node000004_Node000029" title=" " alt="" coords="70,703,80,652,99,588,113,554,130,521,152,491,178,465,196,454,199,458,182,469,156,495,135,524,118,556,104,589,85,653,76,704"/>
+<area shape="rect" id="Node000030" href="$class_game_managers_1_1_in_game_manager.html" title="インゲームのシーン遷移を管理（シーンといってもunityのシーンではなく、乗り物に乗るとかイベントを再生する的な意味）" alt="" coords="193,480,407,505"/>
+<area shape="poly" id="edge32_Node000004_Node000030" title=" " alt="" coords="73,703,85,661,106,610,137,558,156,535,178,515,198,503,201,508,182,519,160,538,141,561,111,612,90,663,78,705"/>
+<area shape="rect" id="Node000031" href="$class_title_scene_1_1_title_scene_manager.html" title="タイトルシーンの管理をする" alt="" coords="201,529,399,555"/>
+<area shape="poly" id="edge33_Node000004_Node000031" title=" " alt="" coords="77,704,92,671,114,633,143,595,178,564,201,552,203,557,182,568,147,599,118,636,97,674,82,706"/>
+<area shape="rect" id="Node000032" href="$class_utils_1_1_mover_on_spline.html" title=" " alt="" coords="231,579,369,604"/>
+<area shape="poly" id="edge34_Node000004_Node000032" title=" " alt="" coords="84,705,123,657,149,633,179,613,204,602,230,595,231,600,205,607,181,618,153,637,127,661,88,708"/>
+<area shape="rect" id="Node000026" href="$class_for_debug_1_1_move_onsplin_value_display.html" title=" " alt="" coords="468,245,657,285"/>
+<area shape="poly" id="edge28_Node000025_Node000026" title=" " alt="" coords="411,262,468,262,468,267,411,267"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="Enemys.EnemyManager.SearchEnemy" name="Enemys.EnemyManager.SearchEnemy">
+<area shape="rect" id="Node000001" title="敵を探す" alt="" coords="281,13,492,53"/>
+<area shape="rect" id="Node000002" href="$class_character_1_1_weapon_1_1_cannon_bullet_explosions_1_1_cannon_bullet_explosion.html#aaf7a4280a0f97d498dee5949d16a4764" title=" " alt="" coords="5,5,233,60"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="267,35,234,35,234,30,267,30"/>
+</map>

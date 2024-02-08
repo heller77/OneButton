@@ -1,0 +1,14 @@
+<map id="Enemys.IHitable.Hitted" name="Enemys.IHitable.Hitted">
+<area shape="rect" id="Node000001" title="攻撃を受ける" alt="" coords="495,77,649,102"/>
+<area shape="rect" id="Node000002" href="$class_character_1_1_attack_component.html#a0e6534e8da55038a22e61bc88b771f4c" title=" " alt="" coords="250,5,441,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="512,75,416,48,418,43,514,70"/>
+<area shape="rect" id="Node000004" href="$class_character_1_1_weapon_1_1_cannon.html#aac0111a86dfb638f181469c437582edf" title=" " alt="" coords="254,69,437,109"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="481,92,437,92,437,87,481,87"/>
+<area shape="rect" id="Node000006" href="$class_character_1_1_weapon_1_1_normal_gun.html#af3687ae967da6541795a692b0b8c9ffc" title=" " alt="" coords="244,133,447,173"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="514,108,418,136,416,131,512,103"/>
+<area shape="rect" id="Node000003" href="$class_character_1_1_player_side_robots_1_1_player_side_robot.html#a9c5f8bcd82730c3fab59172926df005f" title=" " alt="" coords="5,5,196,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="236,28,196,28,196,23,236,23"/>
+<area shape="rect" id="Node000005" href="$class_character_1_1_attack_component.html#afcd5f9f93102211b223dfc927564d40f" title=" " alt="" coords="5,101,196,141"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="241,106,197,112,196,106,240,100"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="230,141,196,136,197,131,231,136"/>
+</map>

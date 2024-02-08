@@ -1,0 +1,5 @@
+<map id="Character.AttackComponent.FireBullet" name="Character.AttackComponent.FireBullet">
+<area shape="rect" id="Node000001" title="弾を撃つ" alt="" coords="244,5,435,45"/>
+<area shape="rect" id="Node000002" href="$class_character_1_1_player_side_robots_1_1_player_side_robot.html#a9c5f8bcd82730c3fab59172926df005f" title=" " alt="" coords="5,5,196,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="230,28,196,28,196,23,230,23"/>
+</map>
