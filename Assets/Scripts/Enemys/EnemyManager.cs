@@ -100,7 +100,7 @@ namespace Enemys
                     var dot = Vector3.Dot(Vector3.Normalize(cameraDir),
                         Vector3.Normalize(distance_enemy.Value.GetTransform().position - origin.position));
                     // pi/2　より小さければカメラ内にあるとする
-                    if (dot > MathF.Cos(MathF.PI / 2))
+                    if (dot > MathF.Cos(MathF.PI / 4))
                     {
                         returnMobEnemies.Add(distance_enemy.Value);
                     }
