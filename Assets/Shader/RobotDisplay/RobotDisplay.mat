@@ -60,5 +60,6 @@ Material:
     - _alphaThreshold: 0.046
     - _metalic: 0
     - _netakuc: 0.088
-    m_Colors: []
+    m_Colors:
+    - _Color: {r: 0, g: 0, b: 0, a: 0.019607844}
   m_BuildTextureStacks: []
