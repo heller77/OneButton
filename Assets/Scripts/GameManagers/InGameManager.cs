@@ -117,12 +117,17 @@ namespace GameManagers
             // }
         }
 
+        [SerializeField] private ResultDisplay _resultDisplay;
+        [SerializeField] private ScoreWeight _scoreWeight;
+
         public async UniTask DisplayScore()
         {
             var battledata = BattleResultManager.GetInstance().GetBattleResultData();
-            Debug.Log(battledata);
-            var score = ScoreCalculater.ScoreCalculater.Calculate(battledata);
-            this.resultTextui.text = score.ToString();
+            // Debug.Log(battledata);
+            var scoreCalculater = new ScoreCalculater.ScoreCalculater(battledata, _scoreWeight);
+            var score = scoreCalculater.Calculate();
+            // this.resultTextui.text = score.ToString();
+            await _resultDisplay.resulting(scoreCalculater);
         }
     }
 }
