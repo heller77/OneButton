@@ -4,6 +4,7 @@ using Cinemachine;
 using Cysharp.Threading.Tasks;
 using GameManagers.EventImplements;
 using GameManagers.EventImplements.PlayerDetector;
+using GameManagers.ResultDisplays;
 using GameManagers.ScoreCalculater;
 using TMPro;
 using UnityEngine;
