@@ -90,7 +90,7 @@ namespace Character.LockOns
 
                     //カーソルを表示し、移動
                     cursor.Display();
-                    cursor.MoveToTarget(target.GetTransform());
+                    cursor.Move(CulcurateCursorPosition(target.GetTransform()));
 
                     //今ターゲットにしている敵を取得できるようにフィールドに代入。
                     this.targetEnemy = target;
@@ -113,7 +113,8 @@ namespace Character.LockOns
         private void DisplayCursor(Transform target)
         {
             cursor.ChangeVisualizeToSelectMode();
-            cursor.MoveToTarget(target);
+            var cursorPosition = CulcurateCursorPosition(target);
+            cursor.Move(cursorPosition);
             cursor.Display();
         }
 
@@ -153,12 +154,42 @@ namespace Character.LockOns
         }
 
         /// <summary>
+        /// カーソルが配置される球の半径
+        /// </summary>
+        [SerializeField] private float cursorSphereRadius = 3.0f;
+
+        [SerializeField] private Transform cursorSphereCenter;
+
+        private Vector3 CulcurateCursorPosition(Transform enemy)
+        {
+            //球の中心
+            var origin = cursorSphereCenter.position;
+
+            var rayDir = enemy.position - origin;
+            return CulcurateCrossingPointsLineAndSphere(cursorSphereRadius, origin, rayDir);
+        }
+
+        /// <summary>
+        /// 直線と球の交差点
+        /// centerを通ってlineDir方向の直線と、centerを中心とする半径sphereRadiusの球との交差点を返す
+        /// 原点からlineDirの逆方向へ進んだ時の交差点は計算しない点に注意。（直線と球の交差点となれば、本来2点得られる場合がある）
+        /// </summary>
+        /// <returns></returns>
+        private Vector3 CulcurateCrossingPointsLineAndSphere(float sphereRadius, Vector3 center, Vector3 lineDir)
+        {
+            return center + lineDir.normalized * sphereRadius;
+        }
+
+        /// <summary>
         /// ギズモを表示
         /// </summary>
         private void OnDrawGizmos()
         {
             Gizmos.color = Color.green;
             Gizmos.DrawWireSphere(transform.position, this.attackableDistance);
+
+            Gizmos.color = Color.gray;
+            Gizmos.DrawWireSphere(cursorSphereCenter.position, cursorSphereRadius);
         }
     }
 }

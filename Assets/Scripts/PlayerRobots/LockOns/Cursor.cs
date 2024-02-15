@@ -28,13 +28,9 @@ namespace Character.LockOns
             cursorGameObject.SetActive(false);
         }
 
-        /// <summary>
-        /// targetにカーソルを移動する
-        /// </summary>
-        /// <param name="target">カーソルを合わせる対象</param>
-        public void MoveToTarget(Transform target)
+        public void Move(Vector3 position)
         {
-            this.cursorGameObject.transform.position = target.position;
+            this.cursorGameObject.transform.position = position;
         }
 
         /// <summary>
