@@ -117,6 +117,16 @@ namespace Character.LockOns
             cursor.Display();
         }
 
+        public void Display()
+        {
+            cursor.Display();
+        }
+
+        public void Hide()
+        {
+            cursor.Hide();
+        }
+
         /// <summary>
         /// 攻撃対象を決定
         /// </summary>

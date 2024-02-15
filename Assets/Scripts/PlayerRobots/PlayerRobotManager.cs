@@ -31,6 +31,8 @@ namespace Character
 
         private GameInputs _inputs;
 
+        private bool isBattleMode = false;
+
         private void Start()
         {
             //入力設定
@@ -56,8 +58,32 @@ namespace Character
             _moverOnSpline.Pause();
         }
 
+        /// <summary>
+        /// バトルモードOn : カーソルを表示したり攻撃出来たりするようになる
+        /// </summary>
+        public void StartBattleMode()
+        {
+            this.isBattleMode = true;
+            _lockOn.Display();
+        }
+
+        /// <summary>
+        /// バトルモードOff : カーソルを表示したり攻撃出来なくなる
+        /// </summary>
+        public void StopBattleMode()
+        {
+            this.isBattleMode = false;
+            this._lockOn.Hide();
+        }
+
         private void PushButton(InputAction.CallbackContext callbackContext)
         {
+            //バトルモードじゃないなら攻撃しない
+            if (!this.isBattleMode)
+            {
+                return;
+            }
+
             if (_lockOn.GetState() == LockOn.LockOnState.SelectEnemy)
             {
                 Debug.Log("playerrobot space");

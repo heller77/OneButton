@@ -87,6 +87,8 @@ namespace GameManagers
             //終点に到着
             await depature_endPoint.WaitDetect();
             Debug.Log("終了");
+            //プレイヤーが攻撃できるように
+            _playerRobotManager.StartBattleMode();
         }
 
         public PlayerDetector GetEndPointDetector()
@@ -115,6 +117,8 @@ namespace GameManagers
             //         break;
             //     }
             // }
+            //攻撃できないように
+            _playerRobotManager.StopBattleMode();
         }
 
         [SerializeField] private ResultDisplay _resultDisplay;
