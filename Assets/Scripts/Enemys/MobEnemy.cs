@@ -1,4 +1,5 @@
 ﻿using System;
+using Enemys.Boids;
 using Enemys.EnemyParameter;
 using GameManagers;
 
@@ -17,6 +18,11 @@ namespace Enemys
         [SerializeField] private EnemyParameterAsset _parameterAsset;
         [SerializeField] private float hp;
 
+        /// <summary>
+        /// 同じGameObjectに付属しているBoid
+        /// </summary>
+        private Boid boid;
+
         private void Start()
         {
             _enemyManager.Add(this);
@@ -26,6 +32,11 @@ namespace Enemys
         public Vector3 GetPosition()
         {
             return this.transform.position;
+        }
+
+        public void SetBoid(Boid boid)
+        {
+            this.boid = boid;
         }
 
         /// <summary>
@@ -53,6 +64,10 @@ namespace Enemys
             Debug.Log("death");
             _enemyManager.RemoveEnemy(this);
 
+            //boidも破棄処理を行う
+            if (boid != null)
+                this.boid.Destruction();
+
             BattleResultManager.GetInstance().AddKnockMobEnemy();
 
             Destroy(gameObject);
@@ -62,7 +77,6 @@ namespace Enemys
         {
             this._enemyManager = enemyManager;
         }
-
 
 #if UNITY_EDITOR
         private void OnDrawGizmos()

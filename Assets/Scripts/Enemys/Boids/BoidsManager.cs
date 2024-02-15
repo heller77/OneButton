@@ -44,11 +44,19 @@ namespace Enemys.Boids
             var mobenemy = boid.GetComponent<MobEnemy>();
             mobenemy.SetEnemyManager(_enemyManager);
 
+            mobenemy.SetBoid(boidcomponent);
+            boidcomponent.SetBoidManager(this);
+
             boidList.Add(boidcomponent);
             boidcomponent.SetBoidParameter(this._boidParameter);
             //初期加速度設定
             Vector3 initAccel = new Vector3(Random.Range(-1, 1), Random.Range(-1, 1), Random.Range(-1, 1));
             boidcomponent.SetAcceleration(boid.transform.forward);
+        }
+
+        public void RemoveBoid(Boid boid)
+        {
+            boidList.Remove(boid);
         }
 
         /// <summary>
@@ -58,6 +66,11 @@ namespace Enemys.Boids
         {
             foreach (Boid boid in boidList)
             {
+                if (!boid.gameObject.activeSelf)
+                {
+                    continue;
+                }
+
                 Vector3 preAccel = boid.GetAcceleration();
 
                 var powerToCenter = CalculateRestrictionSpherePower(boid.transform.position);
@@ -117,6 +130,7 @@ namespace Enemys.Boids
                 {
                     continue;
                 }
+
 
                 var boidToOther = boid.transform.position - targetBoid.transform.position;
                 var distance_BoidToOther = boidToOther.magnitude;

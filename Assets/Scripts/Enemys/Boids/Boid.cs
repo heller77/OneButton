@@ -9,10 +9,21 @@ namespace Enemys.Boids
 
         [SerializeField] private Vector3 _acceleration;
         private BoidParameter _parameter;
+        private BoidsManager _manager;
 
         public void SetAcceleration(Vector3 accel)
         {
             this._acceleration = accel;
+        }
+
+        public void SetBoidManager(BoidsManager boidsManager)
+        {
+            this._manager = boidsManager;
+        }
+
+        public void Destruction()
+        {
+            _manager.RemoveBoid(this);
         }
 
         public Vector3 GetAcceleration()
