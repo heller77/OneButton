@@ -34,6 +34,7 @@ namespace GameManagers
         /// </summary>
         private async void StartGame()
         {
+            await RidingAndRobotPowerOn();
             await StartOpenStartDoorScene();
             await IntroductionDeparture();
             await Departure();
@@ -43,7 +44,17 @@ namespace GameManagers
             SceneManager.LoadScene("Title");
         }
 
-        [SerializeField] private CinemachineVirtualCamera ridescne_virtualcamera;
+        [SerializeField] private PlayableDirector _playerdetector_ridingAndRobotPowerOn;
+
+        /// <summary>
+        /// 乗って、ロボットの電源が付く
+        /// </summary>
+        private async UniTask RidingAndRobotPowerOn()
+        {
+            _playerdetector_ridingAndRobotPowerOn.Play();
+            Debug.Log(_playerdetector_ridingAndRobotPowerOn.duration);
+            await UniTask.WaitForSeconds((float)_playerdetector_ridingAndRobotPowerOn.duration);
+        }
 
         [SerializeField] private PlayerDetector _playerDetector_beyondDoor;
 
