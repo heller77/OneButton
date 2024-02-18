@@ -19,13 +19,23 @@ namespace Character.Weapon
 
             float elapsedTime = 0;
 
+            //弾を飛ばす
             float duration = 1.0f;
             while (elapsedTime <= duration)
             {
-                Debug.Log(target.GetTransform().position);
+                //ターゲットが攻撃出来る状態でないならば、
+                if (!target.isHitable())
+                {
+                    VanishBullet(bulletInstance);
+                    return;
+                }
+
+                Vector3 targetPos = target.GetTransform().position;
+
+
                 float t = elapsedTime / duration;
                 var nowPosition = bulletInstance.transform.position;
-                var diff = target.GetTransform().position - nowPosition;
+                var diff = targetPos - nowPosition;
                 if (diff.magnitude < 1.1)
                 {
                     Debug.Log("近すぎる");
