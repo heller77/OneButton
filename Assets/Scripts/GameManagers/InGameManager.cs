@@ -35,6 +35,8 @@ namespace GameManagers
         /// </summary>
         private async void StartGame()
         {
+            _playerRobotManager.StopBattleMode();
+
             await RidingAndRobotPowerOn();
             await StartOpenStartDoorScene();
             await IntroductionDeparture();
