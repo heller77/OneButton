@@ -43,7 +43,6 @@ namespace Character.Weapon
                 }
 
                 var newpos = nowPosition + t * diff;
-                Debug.Log(string.Format("diff {0} , new {1}", diff, newpos));
                 bulletInstance.transform.position = newpos;
 
                 await UniTask.DelayFrame(1);
