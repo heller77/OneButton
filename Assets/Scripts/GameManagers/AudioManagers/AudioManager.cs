@@ -1,36 +1,79 @@
 ﻿using System;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using R3;
 
 namespace GameManagers.SeManagers
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    public struct AudioPlayerID
+    {
+        public readonly AudioPlayer audioPlayer;
+        public readonly int audioPlayId;
+
+        public AudioPlayerID(AudioPlayer audioPlayer, int audioPlayId)
+        {
+            this.audioPlayer = audioPlayer;
+            this.audioPlayId = audioPlayId;
+        }
+    }
+
     public class AudioManager : MonoBehaviour
     {
-        [SerializeField] private float seVolume = 1;
-        [SerializeField] private float bgmVolume = 1;
+        [SerializeField] private R3.SerializableReactiveProperty<float> seVolume;
+        [SerializeField] private R3.SerializableReactiveProperty<float> bgmVolume;
 
         [SerializeField] private AudioClip bulletse;
 
-        private AudioPlayer[] audioPlayersList = new AudioPlayer[20];
+        [SerializeField] private GameObject audioPlayerGameObject;
+
+        private List<AudioPlayer> sePlayersList;
+        [SerializeField] private int audioPlayerCount = 1;
+
+        [SerializeField] private AudioClip bgmSource;
+        private AudioPlayer bgmPlayer;
 
         private void Awake()
         {
-            for (var i = 0; i < audioPlayersList.Length; ++i)
+            sePlayersList = new List<AudioPlayer>(audioPlayerCount);
+            for (var i = 0; i < audioPlayerCount; i++)
             {
-                var gameobject = Instantiate(transform);
-                audioPlayersList[i] = gameObject.AddComponent<AudioPlayer>();
-                var audioSource = gameobject.AddComponent<AudioSource>();
-                audioPlayersList[i].Initialize(audioSource);
+                var audioPlayer = Instantiate(audioPlayerGameObject);
+                sePlayersList.Add(audioPlayer.GetComponent<AudioPlayer>());
+                sePlayersList[i].Initialize(audioPlayer.GetComponent<AudioSource>());
             }
+
+            bgmPlayer = Instantiate(audioPlayerGameObject).GetComponent<AudioPlayer>();
+            bgmPlayer.Initialize(bgmPlayer.GetComponent<AudioSource>());
+
+
+            //sevolume変えたら伝える
+            seVolume.Subscribe((seVolume) =>
+            {
+                foreach (var audioPlayer in sePlayersList)
+                {
+                    audioPlayer.SetVolume(seVolume);
+                }
+            });
+
+            //bgmVolumeを変えたら伝える
+            bgmVolume.Subscribe((bgmvolume) =>
+            {
+                Debug.Log("bgmvalue change!!");
+                bgmPlayer.SetVolume(bgmvolume);
+            });
         }
 
         private AudioPlayer GetUnusedAudioPlayer()
         {
-            for (var i = 0; i < audioPlayersList.Length; ++i)
+            for (var i = 0; i < audioPlayerCount; ++i)
             {
-                if (audioPlayersList[i].GetIsPlaying() == false)
+                if (sePlayersList[i].GetIsPlaying() == false)
                 {
-                    return audioPlayersList[i];
+                    return sePlayersList[i];
                 }
             }
 
@@ -42,22 +85,34 @@ namespace GameManagers.SeManagers
         /// </summary>
         /// <param name="audioPlayer"></param>
         /// <param name="clip"></param>
-        private void Play(AudioPlayer audioPlayer, AudioClip clip)
+        private void Play(AudioPlayer audioPlayer, AudioClip clip, float audioVolume, bool isFade, float fadeTime = 1)
         {
-            audioPlayer.Play(clip);
+            audioPlayer.Play(clip, audioVolume, isFade, fadeTime);
         }
 
-        public void PlayBuuletSe(Vector3 sePosition)
+        public AudioPlayerID PlayBuuletSe(Vector3 sePosition)
         {
             var audiosPlayer = GetUnusedAudioPlayer();
             if (audiosPlayer == null)
             {
-                return;
+                return　new AudioPlayerID();
             }
 
             audiosPlayer.SetPosition(sePosition);
 
-            Play(audiosPlayer, bulletse);
+            Play(audiosPlayer, bulletse, seVolume.Value, false);
+            return new AudioPlayerID(audiosPlayer, audiosPlayer.GetNowPlaySouncCount());
+        }
+
+        public AudioPlayerID PlayBattleBGM(bool fade, float fadeTime)
+        {
+            Play(bgmPlayer, bgmSource, bgmVolume.Value, fade, fadeTime);
+            return new AudioPlayerID(bgmPlayer, bgmPlayer.GetNowPlaySouncCount());
+        }
+
+        public void StopSound(AudioPlayerID id,float fadeTime)
+        {
+            id.audioPlayer.Stop(id.audioPlayId,fadeTime);
         }
     }
 }

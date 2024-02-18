@@ -6,6 +6,7 @@ using GameManagers.EventImplements;
 using GameManagers.EventImplements.PlayerDetector;
 using GameManagers.ResultDisplays;
 using GameManagers.ScoreCalculater;
+using GameManagers.SeManagers;
 using R3;
 using TMPro;
 using UnityEngine;
@@ -24,6 +25,9 @@ namespace GameManagers
         [SerializeField] private FirstPositionDoorOpen _firstPositionDoorOpen;
 
         [SerializeField] private TextMeshProUGUI resultTextui;
+
+        [SerializeField] private AudioManager _audioManager;
+        [SerializeField] private float bgmStartFadeTime = 1.0f;
 
         private void Start()
         {
@@ -48,6 +52,7 @@ namespace GameManagers
         }
 
         [SerializeField] private PlayableDirector _playerdetector_ridingAndRobotPowerOn;
+        private AudioPlayerID _bgmPlayerID;
 
         /// <summary>
         /// 乗って、ロボットの電源が付く
@@ -103,6 +108,9 @@ namespace GameManagers
         private async UniTask Departure()
         {
             Debug.Log("出発");
+
+            //bgm始まる
+            _bgmPlayerID = _audioManager.PlayBattleBGM(true, bgmStartFadeTime);
             _playerRobotManager.StartMove();
 
             battlemodeStartPoint.playerDetect.Subscribe(_ =>
@@ -152,9 +160,11 @@ namespace GameManagers
 
         [SerializeField] private ResultDisplay _resultDisplay;
         [SerializeField] private ScoreWeight _scoreWeight;
+        [SerializeField] private float bgmStopFadeTime;
 
         public async UniTask DisplayScore()
         {
+            _audioManager.StopSound(this._bgmPlayerID, bgmStopFadeTime);
             var battledata = BattleResultManager.GetInstance().GetBattleResultData();
             // Debug.Log(battledata);
             var scoreCalculater = new ScoreCalculater.ScoreCalculater(battledata, _scoreWeight);

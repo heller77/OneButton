@@ -1,10 +1,13 @@
-﻿using UnityEngine;
+﻿using System;
+using DG.Tweening;
+using UnityEngine;
 
 namespace GameManagers.SeManagers
 {
     /// <summary>
     /// seを再生する
     /// </summary>
+    [RequireComponent(typeof(AudioSource))]
     public class AudioPlayer : MonoBehaviour
     {
         private AudioSource source;
@@ -29,10 +32,43 @@ namespace GameManagers.SeManagers
         /// clipを再生する
         /// </summary>
         /// <param name="clip"></param>
-        public void Play(AudioClip clip)
+        public void Play(AudioClip clip, float audioVolume, bool isFade = false, float duration = 1)
         {
-            source.clip = clip;
-            source.Play();
+            if (isFade)
+            {
+                source.volume = 0;
+                source.clip = clip;
+                source.Play();
+                source.DOFade(audioVolume, duration);
+            }
+            else
+            {
+                source.volume = audioVolume;
+                source.clip = clip;
+                source.Play();
+            }
+
+            nowPlaySoundCount++;
+        }
+
+        private int nowPlaySoundCount = 0;
+
+        public void Stop(int id, float fadeTime)
+        {
+            if (nowPlaySoundCount == id)
+            {
+                source.DOFade(0, fadeTime).OnComplete(() => {source.Stop(); });
+            }
+        }
+
+        public int GetNowPlaySouncCount()
+        {
+            return nowPlaySoundCount;
+        }
+
+        public void SetVolume(float volume)
+        {
+            this.source.volume = volume;
         }
     }
 }

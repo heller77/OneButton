@@ -1,6 +1,7 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
 using Enemys;
+using GameManagers.SeManagers;
 using UnityEngine;
 
 namespace Character.Weapon
@@ -10,11 +11,14 @@ namespace Character.Weapon
         [SerializeField] private GameObject bulletPrefab;
         [SerializeField] private Transform bulletInstancePosition;
 
+        [SerializeField] private AudioManager _audioManager;
+
         /// <summary>
         /// 
         /// </summary>
         public async void Attack(IHitable target, float attackPower)
         {
+            _audioManager.PlayBuuletSe(this.transform.position);
             var bulletInstance = Instantiate(bulletPrefab, bulletInstancePosition.position, Quaternion.identity);
 
             float elapsedTime = 0;
