@@ -1,4 +1,4 @@
-﻿using Unity.VisualScripting;
+﻿using UnityEngine;
 
 namespace GameManagers
 {
@@ -38,7 +38,6 @@ namespace GameManagers
 
             return _instance;
         }
-
 
         private BattleResultData data;
 
