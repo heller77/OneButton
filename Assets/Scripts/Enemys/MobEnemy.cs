@@ -17,7 +17,7 @@ namespace Enemys
 
         [SerializeField] private EnemyParameterAsset _parameterAsset;
         [SerializeField] private float hp;
-
+        private bool isArrive = true;
         /// <summary>
         /// 同じGameObjectに付属しているBoid
         /// </summary>
@@ -59,6 +59,11 @@ namespace Enemys
             return this.transform;
         }
 
+        public bool isHitable()
+        {
+            return isArrive;
+        }
+
         private void Destruction()
         {
             Debug.Log("death");
@@ -70,7 +75,9 @@ namespace Enemys
 
             BattleResultManager.GetInstance().AddKnockMobEnemy();
 
-            Destroy(gameObject);
+            // Destroy(gameObject);
+            this.gameObject.SetActive(false);
+            isArrive = false;
         }
 
         public void SetEnemyManager(EnemyManager enemyManager)

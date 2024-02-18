@@ -2,6 +2,7 @@
 using Cysharp.Threading.Tasks;
 using Enemys;
 using UnityEngine;
+using R3;
 
 namespace Character.LockOns
 {
@@ -54,6 +55,45 @@ namespace Character.LockOns
             cameraTransform = UnityEngine.Camera.main.transform;
             this._lockOnState = LockOnState.SelectEnemy;
             ChangeCursorPositionEverySomeSeconds();
+
+            //enemymanagerから敵を倒したときのイベント通知を受け取る
+            _enemyManager.enemyDestroy.Subscribe((x) => { ChangeTarget(); });
+        }
+
+        private void LateUpdate()
+        {
+            if (targetEnemy != null)
+                cursor.Move(CulcurateCursorPosition(targetEnemy.GetTransform()));
+        }
+
+        private int index = 0;
+
+        public void ChangeTarget()
+        {
+            //選択候補の敵取得
+            var enemies =
+                this._enemyManager.SearchEnemyInCamera(transform, attackableDistance, cameraTransform.forward);
+            //次にカーソルを合わせる敵を取得
+            if (enemies.Count <= index)
+            {
+                //indexがenemiesの数より大きかったリセット
+                index = 0;
+            }
+
+            if (enemies.Count == 0)
+            {
+                targetEnemy = null;
+                return;
+            }
+
+            var target = enemies[index++];
+
+            //カーソルを表示し、移動
+            // cursor.Display();
+            cursor.Move(CulcurateCursorPosition(target.GetTransform()));
+
+            //今ターゲットにしている敵を取得できるようにフィールドに代入。
+            this.targetEnemy = target;
         }
 
         /// <summary>
@@ -63,37 +103,14 @@ namespace Character.LockOns
         {
             //startで読んでしまうと、_enemyManager.SearchEnemyが
             await UniTask.DelayFrame(1);
-            int index = 0;
+            // int index = 0;
 
             while (true)
             {
-                Debug.Log("ChangeCursorPositionEverySomeSeconds update");
+                // Debug.Log("ChangeCursorPositionEverySomeSeconds update");
                 if (this._lockOnState == LockOnState.SelectEnemy)
                 {
-                    //選択候補の敵取得
-                    var enemies =
-                        this._enemyManager.SearchEnemyInCamera(transform, attackableDistance, cameraTransform.forward);
-                    //次にカーソルを合わせる敵を取得
-                    if (enemies.Count <= index)
-                    {
-                        //indexがenemiesの数より大きかったリセット
-                        index = 0;
-                    }
-
-                    if (enemies.Count == 0)
-                    {
-                        await UniTask.Delay(TimeSpan.FromSeconds(this.cursorChangeTime));
-                        continue;
-                    }
-
-                    var target = enemies[index++];
-
-                    //カーソルを表示し、移動
-                    cursor.Display();
-                    cursor.Move(CulcurateCursorPosition(target.GetTransform()));
-
-                    //今ターゲットにしている敵を取得できるようにフィールドに代入。
-                    this.targetEnemy = target;
+                    ChangeTarget();
                 }
 
                 //cursorChangeTime秒だけまって、またカーソルを移動させる
@@ -159,6 +176,7 @@ namespace Character.LockOns
         [SerializeField] private float cursorSphereRadius = 3.0f;
 
         [SerializeField] private Transform cursorSphereCenter;
+        [SerializeField] private Transform cursorSphereCenter2;
 
         private Vector3 CulcurateCursorPosition(Transform enemy)
         {
@@ -180,6 +198,7 @@ namespace Character.LockOns
             return center + lineDir.normalized * sphereRadius;
         }
 
+#if UNITY_EDITOR
         /// <summary>
         /// ギズモを表示
         /// </summary>
@@ -190,6 +209,13 @@ namespace Character.LockOns
 
             Gizmos.color = Color.gray;
             Gizmos.DrawWireSphere(cursorSphereCenter.position, cursorSphereRadius);
+
+            if (targetEnemy != null)
+            {
+                var dir = targetEnemy.GetTransform().position - cursorSphereCenter.position;
+                Gizmos.DrawRay(cursorSphereCenter.position, dir);
+            }
         }
+#endif
     }
 }

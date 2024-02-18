@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using R3;
 using UnityEngine;
 
 namespace Enemys
@@ -9,6 +10,13 @@ namespace Enemys
     {
         [SerializeField] private List<MobEnemy> _mobEnemies = new List<MobEnemy>();
         [SerializeField] private BossEnemy _bossEnemy;
+
+        private Subject<Unit> _enemyDestroy = new Subject<Unit>();
+
+        public Observable<Unit> enemyDestroy
+        {
+            get { return this._enemyDestroy; }
+        }
 
         public void Add(MobEnemy mobEnemy)
         {
@@ -22,6 +30,7 @@ namespace Enemys
         /// <returns></returns>
         public bool RemoveEnemy(MobEnemy mobEnemy)
         {
+            _enemyDestroy.OnNext(Unit.Default);
             return _mobEnemies.Remove(mobEnemy);
         }
 

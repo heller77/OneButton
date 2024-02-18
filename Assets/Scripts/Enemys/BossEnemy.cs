@@ -22,6 +22,7 @@ namespace Enemys
         [SerializeField] private float hp = 1;
         [SerializeField] private EnemyManager _enemyManager;
 
+        private bool isArrive = true;
 
         public void Boot()
         {
@@ -52,6 +53,11 @@ namespace Enemys
         public Transform GetTransform()
         {
             return transform;
+        }
+
+        public bool isHitable()
+        {
+            return isArrive;
         }
 
         /// <summary>

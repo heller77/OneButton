@@ -13,5 +13,11 @@ namespace Enemys
         public void Hitted(float damage);
 
         public Transform GetTransform();
+
+        /// <summary>
+        /// 攻撃できるかどうか
+        /// </summary>
+        /// <returns></returns>
+        public bool isHitable();
     }
 }
