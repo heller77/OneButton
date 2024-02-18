@@ -109,10 +109,10 @@ namespace GameManagers
         private async UniTask Departure()
         {
             Debug.Log("出発");
+            _playerRobotManager.StartMove();
 
             //bgm始まる
             _bgmPlayerID = _audioManager.PlayBattleBGM(true, bgmStartFadeTime);
-            _playerRobotManager.StartMove();
 
             battlemodeStartPoint.playerDetect.Subscribe(_ =>
             {
