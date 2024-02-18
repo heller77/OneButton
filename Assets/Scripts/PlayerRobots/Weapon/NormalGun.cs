@@ -40,6 +40,12 @@ namespace Character.Weapon
             }
 
             target.Hitted(attackPower);
+            VanishBullet(bulletInstance);
+        }
+
+        private void VanishBullet(GameObject bullet)
+        {
+            bullet.SetActive(false);
         }
     }
 }
