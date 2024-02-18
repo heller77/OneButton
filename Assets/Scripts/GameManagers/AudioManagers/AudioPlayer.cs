@@ -5,9 +5,25 @@ namespace GameManagers.SeManagers
     /// <summary>
     /// seを再生する
     /// </summary>
-    public class SePlayer : MonoBehaviour
+    public class AudioPlayer : MonoBehaviour
     {
         private AudioSource source;
+
+        public void Initialize(AudioSource source)
+        {
+            this.source = source;
+        }
+
+        //今再生中かどうか
+        public bool GetIsPlaying()
+        {
+            return source.isPlaying;
+        }
+
+        public void SetPosition(Vector3 position)
+        {
+            this.transform.position = position;
+        }
 
         /// <summary>
         /// clipを再生する
