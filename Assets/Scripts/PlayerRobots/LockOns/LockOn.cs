@@ -176,7 +176,6 @@ namespace Character.LockOns
         [SerializeField] private float cursorSphereRadius = 3.0f;
 
         [SerializeField] private Transform cursorSphereCenter;
-        [SerializeField] private Transform cursorSphereCenter2;
 
         private Vector3 CulcurateCursorPosition(Transform enemy)
         {
