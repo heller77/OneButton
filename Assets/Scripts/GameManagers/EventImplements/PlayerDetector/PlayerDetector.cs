@@ -1,5 +1,6 @@
 ﻿using Character;
 using Cysharp.Threading.Tasks;
+using R3;
 using UnityEngine;
 
 namespace GameManagers.EventImplements.PlayerDetector
@@ -9,18 +10,20 @@ namespace GameManagers.EventImplements.PlayerDetector
     /// </summary>
     public class PlayerDetector : MonoBehaviour
     {
-        private bool isDetect;
+        private Subject<Unit> _playerdetect = new Subject<Unit>();
 
-        public async UniTask WaitDetect()
+        /// <summary>
+        /// プレイヤーが来たら発火する
+        /// </summary>
+        public R3.Observable<Unit> playerDetect
         {
-            await UniTask.WaitUntil(() => isDetect);
+            get { return this._playerdetect; }
         }
 
         public void Detect()
         {
-            isDetect = true;
+            _playerdetect.OnNext(Unit.Default);
         }
-
 
         private void OnTriggerEnter(Collider other)
         {

@@ -6,6 +6,7 @@ using GameManagers.EventImplements;
 using GameManagers.EventImplements.PlayerDetector;
 using GameManagers.ResultDisplays;
 using GameManagers.ScoreCalculater;
+using R3;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Playables;
@@ -87,7 +88,12 @@ namespace GameManagers
             await UniTask.WaitForSeconds(1.0f);
         }
 
-        [SerializeField] private PlayerDetector depature_endPoint;
+        [SerializeField] private PlayerDetector arriveDetector_endPoint;
+
+        /// <summary>
+        /// バトルモードが始まる場所
+        /// </summary>
+        [SerializeField] private PlayerDetector battlemodeStartPoint;
 
         /// <summary>
         /// 出発
@@ -96,16 +102,25 @@ namespace GameManagers
         {
             Debug.Log("出発");
             _playerRobotManager.StartMove();
+
+            battlemodeStartPoint.playerDetect.Subscribe(_ =>
+            {
+                //プレイヤーが攻撃できるように
+                _playerRobotManager.StartBattleMode();
+            });
+            //最終地点についたらtueになる
+            // bool isArrivalEnd = false;
             //終点に到着
-            await depature_endPoint.WaitDetect();
+            // arriveDetector_endPoint.playerDetect.Subscribe(_ => { isArrivalEnd = true; });
+            await arriveDetector_endPoint.playerDetect.FirstAsync();
+            // await UniTask.WaitUntil(() => isArrivalEnd);
+
             Debug.Log("終了");
-            //プレイヤーが攻撃できるように
-            _playerRobotManager.StartBattleMode();
         }
 
         public PlayerDetector GetEndPointDetector()
         {
-            return depature_endPoint;
+            return arriveDetector_endPoint;
         }
 
         [SerializeField] private CinemachineVirtualCamera getoutofvirtualCamera;
