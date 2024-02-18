@@ -107,12 +107,12 @@ namespace GameManagers.SeManagers
         /// </summary>
         /// <param name="audioPlayer"></param>
         /// <param name="clip"></param>
-        private void Play(AudioPlayer audioPlayer, AudioClip clip, float audioVolume, bool isFade, float fadeTime = 1)
+        private void Play(AudioPlayer audioPlayer, AudioClip clip, float audioVolume, float fadeTime = 1)
         {
-            audioPlayer.Play(clip, audioVolume, isFade, fadeTime);
+            audioPlayer.Play(clip, audioVolume, fadeTime);
         }
 
-        public AudioPlayerID PlaySe(SeVariable seVariable, Vector3 sePosition)
+        public AudioPlayerID PlaySe(SeVariable seVariable, Vector3 sePosition, float fadeTime)
         {
             var audiosPlayer = GetUnusedAudioPlayer();
             if (audiosPlayer == null)
@@ -122,13 +122,13 @@ namespace GameManagers.SeManagers
 
             audiosPlayer.SetPosition(sePosition);
 
-            Play(audiosPlayer, GetSeAudioClip(seVariable), seVolume.Value, false);
+            Play(audiosPlayer, GetSeAudioClip(seVariable), seVolume.Value, fadeTime);
             return new AudioPlayerID(audiosPlayer, audiosPlayer.GetNowPlaySouncCount());
         }
 
-        public AudioPlayerID PlayBattleBGM(bool fade, float fadeTime)
+        public AudioPlayerID PlayBattleBGM(float fadeTime)
         {
-            Play(bgmPlayer, bgmSource, bgmVolume.Value, fade, fadeTime);
+            Play(bgmPlayer, bgmSource, bgmVolume.Value, fadeTime);
             return new AudioPlayerID(bgmPlayer, bgmPlayer.GetNowPlaySouncCount());
         }
 

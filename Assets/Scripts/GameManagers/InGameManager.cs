@@ -60,7 +60,7 @@ namespace GameManagers
         private async UniTask RidingAndRobotPowerOn()
         {
             _playerdetector_ridingAndRobotPowerOn.Play();
-            _audioManager.PlaySe(SeVariable.RobotOnSE, Vector3.zero);
+            _audioManager.PlaySe(SeVariable.RobotOnSE, Vector3.zero, 0.1f);
             Debug.Log(_playerdetector_ridingAndRobotPowerOn.duration);
             await UniTask.WaitForSeconds((float)_playerdetector_ridingAndRobotPowerOn.duration);
         }
@@ -112,7 +112,7 @@ namespace GameManagers
             _playerRobotManager.StartMove();
 
             //bgm始まる
-            _bgmPlayerID = _audioManager.PlayBattleBGM(true, bgmStartFadeTime);
+            _bgmPlayerID = _audioManager.PlayBattleBGM(bgmStartFadeTime);
 
             battlemodeStartPoint.playerDetect.Subscribe(_ =>
             {

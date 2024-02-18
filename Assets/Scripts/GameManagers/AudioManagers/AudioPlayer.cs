@@ -32,21 +32,13 @@ namespace GameManagers.SeManagers
         /// clipを再生する
         /// </summary>
         /// <param name="clip"></param>
-        public void Play(AudioClip clip, float audioVolume, bool isFade = false, float duration = 1)
+        public void Play(AudioClip clip, float audioVolume, float duration = 1)
         {
-            if (isFade)
-            {
-                source.volume = 0;
-                source.clip = clip;
-                source.Play();
-                source.DOFade(audioVolume, duration);
-            }
-            else
-            {
-                source.volume = audioVolume;
-                source.clip = clip;
-                source.Play();
-            }
+            source.volume = 0;
+            source.clip = clip;
+            source.Play();
+            source.DOFade(audioVolume, duration);
+
 
             nowPlaySoundCount++;
         }
@@ -57,7 +49,7 @@ namespace GameManagers.SeManagers
         {
             if (nowPlaySoundCount == id)
             {
-                source.DOFade(0, fadeTime).OnComplete(() => {source.Stop(); });
+                source.DOFade(0, fadeTime).OnComplete(() => { source.Stop(); });
             }
         }
 
