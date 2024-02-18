@@ -60,6 +60,7 @@ namespace GameManagers
         private async UniTask RidingAndRobotPowerOn()
         {
             _playerdetector_ridingAndRobotPowerOn.Play();
+            _audioManager.PlaySe(SeVariable.RobotOnSE, Vector3.zero);
             Debug.Log(_playerdetector_ridingAndRobotPowerOn.duration);
             await UniTask.WaitForSeconds((float)_playerdetector_ridingAndRobotPowerOn.duration);
         }

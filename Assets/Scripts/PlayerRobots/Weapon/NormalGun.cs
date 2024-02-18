@@ -18,7 +18,7 @@ namespace Character.Weapon
         /// </summary>
         public async void Attack(IHitable target, float attackPower)
         {
-            _audioManager.PlayBuuletSe(this.transform.position);
+            _audioManager.PlaySe(SeVariable.normalbulletFireSE, this.transform.position);
             var bulletInstance = Instantiate(bulletPrefab, bulletInstancePosition.position, Quaternion.identity);
 
             float elapsedTime = 0;

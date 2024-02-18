@@ -6,6 +6,12 @@ using R3;
 
 namespace GameManagers.SeManagers
 {
+    public enum SeVariable
+    {
+        normalbulletFireSE = 0,
+        RobotOnSE = 1
+    }
+
     /// <summary>
     /// 
     /// </summary>
@@ -27,6 +33,7 @@ namespace GameManagers.SeManagers
         [SerializeField] private R3.SerializableReactiveProperty<float> bgmVolume;
 
         [SerializeField] private AudioClip bulletse;
+        [SerializeField] private AudioClip robotOnSe;
 
         [SerializeField] private GameObject audioPlayerGameObject;
 
@@ -35,6 +42,8 @@ namespace GameManagers.SeManagers
 
         [SerializeField] private AudioClip bgmSource;
         private AudioPlayer bgmPlayer;
+
+        private Dictionary<int, AudioClip> audioClips;
 
         private void Awake()
         {
@@ -59,12 +68,20 @@ namespace GameManagers.SeManagers
                 }
             });
 
+
             //bgmVolumeを変えたら伝える
             bgmVolume.Subscribe((bgmvolume) =>
             {
                 Debug.Log("bgmvalue change!!");
                 bgmPlayer.SetVolume(bgmvolume);
             });
+
+            this.audioClips = new Dictionary<int, AudioClip>()
+            {
+                { (int)SeVariable.RobotOnSE, robotOnSe },
+
+                { (int)SeVariable.normalbulletFireSE, bulletse },
+            };
         }
 
         private AudioPlayer GetUnusedAudioPlayer()
@@ -80,6 +97,11 @@ namespace GameManagers.SeManagers
             return null;
         }
 
+        public AudioClip GetSeAudioClip(SeVariable seVariable)
+        {
+            return this.audioClips[(int)seVariable];
+        }
+
         /// <summary>
         /// 音を再生するだけ
         /// </summary>
@@ -90,7 +112,7 @@ namespace GameManagers.SeManagers
             audioPlayer.Play(clip, audioVolume, isFade, fadeTime);
         }
 
-        public AudioPlayerID PlayBuuletSe(Vector3 sePosition)
+        public AudioPlayerID PlaySe(SeVariable seVariable, Vector3 sePosition)
         {
             var audiosPlayer = GetUnusedAudioPlayer();
             if (audiosPlayer == null)
@@ -100,7 +122,7 @@ namespace GameManagers.SeManagers
 
             audiosPlayer.SetPosition(sePosition);
 
-            Play(audiosPlayer, bulletse, seVolume.Value, false);
+            Play(audiosPlayer, GetSeAudioClip(seVariable), seVolume.Value, false);
             return new AudioPlayerID(audiosPlayer, audiosPlayer.GetNowPlaySouncCount());
         }
 
@@ -110,9 +132,9 @@ namespace GameManagers.SeManagers
             return new AudioPlayerID(bgmPlayer, bgmPlayer.GetNowPlaySouncCount());
         }
 
-        public void StopSound(AudioPlayerID id,float fadeTime)
+        public void StopSound(AudioPlayerID id, float fadeTime)
         {
-            id.audioPlayer.Stop(id.audioPlayId,fadeTime);
+            id.audioPlayer.Stop(id.audioPlayId, fadeTime);
         }
     }
 }
