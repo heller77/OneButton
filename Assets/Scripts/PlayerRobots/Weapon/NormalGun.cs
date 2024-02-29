@@ -28,7 +28,7 @@ namespace Character.Weapon
             while (elapsedTime <= duration)
             {
                 //ターゲットが攻撃出来る状態でないならば、
-                if (!target.isHitable())
+                if (target != null && !target.isHitable())
                 {
                     VanishBullet(bulletInstance);
                     return;
