@@ -1,6 +1,10 @@
-﻿using Character.Weapon.CannonBulletExplosions;
+﻿using System;
+using Character.Weapon.CannonBulletExplosions;
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using Enemys;
+using GameManagers.SeManagers;
+using R3;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -19,8 +23,12 @@ namespace Character.Weapon
         [SerializeField] private GameObject ExplosionEffect;
         [SerializeField] private EnemyManager _enemyManager;
 
+        [SerializeField] private AudioManager _audioManager;
+
         public async void Attack(IHitable target, float attackPower)
         {
+            _audioManager.PlaySe(SeVariable.CanonSe, this.transform.position, 0.1f);
+
             fireEffect.Play();
             var bulletInstance = Instantiate(bullet, bulletInstatiatePosition.position, Quaternion.identity);
 
@@ -57,6 +65,7 @@ namespace Character.Weapon
                 .GetComponent<CannonBulletExplosion>();
             cannonExplosion.SetEnemyManager(_enemyManager);
             cannonExplosion.Explosion();
+            Observable.Timer(TimeSpan.FromSeconds(1)).Subscribe(x => { cannonExplosion.Fade(); });
         }
     }
 }

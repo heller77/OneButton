@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using R3;
+using UnityEngine.Serialization;
 
 namespace GameManagers.SeManagers
 {
     public enum SeVariable
     {
         normalbulletFireSE = 0,
-        RobotOnSE = 1
+        RobotOnSE = 1,
+        CanonSe = 2
     }
 
     /// <summary>
@@ -34,8 +36,10 @@ namespace GameManagers.SeManagers
 
         [SerializeField] private AudioClip bulletse;
         [SerializeField] private AudioClip robotOnSe;
+        [SerializeField] private AudioClip canonSe;
 
-        [SerializeField] private GameObject audioPlayerGameObject;
+        [SerializeField] private GameObject sePlayerPrefab;
+        [SerializeField] private GameObject bgmPlayerPrefab;
 
         private List<AudioPlayer> sePlayersList;
         [SerializeField] private int audioPlayerCount = 1;
@@ -50,12 +54,12 @@ namespace GameManagers.SeManagers
             sePlayersList = new List<AudioPlayer>(audioPlayerCount);
             for (var i = 0; i < audioPlayerCount; i++)
             {
-                var audioPlayer = Instantiate(audioPlayerGameObject);
+                var audioPlayer = Instantiate(sePlayerPrefab);
                 sePlayersList.Add(audioPlayer.GetComponent<AudioPlayer>());
                 sePlayersList[i].Initialize(audioPlayer.GetComponent<AudioSource>());
             }
 
-            bgmPlayer = Instantiate(audioPlayerGameObject).GetComponent<AudioPlayer>();
+            bgmPlayer = Instantiate(bgmPlayerPrefab).GetComponent<AudioPlayer>();
             bgmPlayer.Initialize(bgmPlayer.GetComponent<AudioSource>());
 
 
@@ -81,6 +85,7 @@ namespace GameManagers.SeManagers
                 { (int)SeVariable.RobotOnSE, robotOnSe },
 
                 { (int)SeVariable.normalbulletFireSE, bulletse },
+                { (int)SeVariable.CanonSe, canonSe }
             };
         }
 
