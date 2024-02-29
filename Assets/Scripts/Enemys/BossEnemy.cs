@@ -60,6 +60,11 @@ namespace Enemys
             return isArrive;
         }
 
+        public EnemyType GetEnemyType()
+        {
+            return EnemyType.mother;
+        }
+
         /// <summary>
         /// ボスを攻撃できる距離の範囲（はたしてボスがもっているのが正しいのか？）
         /// </summary>

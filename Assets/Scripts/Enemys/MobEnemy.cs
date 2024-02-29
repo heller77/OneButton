@@ -18,6 +18,7 @@ namespace Enemys
         [SerializeField] private EnemyParameterAsset _parameterAsset;
         [SerializeField] private float hp;
         private bool isArrive = true;
+
         /// <summary>
         /// 同じGameObjectに付属しているBoid
         /// </summary>
@@ -62,6 +63,11 @@ namespace Enemys
         public bool isHitable()
         {
             return isArrive;
+        }
+
+        public EnemyType GetEnemyType()
+        {
+            return EnemyType.mob;
         }
 
         private void Destruction()

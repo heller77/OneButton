@@ -83,6 +83,8 @@ namespace Character.LockOns
             if (enemies.Count == 0)
             {
                 targetEnemy = null;
+                cursor.Hide();
+                cursor.HideInfo();
                 return;
             }
 
@@ -91,6 +93,8 @@ namespace Character.LockOns
             //カーソルを表示し、移動
             // cursor.Display();
             cursor.Move(CulcurateCursorPosition(target.GetTransform()));
+
+            cursor.DisplayInfo(target.GetEnemyType());
 
             //今ターゲットにしている敵を取得できるようにフィールドに代入。
             this.targetEnemy = target;

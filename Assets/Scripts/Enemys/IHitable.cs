@@ -19,5 +19,7 @@ namespace Enemys
         /// </summary>
         /// <returns></returns>
         public bool isHitable();
+
+        public EnemyType GetEnemyType();
     }
 }

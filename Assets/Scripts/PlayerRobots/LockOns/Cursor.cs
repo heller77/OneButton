@@ -12,6 +12,8 @@ namespace Character.LockOns
         private static readonly int Decide = Animator.StringToHash("decide");
         private static readonly int Selectmode = Animator.StringToHash("selectmode");
 
+        [SerializeField] private EnemyDisplayWindow enemyDisplayWindowGameObject;
+
         /// <summary>
         /// カーソルを表示する
         /// </summary>
@@ -20,12 +22,22 @@ namespace Character.LockOns
             cursorGameObject.SetActive(true);
         }
 
+        public void DisplayInfo(EnemyType enemyType)
+        {
+            enemyDisplayWindowGameObject.PopWindow(enemyType);
+        }
+
         /// <summary>
         /// カーソルを非表示にする
         /// </summary>
         public void Hide()
         {
             cursorGameObject.SetActive(false);
+        }
+
+        public void HideInfo()
+        {
+            enemyDisplayWindowGameObject.CloseWindow();
         }
 
         public void Move(Vector3 position)

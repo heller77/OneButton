@@ -4,6 +4,12 @@ using UnityEngine;
 using UnityEngine.Splines;
 using Utils;
 
+public enum EnemyType
+{
+    mob,
+    mother
+}
+
 namespace Enemys
 {
     public class MobEnemyGroup : MonoBehaviour, ITrapable
