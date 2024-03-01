@@ -1,4 +1,5 @@
-﻿using Enemys;
+﻿using System;
+using Enemys;
 using UnityEngine;
 using Utils;
 
@@ -34,8 +35,6 @@ namespace Character.PlayerSideRobots
 
         public void Attack(MobEnemy enemy)
         {
-            attackComponent.Attack(enemy, attackPower);
-            attackComponent.FireBullet(enemy.transform);
         }
 
 #if UNITY_EDITOR
