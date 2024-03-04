@@ -67,9 +67,16 @@ namespace Character.Weapon
             transform.LookAt(target.GetTransform().position);
             _laser.LaunchLaser(target.GetTransform());
 
+            bool isHit = false;
+            _laser.hitObservable.Subscribe(_ => { isHit = true; });
+            while (!isHit)
+            {
+                transform.LookAt(target.GetTransform().position);
+                await UniTask.DelayFrame(1);
+            }
 
             //あたるまで待つ
-            await _laser.hitObservable.FirstAsync();
+            // await _laser.hitObservable.FirstAsync();
 
             target.Hitted(attackPower);
 
