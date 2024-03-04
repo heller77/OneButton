@@ -10,10 +10,11 @@ namespace Tamesi
     {
         [SerializeField] private Button _button;
         [SerializeField] private Laser _laser;
+        [SerializeField] private Transform target;
 
         private void Start()
         {
-            _button.OnClickAsObservable().Subscribe(_ => { _laser.LaunchLaser(); });
+            _button.OnClickAsObservable().Subscribe(_ => { _laser.LaunchLaser(target); });
         }
     }
 }

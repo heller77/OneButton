@@ -31,7 +31,7 @@ namespace Character
 
         private GameInputs _inputs;
 
-        private bool isBattleMode = false;
+        [SerializeField] private bool isBattleMode = true;
 
         private void Start()
         {

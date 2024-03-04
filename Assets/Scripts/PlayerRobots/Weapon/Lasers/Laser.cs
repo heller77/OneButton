@@ -4,6 +4,7 @@ using DG.Tweening;
 using R3;
 using R3.Triggers;
 using UnityEngine;
+using UnityEngine.Playables;
 
 namespace Character.Weapon.Lasers
 {
@@ -14,6 +15,9 @@ namespace Character.Weapon.Lasers
         /// </summary>
         private SphereCollider _laserEndCollider;
 
+        /// <summary>
+        /// レーザの先端オブジェクト
+        /// </summary>
         [SerializeField] private GameObject laserEnd;
 
         [SerializeField] private float length;
@@ -21,11 +25,24 @@ namespace Character.Weapon.Lasers
         [SerializeField] private float zfitting;
         [SerializeField] private float launchLaserStretchTime = 0.1f;
 
+        private Subject<Unit> hitSubject = new Subject<Unit>();
+
+        /// <summary>
+        /// レーザ末尾の球（見た目用）
+        /// </summary>
+        [SerializeField] private GameObject laserEndSphere;
+
+        [SerializeField] private PlayableDirector laserStartEffectTimeline;
+
+        public Observable<Unit> hitObservable
+        {
+            get { return hitSubject; }
+        }
+
         private void Awake()
         {
             _laserEndCollider = laserEnd.GetComponent<SphereCollider>();
             //レーザ末尾があたった時
-
             _laserEndCollider.OnCollisionEnterAsObservable()
                 .Subscribe(other =>
                 {
@@ -33,10 +50,12 @@ namespace Character.Weapon.Lasers
                     Vector3 hitPos;
                     foreach (ContactPoint point in other.contacts)
                     {
+                        hitEffectTransform.gameObject.SetActive(true);
                         hitPos = point.point;
                         Debug.Log(hitPos);
                         var nowLaserPos = transform.position;
                         var vec_hitposToLaser = nowLaserPos - hitPos;
+                        hitEffectTransform.transform.LookAt(this.transform.position);
                         hitEffectTransform.position = hitPos + vec_hitposToLaser * zfitting;
                     }
                 });
@@ -50,6 +69,11 @@ namespace Character.Weapon.Lasers
             //         Debug.Log(contact.point);
             //     }
             // });
+        }
+
+        public void LookTarget(Transform target)
+        {
+            this.transform.LookAt(target, Vector3.right);
         }
 
         /// <summary>
@@ -68,19 +92,46 @@ namespace Character.Weapon.Lasers
 
         private bool isLaunching = false;
 
-        public void LaunchLaser()
+        /// <summary>
+        /// レーザを止める
+        /// </summary>
+        public void StopLaser()
         {
+            this.gameObject.SetActive(false);
+            laserEndSphere.SetActive(false);
+
+            StretchLaser(0);
+        }
+
+        /// <summary>
+        /// レーザを発射
+        /// </summary>
+        public void LaunchLaser(Transform target)
+        {
+            this.gameObject.SetActive(true);
+            laserEndSphere.SetActive(true);
             if (isLaunching)
             {
                 return;
             }
 
+            float distance = Vector3.Distance(target.position, transform.position);
+            //レーザ発射アニメーションを再生する
+            laserStartEffectTimeline.Play();
 
             //あたるまでレーザを進める
-            StretchLaserUntilCollider();
+            StretchLaserUntilCollider(distance);
         }
 
-        private async UniTask StretchLaserUntilCollider()
+        private float accelerationDistance = 100;
+        [SerializeField] private float accelerationDistance_Time = 0.3f;
+        private float arriveTime = 1;
+        private static readonly int Launch = Animator.StringToHash("launch");
+
+        /// <summary>
+        /// 物体にあたるまでレーザを伸ばす
+        /// </summary>
+        private async UniTask StretchLaserUntilCollider(float distance)
         {
             isLaunching = true;
 
@@ -88,18 +139,41 @@ namespace Character.Weapon.Lasers
             bool stretchLaserFlag = false;
             _laserEndCollider.OnCollisionEnterAsObservable()
                 .Subscribe(other => { stretchLaserFlag = true; });
-            float preLength = 0;
-            while (!stretchLaserFlag)
+
+            //レーザを伸ばす
+
+            //レーザがaccelerationDistanceまでは
+            if (accelerationDistance >= distance)
             {
-                laserLength++;
-                DOTween.To(() => preLength, x => this.StretchLaser(x), laserLength, launchLaserStretchTime)
+                float elapsedTime = accelerationDistance_Time * (distance / accelerationDistance);
+                DOTween.To(() => 0, x => this.StretchLaser(x), distance, elapsedTime)
                     .SetEase(Ease.Linear);
 
-                await UniTask.Delay(TimeSpan.FromSeconds(launchLaserStretchTime));
-                preLength = laserLength;
+                await UniTask.Delay(TimeSpan.FromSeconds(elapsedTime));
             }
 
+
+            //残りは時間内に到着するように
+            if (accelerationDistance < distance)
+            {
+                DOTween.To(() => accelerationDistance, x => this.StretchLaser(x), distance,
+                        arriveTime - launchLaserStretchTime)
+                    .SetEase(Ease.Linear);
+                await UniTask.Delay(TimeSpan.FromSeconds(arriveTime - launchLaserStretchTime));
+            }
+
+
+            //フラグをおろす
             isLaunching = false;
+
+            // float perforateTime = 1.0f;
+            // Observable.Timer(TimeSpan.FromSeconds(perforateTime)).Subscribe(_ =>
+            // {
+            //     this.hitEffectTransform.gameObject.SetActive(false);
+            // }).AddTo(this);
+            await UniTask.Delay(TimeSpan.FromSeconds(1));
+            //あたったことを通知
+            this.hitSubject.OnNext(Unit.Default);
         }
 #if UNITY_EDITOR
 

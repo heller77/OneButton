@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &424765727194375884
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1091692981702885172}
+  - component: {fileID: 3996630374032075266}
+  - component: {fileID: 5974770989707900345}
+  - component: {fileID: 4016796037770943929}
+  m_Layer: 0
+  m_Name: manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1091692981702885172
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424765727194375884}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 437.912, y: 67.205414, z: 1.2213137}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3996630374032075266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424765727194375884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1605949642f0438d80337043cc82cf81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerRobotManager: {fileID: 0}
+  _firstPositionDoorOpen: {fileID: 0}
+  resultTextui: {fileID: 0}
+  _audioManager: {fileID: 4016796037770943929}
+  bgmStartFadeTime: 10
+  _playerdetector_ridingAndRobotPowerOn: {fileID: 0}
+  _playerDetector_beyondDoor: {fileID: 0}
+  robotdepartureDirector: {fileID: 0}
+  arriveDetector_endPoint: {fileID: 0}
+  battlemodeStartPoint: {fileID: 0}
+  getoutofvirtualCamera: {fileID: 0}
+  _resultDisplay: {fileID: 0}
+  _scoreWeight:
+    knockdownMob_ScoreWeight: 1000
+    survivePlayerSideRobot_ScoreWeight: 3000
+    bossDamage_ScoreWeight: 1
+    consumeBulletMinux_ScoreWeight: -1
+  bgmStopFadeTime: 3
+--- !u!114 &5974770989707900345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424765727194375884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e091aa40c8ad4fe4a2d5931203afca04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mobEnemies: []
+  _bossEnemy: {fileID: 0}
+--- !u!114 &4016796037770943929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424765727194375884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7692d76b856348ea88ce0cf788cb6659, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seVolume:
+    value: 1
+  bgmVolume:
+    value: 0.2
+  bulletse: {fileID: 8300000, guid: 70a6c39317949ba48b666395b8ef5768, type: 3}
+  robotOnSe: {fileID: 8300000, guid: 31cafa3d359be2f42952a0634a113a68, type: 3}
+  canonSe: {fileID: 8300000, guid: df35b64d289f894458c214cc6c372a4e, type: 3}
+  sePlayerPrefab: {fileID: 5269072032078149733, guid: 421b722497f396d428f652f50e1dec70, type: 3}
+  bgmPlayerPrefab: {fileID: 2749800285839554873, guid: 3e858dbafc614c544a78a43eff7f14f0, type: 3}
+  audioPlayerCount: 10
+  bgmSource: {fileID: 8300000, guid: 9127fe9bf26415f4db0c66905f0fdaf5, type: 3}

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-6476096899758230717
+--- !u!114 &-2717749827420671097
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_Hit
-  m_Shader: {fileID: -6465566751694194690, guid: 4fed29982eb69bb4d8f3ee9282b8ba9d, type: 3}
+  m_Name: Shader Graphs_LaserStart
+  m_Shader: {fileID: -6465566751694194690, guid: 5791a5bd8b324604cb8f2218917e3cf4, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -36,6 +36,22 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 2800000, guid: e9f8d9ec6b3f1144abeddf51b7cb9d34, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: e9f8d9ec6b3f1144abeddf51b7cb9d34, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_27444e3913884195953530add72ed731_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: e9f8d9ec6b3f1144abeddf51b7cb9d34, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture2D:
+        m_Texture: {fileID: 2800000, guid: e9f8d9ec6b3f1144abeddf51b7cb9d34, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -50,19 +66,22 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _CircleSclae: 0.6
-    - _DecalMeshBiasType: 0
-    - _DecalMeshDepthBias: 0
-    - _DecalMeshViewBias: 0
-    - _DrawOrder: 0
-    - _Float: 0.21
-    - _GradientSub: 0.19
+    - _AlphaClip: 1
+    - _AlphaToMask: 0
+    - _Blend: 0
+    - _BlendOp: 0
+    - _Cull: 2
+    - _Cutoff: 0.5
+    - _DstBlend: 10
+    - _DstBlendAlpha: 10
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _scaleDiffScale: 0.01
-    - _timescale: 3.93
+    - _SampleGI: 0
+    - _SrcBlend: 5
+    - _SrcBlendAlpha: 1
+    - _Surface: 1
+    - _ZWrite: 0
     m_Colors:
-    - _Color: {r: 3.9999993, g: 0.8848735, b: 0.39622635, a: 0}
-    - _InnerColor: {r: 4.040984, g: 1.8540761, b: 0, a: 0}
-    - _OuterColor: {r: 3.9999998, g: 3.2428749, b: 0, a: 0}
+    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0, g: 2.670157, b: 1.2417698, a: 1}
   m_BuildTextureStacks: []

@@ -3,13 +3,14 @@ using Cysharp.Threading.Tasks;
 using Enemys;
 using UnityEngine;
 using R3;
+using Sirenix.OdinInspector;
 
 namespace Character.LockOns
 {
     /// <summary>
     /// 敵にカーソルを表示したりする。
     /// </summary>
-    public class LockOn : MonoBehaviour
+    public class LockOn : SerializedMonoBehaviour
     {
         [SerializeField] private Cursor cursor;
 
@@ -24,7 +25,7 @@ namespace Character.LockOns
 
         // [SerializeField] private RectTransform lockonUiTransform;
         private Transform cameraTransform;
-        private IHitable targetEnemy;
+        public IHitable targetEnemy;
 
         [SerializeField] private LockOnState _lockOnState;
 
