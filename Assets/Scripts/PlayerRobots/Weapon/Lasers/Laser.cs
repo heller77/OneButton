@@ -8,7 +8,7 @@ using UnityEngine.Playables;
 
 namespace Character.Weapon.Lasers
 {
-    public class Laser : MonoBehaviour
+    public class Laser : MonoBehaviour, GameLoops.IInitializable
     {
         /// <summary>
         /// レーザの末尾の部分の当たり判定
@@ -48,7 +48,7 @@ namespace Character.Weapon.Lasers
             get { return hitSubject; }
         }
 
-        private void Awake()
+        public void Initialize()
         {
             _laserEndCollider = laserEnd.GetComponent<SphereCollider>();
             //レーザ末尾があたった時

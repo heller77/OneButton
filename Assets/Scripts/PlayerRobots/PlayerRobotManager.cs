@@ -17,7 +17,7 @@ namespace Character
     /// <summary>
     /// ロボットの動きや攻撃を管理する
     /// </summary>
-    public class PlayerRobotManager : MonoBehaviour
+    public class PlayerRobotManager : MonoBehaviour, GameLoops.IInitializable
     {
         // [SerializeField] private SplineAnimate _splineAnimate;
         [SerializeField] private MoverOnSpline _moverOnSpline;
@@ -33,7 +33,7 @@ namespace Character
 
         [SerializeField] private bool isBattleMode = true;
 
-        private void Start()
+        public void Initialize()
         {
             //入力設定
             _inputs = new GameInputs();

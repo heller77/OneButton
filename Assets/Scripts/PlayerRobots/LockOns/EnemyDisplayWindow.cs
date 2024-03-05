@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using DG.Tweening;
+using GameLoops;
 using UnityEngine;
 
 namespace Character.LockOns
 {
-    public class EnemyDisplayWindow : MonoBehaviour
+    public class EnemyDisplayWindow : MonoBehaviour, GameLoops.IInitializable
     {
         private Vector3 originScale;
         [SerializeField] private float duration = 0.1f;
@@ -16,7 +17,7 @@ namespace Character.LockOns
         [SerializeField] private Dictionary<int, Texture> enemy_textureDic;
         private static readonly int Enemytexture = Shader.PropertyToID("_enemytexture");
 
-        private void Start()
+        public void Initialize()
         {
             originScale = this.transform.localScale;
             enemy_textureDic = new Dictionary<int, Texture>()

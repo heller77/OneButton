@@ -1,6 +1,7 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
 using Enemys;
+using GameLoops;
 using UnityEngine;
 using R3;
 using Sirenix.OdinInspector;
@@ -10,7 +11,7 @@ namespace Character.LockOns
     /// <summary>
     /// 敵にカーソルを表示したりする。
     /// </summary>
-    public class LockOn : SerializedMonoBehaviour
+    public class LockOn : SerializedMonoBehaviour, IInitializable
     {
         [SerializeField] private Cursor cursor;
 
@@ -51,7 +52,7 @@ namespace Character.LockOns
             DecideAttackTarget
         }
 
-        private void Start()
+        public void Initialize()
         {
             cameraTransform = UnityEngine.Camera.main.transform;
             this._lockOnState = LockOnState.SelectEnemy;
