@@ -3783,7 +3783,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 450198798}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.006157486, y: -0.69176525, z: -0.0058990433, w: 0.7220721}
+  m_LocalRotation: {x: -0.006157505, y: -0.69176525, z: -0.005899062, w: 0.7220721}
   m_LocalPosition: {x: 487.20383, y: 82.45368, z: 2.337424}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5736,7 +5736,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 741122061}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.006157486, y: -0.69176525, z: -0.0058990433, w: 0.7220721}
+  m_LocalRotation: {x: -0.006157505, y: -0.69176525, z: -0.005899062, w: 0.7220721}
   m_LocalPosition: {x: 487.20383, y: 82.45368, z: 2.337424}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -31187,6 +31187,14 @@ PrefabInstance:
       propertyPath: _playerdetector_ridingAndRobotPowerOn
       value: 
       objectReference: {fileID: 79084240}
+    - target: {fileID: 4016796037770943929, guid: 4fd7d8eacb6190143b4d66b25525b4d5, type: 3}
+      propertyPath: enemyDeathSe
+      value: 
+      objectReference: {fileID: 8300000, guid: a29d2e893ba81ba4a86f7c8238b62e48, type: 3}
+    - target: {fileID: 4016796037770943929, guid: 4fd7d8eacb6190143b4d66b25525b4d5, type: 3}
+      propertyPath: audioPlayerCount
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5974770989707900345, guid: 4fd7d8eacb6190143b4d66b25525b4d5, type: 3}
       propertyPath: _bossEnemy
       value: 
