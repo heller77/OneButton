@@ -4,6 +4,7 @@ using Enemys.Boids;
 using Enemys.EnemyParameter;
 using Enemys.ExplosionEffect;
 using GameManagers;
+using GameManagers.SeManagers;
 using R3;
 
 #if UNITY_EDITOR
@@ -77,6 +78,8 @@ namespace Enemys
 
         private void Destruction()
         {
+            AudioManager.Instance.PlaySe(SeVariable.EnemyDeath, this.transform.position, 1);
+
             Debug.Log("death");
             _enemyManager.RemoveEnemy(this);
 

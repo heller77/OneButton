@@ -11,7 +11,8 @@ namespace GameManagers.SeManagers
     {
         normalbulletFireSE = 0,
         RobotOnSE = 1,
-        CanonSe = 2
+        CanonSe = 2,
+        EnemyDeath = 3
     }
 
     /// <summary>
@@ -37,6 +38,7 @@ namespace GameManagers.SeManagers
         [SerializeField] private AudioClip bulletse;
         [SerializeField] private AudioClip robotOnSe;
         [SerializeField] private AudioClip canonSe;
+        [SerializeField] private AudioClip enemyDeathSe;
 
         [SerializeField] private GameObject sePlayerPrefab;
         [SerializeField] private GameObject bgmPlayerPrefab;
@@ -49,8 +51,16 @@ namespace GameManagers.SeManagers
 
         private Dictionary<int, AudioClip> audioClips;
 
+        private static AudioManager _instance;
+
+        public static AudioManager Instance
+        {
+            get { return _instance; }
+        }
+
         private void Awake()
         {
+            _instance = this;
             sePlayersList = new List<AudioPlayer>(audioPlayerCount);
             for (var i = 0; i < audioPlayerCount; i++)
             {
@@ -85,7 +95,8 @@ namespace GameManagers.SeManagers
                 { (int)SeVariable.RobotOnSE, robotOnSe },
 
                 { (int)SeVariable.normalbulletFireSE, bulletse },
-                { (int)SeVariable.CanonSe, canonSe }
+                { (int)SeVariable.CanonSe, canonSe },
+                { (int)SeVariable.EnemyDeath, enemyDeathSe }
             };
         }
 
