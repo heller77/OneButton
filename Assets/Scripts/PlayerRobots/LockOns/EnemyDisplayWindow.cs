@@ -14,6 +14,7 @@ namespace Character.LockOns
         [SerializeField] private Texture mother;
         [SerializeField] private Material _material;
         [SerializeField] private Dictionary<int, Texture> enemy_textureDic;
+        private static readonly int Enemytexture = Shader.PropertyToID("_enemytexture");
 
         private void Start()
         {
@@ -28,7 +29,7 @@ namespace Character.LockOns
 
         public void PopWindow(EnemyType enemyType)
         {
-            _material.SetTexture("_enemytexture", this.enemy_textureDic[(int)enemyType]);
+            _material.SetTexture(Enemytexture, this.enemy_textureDic[(int)enemyType]);
             transform.DOScaleY(0, 0);
 
             transform.DOScaleY(originScale.y, duration);

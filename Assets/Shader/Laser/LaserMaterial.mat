@@ -39,7 +39,7 @@ Material:
     m_Floats:
     - _ExpandArea: 0.3
     - _Float: 13.97
-    - _LaserExpandValue: 20
+    - _LaserExpandValue: 100
     - _LaserOutSide: 1
     - _QueueControl: 0
     - _QueueOffset: 0

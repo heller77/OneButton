@@ -39,6 +39,8 @@ namespace Character.Weapon.Lasers
         /// </summary>
         [SerializeField] private Material laserMaterial;
 
+        [SerializeField] private GameObject _laserParent;
+
         private LaserMaterialController _materialController;
 
         public Observable<Unit> hitObservable
@@ -81,7 +83,7 @@ namespace Character.Weapon.Lasers
             this._materialController = new LaserMaterialController(this.laserMaterial);
 
             //初めは非表示に
-            this.gameObject.SetActive(false);
+            this._laserParent.SetActive(false);
         }
 
         public void LookTarget(Transform target)
@@ -110,7 +112,7 @@ namespace Character.Weapon.Lasers
         /// </summary>
         public void StopLaser()
         {
-            this.gameObject.SetActive(false);
+            this._laserParent.SetActive(false);
             laserEndSphere.SetActive(false);
 
             StretchLaser(0);
@@ -121,7 +123,7 @@ namespace Character.Weapon.Lasers
         /// </summary>
         public void LaunchLaser(Transform target)
         {
-            this.gameObject.SetActive(true);
+            this._laserParent.SetActive(true);
             laserEndSphere.SetActive(true);
             if (isLaunching)
             {
@@ -136,9 +138,17 @@ namespace Character.Weapon.Lasers
             StretchLaserUntilCollider(distance);
         }
 
+        /// <summary>
+        /// ここまでは一定の速度でレーザを進めるという距離
+        /// </summary>
         private float accelerationDistance = 100;
+
+        /// <summary>
+        /// accelerationDistanceまでレーザが到着する時間
+        /// </summary>
         [SerializeField] private float accelerationDistance_Time = 0.3f;
-        private float arriveTime = 1;
+
+        [SerializeField] private float arriveTime = 1;
         private static readonly int Launch = Animator.StringToHash("launch");
         [SerializeField] private float laserThickness = 20;
 
@@ -154,24 +164,32 @@ namespace Character.Weapon.Lasers
             _laserEndCollider.OnCollisionEnterAsObservable()
                 .Subscribe(other => { stretchLaserFlag = true; });
 
-            //レーザがaccelerationDistanceまで
-            if (accelerationDistance >= distance)
+            //accelerationDistanceまでレーザを進める時間
+            float elapsedTimeToaccelerationDistance = 0;
+            if (distance < accelerationDistance)
             {
-                float elapsedTime = accelerationDistance_Time * (distance / accelerationDistance);
-
-
-                Debug.Log("stretch");
-                DOTween.To(() => 0, x => { this.StretchLaser(x); }, distance, elapsedTime)
-                    .SetEase(Ease.Linear);
-                Debug.Log("expand");
-                DOTween.To(() => 0, x => _materialController.SetLaserExpandValue(x), laserThickness, elapsedTime)
-                    .SetEase(Ease.Linear);
-
-
-                await UniTask.Delay(TimeSpan.FromSeconds(elapsedTime));
+                //レーザがaccelerationDistanceまで
+                elapsedTimeToaccelerationDistance = accelerationDistance_Time * (distance / accelerationDistance);
+            }
+            else
+            {
+                elapsedTimeToaccelerationDistance = accelerationDistance_Time;
             }
 
+            //レーザをaccelerationDistanceまで進める
+            Debug.Log("stretch");
+            DOTween.To(() => 0, x => { this.StretchLaser(x); }, distance, elapsedTimeToaccelerationDistance)
+                .SetEase(Ease.Linear);
 
+            Debug.Log("expand");
+            DOTween.To(() => 0, x => _materialController.SetLaserExpandValue(x), laserThickness,
+                    elapsedTimeToaccelerationDistance)
+                .SetEase(Ease.Linear);
+
+
+            await UniTask.Delay(TimeSpan.FromSeconds(elapsedTimeToaccelerationDistance));
+
+            //レーザをaccelerationDistanceまで進めた後、まで敵との間に距離があるなら
             //残りは時間内に到着するように
             if (accelerationDistance < distance)
             {
