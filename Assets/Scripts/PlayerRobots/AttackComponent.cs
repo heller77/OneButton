@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Character.Weapon;
+﻿using Character.Weapon;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Enemys;
@@ -13,13 +12,13 @@ namespace Character
         [SerializeField] private GameObject bulletPrefab;
         [SerializeField] private Transform bulletFirePosition;
 
-        private float CannonMinPower = 0.5f;
+        private readonly float _cannonMinPower = 0.5f;
         [SerializeField] private Cannon cannon;
 
         [FormerlySerializedAs("_normalBullet")] [SerializeField]
         private NormalGun normalGun;
 
-        [SerializeField] private float chargePercentage = 0.0f;
+        [SerializeField] private float chargePercentage;
         [SerializeField] private float chargeSpeed = 1.0f;
 
         /// <summary>
@@ -28,13 +27,13 @@ namespace Character
         public async UniTask StartCharge()
         {
             this.chargePercentage = 0;
-            chargeing();
+            await Chargeing();
         }
 
         /// <summary>
         /// チャージする（StartChargeメソッドから呼ばれて非同期で実行される）
         /// </summary>
-        private async UniTask chargeing()
+        private async UniTask Chargeing()
         {
             while (chargePercentage <= 1.0f)
             {
@@ -44,15 +43,15 @@ namespace Character
             }
         }
 
-        public void Attack(IHitable target, float AttackPower)
+        public void Attack(IHitable target, float attackPower)
         {
             Debug.Log("attack");
-            target.Hitted(AttackPower);
+            target.Hitted(attackPower);
         }
 
         public void ChargeAttack(IHitable target)
         {
-            if (chargePercentage > CannonMinPower)
+            if (chargePercentage > _cannonMinPower)
             {
                 var cannonAttackPower = 10;
                 cannon.Attack(target, cannonAttackPower);
@@ -72,7 +71,7 @@ namespace Character
             var bullet = Instantiate(bulletPrefab, bulletFirePosition.position, Quaternion.identity);
             //memo : ここtargetが動くとあたっていないように見えるので、修正する
             bullet.transform.DOMove(target.position, 0.6f);
-            MoveBulletToTarget(bullet.transform, target, 10.5f);
+            var moveBulletToTarget = MoveBulletToTarget(bullet.transform, target, 10.5f);
         }
 
         /// <summary>
@@ -89,9 +88,11 @@ namespace Character
             {
                 //0-1の
                 float t = time / duration;
-                var diff = bullet.position - targetTransform.position;
-                var newpos = bullet.position + t * diff;
-                bullet.position = newpos;
+                var position = bullet.position;
+                var diff = position - targetTransform.position;
+                var newpos = position + t * diff;
+                position = newpos;
+                bullet.position = position;
 
                 await UniTask.DelayFrame(1);
                 time += Time.deltaTime;
