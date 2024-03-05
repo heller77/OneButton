@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using GameManagers.SeManagers;
 using UnityEngine;
 using Random = System.Random;
 
@@ -30,6 +31,7 @@ namespace Enemys
 
         public void Destruction()
         {
+            AudioManager.Instance.PlaySe(SeVariable.EnemyDeath, this.transform.position, 1);
             _particleSystem.Play();
             _enemyManager.RemoveBoss();
             defaultObject.SetActive(false);
