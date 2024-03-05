@@ -1,13 +1,18 @@
 ﻿using System;
+using Cysharp.Threading.Tasks;
 using Enemys.Boids;
 using Enemys.EnemyParameter;
+using Enemys.ExplosionEffect;
 using GameManagers;
+using R3;
 
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
 using UnityEngine;
+using UnityEngine.InputSystem.Utilities;
+using Observable = R3.Observable;
 
 namespace Enemys
 {
@@ -84,6 +89,14 @@ namespace Enemys
             // Destroy(gameObject);
             this.gameObject.SetActive(false);
             isArrive = false;
+            //explosion配置（x秒後に非表示）
+            var explosionEffect = EnemyDeathExplosionEffectPool.Instance.GetExplosionEffectPool();
+            explosionEffect.transform.position = this.transform.position;
+            float explosioNDisappearTime = 2;
+            Observable.Timer(TimeSpan.FromSeconds(explosioNDisappearTime)).Subscribe(_ =>
+            {
+                EnemyDeathExplosionEffectPool.Instance.Release(explosionEffect);
+            }).AddTo(this);
         }
 
         public void SetEnemyManager(EnemyManager enemyManager)
