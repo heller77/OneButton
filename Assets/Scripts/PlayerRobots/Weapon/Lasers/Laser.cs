@@ -34,6 +34,13 @@ namespace Character.Weapon.Lasers
 
         [SerializeField] private PlayableDirector laserStartEffectTimeline;
 
+        /// <summary>
+        /// マテリアル
+        /// </summary>
+        [SerializeField] private Material laserMaterial;
+
+        private LaserMaterialController _materialController;
+
         public Observable<Unit> hitObservable
         {
             get { return hitSubject; }
@@ -69,6 +76,12 @@ namespace Character.Weapon.Lasers
             //         Debug.Log(contact.point);
             //     }
             // });
+
+            //lasermaterialcontrollerを初期化
+            this._materialController = new LaserMaterialController(this.laserMaterial);
+
+            //初めは非表示に
+            this.gameObject.SetActive(false);
         }
 
         public void LookTarget(Transform target)
@@ -127,6 +140,7 @@ namespace Character.Weapon.Lasers
         [SerializeField] private float accelerationDistance_Time = 0.3f;
         private float arriveTime = 1;
         private static readonly int Launch = Animator.StringToHash("launch");
+        [SerializeField] private float laserThickness = 20;
 
         /// <summary>
         /// 物体にあたるまでレーザを伸ばす
@@ -140,14 +154,19 @@ namespace Character.Weapon.Lasers
             _laserEndCollider.OnCollisionEnterAsObservable()
                 .Subscribe(other => { stretchLaserFlag = true; });
 
-            //レーザを伸ばす
-
-            //レーザがaccelerationDistanceまでは
+            //レーザがaccelerationDistanceまで
             if (accelerationDistance >= distance)
             {
                 float elapsedTime = accelerationDistance_Time * (distance / accelerationDistance);
-                DOTween.To(() => 0, x => this.StretchLaser(x), distance, elapsedTime)
+
+
+                Debug.Log("stretch");
+                DOTween.To(() => 0, x => { this.StretchLaser(x); }, distance, elapsedTime)
                     .SetEase(Ease.Linear);
+                Debug.Log("expand");
+                DOTween.To(() => 0, x => _materialController.SetLaserExpandValue(x), laserThickness, elapsedTime)
+                    .SetEase(Ease.Linear);
+
 
                 await UniTask.Delay(TimeSpan.FromSeconds(elapsedTime));
             }
@@ -171,7 +190,7 @@ namespace Character.Weapon.Lasers
             // {
             //     this.hitEffectTransform.gameObject.SetActive(false);
             // }).AddTo(this);
-            await UniTask.Delay(TimeSpan.FromSeconds(1));
+            await UniTask.DelayFrame(1);
             //あたったことを通知
             this.hitSubject.OnNext(Unit.Default);
         }

@@ -5574,6 +5574,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdb51ad50972483a9cc6932918339515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: targetEnemy
+      Entry: 6
+      Data: 
   cursor: {fileID: 3788652}
   attackableDistance: 11111
   cursorChangeTime: 1
@@ -30084,6 +30096,10 @@ PrefabInstance:
       propertyPath: _audioManager
       value: 
       objectReference: {fileID: 1892388910}
+    - target: {fileID: 7007624622236312250, guid: 56a736f969124a746a9fb9a92191f272, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7156593198394964578, guid: 56a736f969124a746a9fb9a92191f272, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0

@@ -37,7 +37,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _ExpandArea: 0.3
     - _Float: 13.97
+    - _LaserExpandValue: 20
+    - _LaserOutSide: 1
     - _QueueControl: 0
     - _QueueOffset: 0
     - _noiseVertexScale: 0.003
