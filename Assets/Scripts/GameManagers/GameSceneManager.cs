@@ -13,10 +13,13 @@ namespace GameManagers
 
         /// <summary>
         /// Mainシーンに遷移
+        /// 返り値のAsyncOperation.allowSceneActivationをtrueにする
         /// </summary>
-        public void GoToInGameScene()
+        public AsyncOperation GoToInGameScene()
         {
-            SceneManager.LoadScene("Main");
+            var asyncOperation = SceneManager.LoadSceneAsync("Main");
+            asyncOperation.allowSceneActivation = false;
+            return asyncOperation;
         }
     }
 }
