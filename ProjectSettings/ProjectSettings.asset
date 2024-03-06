@@ -653,7 +653,7 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    WebGL: ODIN_INSPECTOR;ODIN_INSPECTOR_3;ODIN_INSPECTOR_3_1
+    WebGL: ODIN_INSPECTOR;ODIN_INSPECTOR_3;ODIN_INSPECTOR_3_1;UNITASK_DOTWEEN_SUPPORT
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
