@@ -78,6 +78,7 @@ namespace Enemys
 
         private void Destruction()
         {
+            //se再生
             AudioManager.Instance.PlaySe(SeVariable.EnemyDeath, this.transform.position, 1);
 
             Debug.Log("death");

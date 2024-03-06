@@ -2,6 +2,7 @@
 using Character;
 using Cinemachine;
 using Cysharp.Threading.Tasks;
+using Enemys;
 using GameManagers.EventImplements;
 using GameManagers.EventImplements.PlayerDetector;
 using GameManagers.ResultDisplays;
@@ -28,6 +29,7 @@ namespace GameManagers
 
         [SerializeField] private AudioManager _audioManager;
         [SerializeField] private float bgmStartFadeTime = 1.0f;
+        [SerializeField] private EnemyManager _enemyManager;
 
         private void Start()
         {
@@ -110,6 +112,8 @@ namespace GameManagers
         {
             Debug.Log("出発");
             _playerRobotManager.StartMove();
+            //敵を動かし始める
+            _enemyManager.StartMoveEnemys();
 
             //bgm始まる
             _bgmPlayerID = _audioManager.PlayBattleBGM(bgmStartFadeTime);

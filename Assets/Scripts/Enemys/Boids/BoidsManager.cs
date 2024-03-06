@@ -8,7 +8,7 @@ namespace Enemys.Boids
     /// <summary>
     ///     Boidsクラスを管理
     /// </summary>
-    public class BoidsManager : MonoBehaviour
+    public class BoidsManager : MonoBehaviour, GameLoops.IInitializable
     {
         private readonly List<Boid> boidList = new List<Boid>();
         [SerializeField] private GameObject boidPrefab;
@@ -19,6 +19,11 @@ namespace Enemys.Boids
         [SerializeField] private EnemyManager _enemyManager;
 
         private void Start()
+        {
+            _enemyManager.AddBoidManager(this);
+        }
+
+        public void Initialize()
         {
             //シード値を指定
             Random.InitState(10);

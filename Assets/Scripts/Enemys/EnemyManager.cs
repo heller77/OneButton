@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Enemys.Boids;
 using R3;
 using UnityEngine;
 
@@ -12,6 +13,20 @@ namespace Enemys
         [SerializeField] private BossEnemy _bossEnemy;
 
         private Subject<Unit> _enemyDestroy = new Subject<Unit>();
+        [SerializeField] private List<BoidsManager> _boidsManager = new List<BoidsManager>();
+
+        public void StartMoveEnemys()
+        {
+            foreach (var manager in _boidsManager)
+            {
+                manager.Initialize();
+            }
+        }
+
+        public void AddBoidManager(BoidsManager boidsManager)
+        {
+            _boidsManager.Add(boidsManager);
+        }
 
         public Observable<Unit> enemyDestroy
         {
