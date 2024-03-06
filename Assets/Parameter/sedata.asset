@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91f3328e635f4ad4aeeab73d9ce3cee2, type: 3}
+  m_Name: sedata
+  m_EditorClassIdentifier: 
+  bulletse: {fileID: 8300000, guid: 70a6c39317949ba48b666395b8ef5768, type: 3}
+  robotOnSe: {fileID: 8300000, guid: 31cafa3d359be2f42952a0634a113a68, type: 3}
+  canonSe: {fileID: 8300000, guid: df35b64d289f894458c214cc6c372a4e, type: 3}
+  enemyDeathSe: {fileID: 8300000, guid: a29d2e893ba81ba4a86f7c8238b62e48, type: 3}

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using GameManagers.SeManagers.AudioVolumes;
 using Unity.VisualScripting;
 using UnityEngine;
 using R3;
@@ -35,10 +36,11 @@ namespace GameManagers.SeManagers
         [SerializeField] private R3.SerializableReactiveProperty<float> seVolume;
         [SerializeField] private R3.SerializableReactiveProperty<float> bgmVolume;
 
-        [SerializeField] private AudioClip bulletse;
-        [SerializeField] private AudioClip robotOnSe;
-        [SerializeField] private AudioClip canonSe;
-        [SerializeField] private AudioClip enemyDeathSe;
+        // [SerializeField] private AudioClip bulletse;
+        // [SerializeField] private AudioClip robotOnSe;
+        // [SerializeField] private AudioClip canonSe;
+        // [SerializeField] private AudioClip enemyDeathSe;
+        [SerializeField] private SeData _seData;
 
         [SerializeField] private GameObject sePlayerPrefab;
         [SerializeField] private GameObject bgmPlayerPrefab;
@@ -50,6 +52,8 @@ namespace GameManagers.SeManagers
         private AudioPlayer bgmPlayer;
 
         private Dictionary<int, AudioClip> audioClips;
+
+        private AudioVolume _volumemanager;
 
         private static AudioManager _instance;
 
@@ -92,12 +96,23 @@ namespace GameManagers.SeManagers
 
             this.audioClips = new Dictionary<int, AudioClip>()
             {
-                { (int)SeVariable.RobotOnSE, robotOnSe },
+                { (int)SeVariable.RobotOnSE, _seData.robotOnSe },
 
-                { (int)SeVariable.normalbulletFireSE, bulletse },
-                { (int)SeVariable.CanonSe, canonSe },
-                { (int)SeVariable.EnemyDeath, enemyDeathSe }
+                { (int)SeVariable.normalbulletFireSE, _seData.bulletse },
+                { (int)SeVariable.CanonSe, _seData.canonSe },
+                { (int)SeVariable.EnemyDeath, _seData.enemyDeathSe }
             };
+
+            //volumemanager生成、初期化
+            this._volumemanager = new AudioVolume();
+            _volumemanager.Initialize();
+            SetAudioVolume(_volumemanager.GetVolume());
+        }
+
+        public void SetAudioVolume(float volume)
+        {
+            this.seVolume.Value = volume;
+            this.bgmVolume.Value = 0.2f * volume;
         }
 
         private AudioPlayer GetUnusedAudioPlayer()
