@@ -27,7 +27,6 @@ namespace GameManagers
 
         [SerializeField] private TextMeshProUGUI resultTextui;
 
-        [SerializeField] private AudioManager _audioManager;
         [SerializeField] private float bgmStartFadeTime = 1.0f;
         [SerializeField] private EnemyManager _enemyManager;
 
@@ -62,7 +61,7 @@ namespace GameManagers
         private async UniTask RidingAndRobotPowerOn()
         {
             _playerdetector_ridingAndRobotPowerOn.Play();
-            _audioManager.PlaySe(SeVariable.RobotOnSE, Vector3.zero, 0.1f);
+            AudioManager.Instance.PlaySe(SeVariable.RobotOnSE, Vector3.zero, 0.1f);
             Debug.Log(_playerdetector_ridingAndRobotPowerOn.duration);
             await UniTask.WaitForSeconds((float)_playerdetector_ridingAndRobotPowerOn.duration);
         }
@@ -116,7 +115,7 @@ namespace GameManagers
             _enemyManager.StartMoveEnemys();
 
             //bgm始まる
-            _bgmPlayerID = _audioManager.PlayBattleBGM(bgmStartFadeTime);
+            _bgmPlayerID = AudioManager.Instance.PlayBattleBGM(bgmStartFadeTime);
 
             battlemodeStartPoint.playerDetect.Subscribe(_ =>
             {
@@ -169,7 +168,7 @@ namespace GameManagers
 
         public async UniTask DisplayScore()
         {
-            _audioManager.StopSound(this._bgmPlayerID, bgmStopFadeTime);
+            AudioManager.Instance.StopSound(this._bgmPlayerID, bgmStopFadeTime);
             var battledata = BattleResultManager.GetInstance().GetBattleResultData();
             // Debug.Log(battledata);
             var scoreCalculater = new ScoreCalculater.ScoreCalculater(battledata, _scoreWeight);

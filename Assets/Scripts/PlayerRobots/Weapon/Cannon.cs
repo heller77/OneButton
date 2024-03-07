@@ -27,7 +27,7 @@ namespace Character.Weapon
 
         public async void Attack(IHitable target, float attackPower)
         {
-            _audioManager.PlaySe(SeVariable.CanonSe, this.transform.position, 0.1f);
+            AudioManager.Instance.PlaySe(SeVariable.CanonSe, this.transform.position, 0.1f);
 
             fireEffect.Play();
             var bulletInstance = Instantiate(bullet, bulletInstatiatePosition.position, Quaternion.identity);
