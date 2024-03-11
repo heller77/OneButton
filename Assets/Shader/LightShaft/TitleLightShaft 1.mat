@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: TitleLightShaft
+  m_Name: TitleLightShaft 1
   m_Shader: {fileID: -6465566751694194690, guid: eabc18ebe3342e54a8204cadf322c727, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -51,7 +51,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Float: 0.48
+    - _Float: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:

@@ -3,6 +3,7 @@ using Character;
 using Cinemachine;
 using Cysharp.Threading.Tasks;
 using Enemys;
+using Enemys.Animations;
 using GameManagers.EventImplements;
 using GameManagers.EventImplements.PlayerDetector;
 using GameManagers.ResultDisplays;
@@ -105,6 +106,13 @@ namespace GameManagers
         [SerializeField] private PlayerDetector battlemodeStartPoint;
 
         /// <summary>
+        /// プレイヤーがここまでくるとボスが登場する場所
+        /// </summary>
+        [SerializeField] private PlayerDetector bossAppearPoint;
+
+        [SerializeField] private BossGateAnimation _bossGateAnimation;
+
+        /// <summary>
         /// 出発
         /// </summary>
         private async UniTask Departure()
@@ -122,13 +130,17 @@ namespace GameManagers
                 //プレイヤーが攻撃できるように
                 _playerRobotManager.StartBattleMode();
             });
-            //最終地点についたらtueになる
-            // bool isArrivalEnd = false;
-            //終点に到着
-            // arriveDetector_endPoint.playerDetect.Subscribe(_ => { isArrivalEnd = true; });
-            await arriveDetector_endPoint.playerDetect.FirstAsync();
-            // await UniTask.WaitUntil(() => isArrivalEnd);
 
+            //ボス登場箇所までプレイヤーが来たら、ボスを登場させる
+            bossAppearPoint.playerDetect.SubscribeAwait(async (_, ct) =>
+            {
+                _playerRobotManager.StopMove();
+                await _bossGateAnimation.GateOpenAsync();
+                _playerRobotManager.StartMove();
+            });
+
+            //最終地点につくまで待機
+            await arriveDetector_endPoint.playerDetect.FirstAsync();
             Debug.Log("終了");
         }
 

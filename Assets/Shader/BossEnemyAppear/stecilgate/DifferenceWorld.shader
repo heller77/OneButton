@@ -1,5 +1,4 @@
-// このシェーダーはコード内に事前定義されている色でメッシュ形状を塗りつぶします。
-Shader "Example/URPUnlitShaderBasic"
+Shader "BossEnemyAppear/stecilGate"
 {
     // Unity シェーダーのプロパティブロック。この例では出力の色がフラグメントシェーダーの
     // コード内に事前定義されているため、このブロックは空です。
@@ -14,14 +13,19 @@ Shader "Example/URPUnlitShaderBasic"
         {
             "RenderType" = "Opaque" "RenderPipeline" = "UniversalPipeline"
         }
-       Stencil
-       {
-           Ref 2
-           Comp Less
-       }
+
 
         Pass
         {
+            Stencil
+            {
+                Ref 2
+                Comp Always
+                Pass Replace
+            }
+            ZWrite Off
+            ColorMask 0
+
             // HLSL コードブロック。Unity SRP では HLSL 言語を使用します。
             HLSLPROGRAM
             // この行では頂点シェーダーの名前を定義します。
@@ -65,11 +69,8 @@ Shader "Example/URPUnlitShaderBasic"
             }
 
             // フラグメントシェーダーの定義。
-            half4 frag() : SV_Target
+            void frag()
             {
-                // 色変数を定義して返します。
-                half4 customColor = half4(0.5, 0, 0, 1);
-                return customColor;
             }
             ENDHLSL
         }
