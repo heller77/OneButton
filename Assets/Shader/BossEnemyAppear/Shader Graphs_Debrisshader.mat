@@ -52,17 +52,18 @@ Material:
     m_Ints: []
     m_Floats:
     - _Float: 12.4
-    - _NormalMove: 0.3
+    - _NormalMove: 0
     - _QueueControl: 1
     - _QueueOffset: 0
     - _circlesize: 0.1
-    - _holeSize: 3.3
+    - _holeSize: 3
     - _holesize: 0.471
     - _rotation: 8428.04
     - _scale: 111
     m_Colors:
     - _Color: {r: 1.9999999, g: 0.19811319, b: 0.19811319, a: 1}
     - _Vector2: {r: 1, g: 1, b: 0, a: 0}
-    - _Vector3: {r: -3755.002, g: 823.22, b: 893.41, a: 0}
+    - _Vector3: {r: -4693.414, g: 769, b: 670.5792, a: 0}
+    - _gatePos: {r: -4710, g: 1326, b: 553, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

@@ -1,5 +1,6 @@
 ﻿using System;
 using Character;
+using Character.LockOns;
 using Cinemachine;
 using Cysharp.Threading.Tasks;
 using Enemys;
@@ -30,6 +31,8 @@ namespace GameManagers
 
         [SerializeField] private float bgmStartFadeTime = 1.0f;
         [SerializeField] private EnemyManager _enemyManager;
+
+        [SerializeField] private LockOn _lockOn;
 
         private void Start()
         {
@@ -134,8 +137,14 @@ namespace GameManagers
             //ボス登場箇所までプレイヤーが来たら、ボスを登場させる
             bossAppearPoint.playerDetect.SubscribeAwait(async (_, ct) =>
             {
+                _enemyManager.RemoveAllEnemy();
                 _playerRobotManager.StopMove();
                 await _bossGateAnimation.GateOpenAsync();
+
+
+                _lockOn.StopAutoChangeCursor();
+                _lockOn.Display();
+                _lockOn.SelectTarget(_enemyManager.GetBossEnemy());
                 _playerRobotManager.StartMove();
             });
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using Enemys;
 using GameLoops;
@@ -52,14 +53,26 @@ namespace Character.LockOns
             DecideAttackTarget
         }
 
+        private CancellationTokenSource _tokenSource = new CancellationTokenSource();
+
         public void Initialize()
         {
             cameraTransform = UnityEngine.Camera.main.transform;
             this._lockOnState = LockOnState.SelectEnemy;
-            ChangeCursorPositionEverySomeSeconds();
+            ChangeCursorPositionEverySomeSeconds(_tokenSource.Token);
 
             //enemymanagerから敵を倒したときのイベント通知を受け取る
             _enemyManager.enemyDestroy.Subscribe((x) => { ChangeTarget(); });
+        }
+
+        public void AutoChangeCursorStart()
+        {
+            ChangeCursorPositionEverySomeSeconds(_tokenSource.Token);
+        }
+
+        public void StopAutoChangeCursor()
+        {
+            _tokenSource.Cancel();
         }
 
         private void LateUpdate()
@@ -69,6 +82,19 @@ namespace Character.LockOns
         }
 
         private int index = 0;
+
+        /// <summary>
+        /// ターゲットを指定する
+        /// </summary>
+        public void SelectTarget(IHitable target)
+        {
+            cursor.Move(CulcurateCursorPosition(target.GetTransform()));
+
+            cursor.DisplayInfo(target.GetEnemyType());
+
+            //今ターゲットにしている敵を取得できるようにフィールドに代入。
+            this.targetEnemy = target;
+        }
 
         public void ChangeTarget()
         {
@@ -94,20 +120,15 @@ namespace Character.LockOns
 
             //カーソルを表示し、移動
             // cursor.Display();
-            cursor.Move(CulcurateCursorPosition(target.GetTransform()));
-
-            cursor.DisplayInfo(target.GetEnemyType());
-
-            //今ターゲットにしている敵を取得できるようにフィールドに代入。
-            this.targetEnemy = target;
+            SelectTarget(target);
         }
 
         /// <summary>
         /// 何秒かに一回カーソルを移動。攻撃できる対象の敵の上にカーソルを表示。
         /// </summary>
-        private async UniTask ChangeCursorPositionEverySomeSeconds()
+        private async UniTask ChangeCursorPositionEverySomeSeconds(CancellationToken token)
         {
-            //startで読んでしまうと、_enemyManager.SearchEnemyが
+            //startで読んでしまうと、_enemyManager.SearchEnemyがnullでエラーがでｒｙ
             await UniTask.DelayFrame(1);
             // int index = 0;
 
@@ -120,7 +141,7 @@ namespace Character.LockOns
                 }
 
                 //cursorChangeTime秒だけまって、またカーソルを移動させる
-                await UniTask.Delay(TimeSpan.FromSeconds(this.cursorChangeTime));
+                await UniTask.Delay(TimeSpan.FromSeconds(this.cursorChangeTime), cancellationToken: token);
             }
         }
 

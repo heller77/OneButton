@@ -54,6 +54,16 @@ namespace Enemys
             this._bossEnemy = null;
         }
 
+        public void RemoveAllEnemy()
+        {
+            foreach (var mobEnemy in _mobEnemies)
+            {
+                mobEnemy.DontDisplay();
+            }
+
+            _mobEnemies.Clear();
+        }
+
         /// <summary>
         /// カメラの向きにある
         /// </summary>
@@ -138,7 +148,7 @@ namespace Enemys
         /// 有効な敵との距離を計算し、辞書を返す
         /// </summary>
         /// <returns></returns>
-        public SortedDictionary<float, IHitable> CaluculateEnemysDistance(Transform origin)
+        private SortedDictionary<float, IHitable> CaluculateEnemysDistance(Transform origin)
         {
             SortedDictionary<float, IHitable>　enemyanddistanceDict = new SortedDictionary<float, IHitable>();
             Vector3 originPosition = origin.position;
@@ -160,6 +170,11 @@ namespace Enemys
             }
 
             return enemyanddistanceDict;
+        }
+
+        public IHitable GetBossEnemy()
+        {
+            return this._bossEnemy;
         }
     }
 }

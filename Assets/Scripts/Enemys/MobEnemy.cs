@@ -76,6 +76,11 @@ namespace Enemys
             return EnemyType.mob;
         }
 
+        public void DontDisplay()
+        {
+            this.gameObject.SetActive(false);
+        }
+
         private void Destruction()
         {
             //se再生
