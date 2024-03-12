@@ -43,7 +43,7 @@ namespace MyInputs
                 {
                     ""name"": """",
                     ""id"": ""42a39cfb-fc9f-4ced-8475-d32befb26b59"",
-                    ""path"": ""<Keyboard>/anyKey"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
