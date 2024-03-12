@@ -88,6 +88,16 @@ namespace Character.LockOns
         /// </summary>
         public async UniTask SelectTarget(IHitable target)
         {
+            cursor.Move(CulcurateCursorPosition(target.GetTransform()));
+
+            cursor.DisplayInfo(target.GetEnemyType());
+
+            //今ターゲットにしている敵を取得できるようにフィールドに代入。
+            this.targetEnemy = target;
+        }
+
+        public async UniTask SelectTargetAbsolutely(IHitable target)
+        {
             this.CancellationDecideEnemy();
             cursor.Move(CulcurateCursorPosition(target.GetTransform()));
 
