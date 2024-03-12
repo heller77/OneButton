@@ -1219,7 +1219,7 @@ Transform:
   m_GameObject: {fileID: 5818296319017255923}
   serializedVersion: 2
   m_LocalRotation: {x: -0.04746576, y: 0.36217916, z: 0.018470844, w: 0.930716}
-  m_LocalPosition: {x: 0.805, y: 0.255, z: 0.86}
+  m_LocalPosition: {x: 0.8049927, y: 0.25499725, z: 0.8599999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1227,7 +1227,7 @@ Transform:
   - {fileID: 7322647249149133097}
   - {fileID: 879495822415557104}
   - {fileID: 3819218867036675182}
-  m_Father: {fileID: 394070101306066358}
+  m_Father: {fileID: 159765110811526878}
   m_LocalEulerAnglesHint: {x: -5.839, y: 42.526, z: 0}
 --- !u!114 &5533857891496744735
 MonoBehaviour:
@@ -1475,8 +1475,7 @@ Transform:
   - {fileID: 5525325018654658784}
   - {fileID: 7826182292917687422}
   - {fileID: 7622337999471056834}
-  - {fileID: 5049367381572699514}
-  - {fileID: 8209559783086929208}
+  - {fileID: 159765110811526878}
   - {fileID: 1477358108342144463}
   - {fileID: 6198176405091280183}
   - {fileID: 2906439131579139125}
@@ -1499,6 +1498,7 @@ MonoBehaviour:
   _enemyManager: {fileID: 0}
   _lockOn: {fileID: 0}
   isBattleMode: 1
+  weaponParent: {fileID: 0}
 --- !u!114 &4128512236051600232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1622,6 +1622,39 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5049367381572699514}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &9018039073075017446
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 159765110811526878}
+  m_Layer: 9
+  m_Name: WeaponParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &159765110811526878
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9018039073075017446}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5049367381572699514}
+  - {fileID: 8209559783086929208}
+  m_Father: {fileID: 394070101306066358}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9207594470319529343
 GameObject:
@@ -1774,7 +1807,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 394070101306066358}
+    m_TransformParent: {fileID: 159765110811526878}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 6cf30beac35e2df488db2c8334ff813b, type: 3}
       propertyPath: m_LocalScale.x
@@ -1782,7 +1815,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6cf30beac35e2df488db2c8334ff813b, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.30000004
+      value: 0.30000007
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6cf30beac35e2df488db2c8334ff813b, type: 3}
       propertyPath: m_LocalScale.z
@@ -1790,15 +1823,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6cf30beac35e2df488db2c8334ff813b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.616
+      value: 0.6159973
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6cf30beac35e2df488db2c8334ff813b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.053
+      value: 0.053001404
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6cf30beac35e2df488db2c8334ff813b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.798
+      value: 1.7980001
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6cf30beac35e2df488db2c8334ff813b, type: 3}
       propertyPath: m_LocalRotation.w

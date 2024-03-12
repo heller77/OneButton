@@ -33,6 +33,8 @@ namespace Character
 
         [SerializeField] private bool isBattleMode = true;
 
+        [SerializeField] private GameObject weaponParent;
+
         public void Initialize()
         {
             //入力設定
@@ -100,6 +102,14 @@ namespace Character
 
                 _lockOn.CancellationDecideEnemy();
             }
+        }
+
+        /// <summary>
+        /// 武器を非表示にする（リザルトシーン時に使用）
+        /// </summary>
+        public void HideWeapon()
+        {
+            this.weaponParent.SetActive(false);
         }
 
 #if UNITY_EDITOR
