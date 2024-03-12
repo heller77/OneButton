@@ -61,9 +61,9 @@ namespace GameManagers
             data.survivePlayerSideRobot = survivePlayerSideRobotCount;
         }
 
-        public void SetBossDamage(int bossdamage)
+        public void AddBossDamage(int bossdamage)
         {
-            data.bossDamage = bossdamage;
+            data.bossDamage += bossdamage;
         }
 
         public void AddConsumeBullet()

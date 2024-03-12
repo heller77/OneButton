@@ -1,5 +1,6 @@
 ﻿using System;
 using Character.LockOns;
+using DG.Tweening;
 using Enemys;
 using GameManagers;
 using MyInputs;
@@ -109,7 +110,10 @@ namespace Character
         /// </summary>
         public void HideWeapon()
         {
-            this.weaponParent.SetActive(false);
+            weaponParent.transform.DOMove(new Vector3(0, -5.1f, 0), 0.1f).OnComplete(() =>
+            {
+                this.weaponParent.SetActive(false);
+            });
         }
 
 #if UNITY_EDITOR

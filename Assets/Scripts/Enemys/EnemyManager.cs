@@ -56,10 +56,10 @@ namespace Enemys
 
         public void RemoveAllEnemy()
         {
-            foreach (var mobEnemy in _mobEnemies)
-            {
-                mobEnemy.DontDisplay();
-            }
+            // foreach (var mobEnemy in _mobEnemies)
+            // {
+            //     mobEnemy.DontDisplay();
+            // }
 
             _mobEnemies.Clear();
         }

@@ -52,9 +52,9 @@ namespace GameManagers.ResultDisplays
             var scoreData = scoreCalculater.GetScore();
             Debug.Log("scoreData.sun " + scoreData.sum);
             resultScoreTextUi.text = $"mob : {scoreData.knockdownMobScore} \n" +
-                                     $"survive : {scoreData.survivePlayerSideRobotScore} \n" +
+                                     // $"survive : {scoreData.survivePlayerSideRobotScore} \n" +
                                      $"boss : {scoreData.bossDamageScore} \n" +
-                                     $"bullet : -{scoreData.consumeBulletMinuxScore}";
+                                     $"bullet : {scoreData.consumeBulletMinuxScore}";
             scoreSumTextUi.text = $"sum {scoreData.sum}";
 
             //カメラON

@@ -3,6 +3,7 @@ using Character.Weapon.CannonBulletExplosions;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Enemys;
+using GameManagers;
 using GameManagers.SeManagers;
 using R3;
 using Unity.Mathematics;
@@ -56,6 +57,9 @@ namespace Character.Weapon
 
             target.Hitted(attackPower);
             GenerateExpolosion(target);
+            
+            //スコア追加
+            BattleResultManager.GetInstance().AddConsumeBullet();
         }
 
         private void GenerateExpolosion(IHitable target)

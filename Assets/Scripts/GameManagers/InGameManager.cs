@@ -179,6 +179,7 @@ namespace GameManagers
             //         break;
             //     }
             // }
+            _playerRobotManager.HideWeapon();
             //攻撃できないように
             _playerRobotManager.StopBattleMode();
         }
@@ -190,7 +191,7 @@ namespace GameManagers
         public async UniTask DisplayScore()
         {
             AudioManager.Instance.StopSound(this._bgmPlayerID, bgmStopFadeTime);
-            _playerRobotManager.HideWeapon();
+
             var battledata = BattleResultManager.GetInstance().GetBattleResultData();
             // Debug.Log(battledata);
             var scoreCalculater = new ScoreCalculater.ScoreCalculater(battledata, _scoreWeight);

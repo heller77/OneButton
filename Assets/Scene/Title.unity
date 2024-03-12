@@ -7018,63 +7018,63 @@ MonoBehaviour:
     The
     MIT License (MIT)
 
-    
 
-    Copyright (c) 2019 Yoshifumi Kawai / Cysharp,
-    Inc.
 
-    
+    Copyright (c) 2019 Yoshifumi Kawai / Cysharp, Inc.
 
-    Permission is hereby granted, free of charge, to any person
-    obtaining a copy
 
-    of this software and associated documentation files (the
-    "Software"), to deal
 
-    in the Software without restriction, including without
-    limitation the rights
+    Permission
+    is hereby granted, free of charge, to any person obtaining a copy
 
-    to use, copy, modify, merge, publish, distribute,
-    sublicense, and/or sell
+    of this
+    software and associated documentation files (the "Software"), to deal
 
-    copies of the Software, and to permit persons to
-    whom the Software is
+    in
+    the Software without restriction, including without limitation the rights
 
-    furnished to do so, subject to the following conditions:
-
-    
-
-    The
-    above copyright notice and this permission notice shall be included in all
+    to
+    use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 
     copies
-    or substantial portions of the Software.
+    of the Software, and to permit persons to whom the Software is
 
-    
+    furnished
+    to do so, subject to the following conditions:
 
-    THE SOFTWARE IS PROVIDED
-    "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 
-    IMPLIED, INCLUDING BUT
-    NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 
-    FITNESS FOR A PARTICULAR
-    PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    The above copyright notice
+    and this permission notice shall be included in all
 
-    AUTHORS OR COPYRIGHT
-    HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    copies or substantial
+    portions of the Software.
 
-    LIABILITY, WHETHER IN
-    AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 
-    OUT OF OR IN CONNECTION
-    WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY
+    OF ANY KIND, EXPRESS OR
+
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+    OF MERCHANTABILITY,
+
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+    IN NO EVENT SHALL THE
+
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+    DAMAGES OR OTHER
+
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+    ARISING FROM,
+
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+    DEALINGS IN THE
 
     SOFTWARE.
 
-    
 
-    
+
+
 
     ----------------------------------------
 
@@ -7082,66 +7082,65 @@ MonoBehaviour:
 
     ----------------------------------------
 
-    
+
 
     MIT
     License
 
-    
+
 
     Copyright (c) 2024 Cysharp, Inc.
 
-    
 
-    Permission
-    is hereby granted, free of charge, to any person obtaining a copy
 
-    of this
-    software and associated documentation files (the "Software"), to deal
+    Permission is hereby granted,
+    free of charge, to any person obtaining a copy
 
-    in
-    the Software without restriction, including without limitation the rights
+    of this software and associated
+    documentation files (the "Software"), to deal
 
-    to
-    use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    in the Software without restriction,
+    including without limitation the rights
 
-    copies
-    of the Software, and to permit persons to whom the Software is
+    to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell
 
-    furnished
-    to do so, subject to the following conditions:
+    copies of the Software, and to permit
+    persons to whom the Software is
 
-    
+    furnished to do so, subject to the following
+    conditions:
 
-    The above copyright
-    notice and this permission notice shall be included in all
 
-    copies or substantial
-    portions of the Software.
 
-    
+    The above copyright notice and this permission notice shall
+    be included in all
 
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT
-    WARRANTY OF ANY KIND, EXPRESS OR
+    copies or substantial portions of the Software.
 
-    IMPLIED, INCLUDING BUT NOT LIMITED TO
-    THE WARRANTIES OF MERCHANTABILITY,
 
-    FITNESS FOR A PARTICULAR PURPOSE AND
-    NONINFRINGEMENT. IN NO EVENT SHALL THE
 
-    AUTHORS OR COPYRIGHT HOLDERS BE
-    LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    THE
+    SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 
-    LIABILITY, WHETHER IN AN ACTION
-    OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    IMPLIED,
+    INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 
-    OUT OF OR IN CONNECTION WITH
-    THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    FITNESS
+    FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+
+    AUTHORS
+    OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+
+    LIABILITY,
+    WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+
+    OUT OF
+    OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 
     SOFTWARE.
 
-    
+
 
     ----------------------------------------
 
@@ -7149,70 +7148,70 @@ MonoBehaviour:
 
     ----------------------------------------
 
-    
+
 
     MIT
     License
 
-    
+
 
     Copyright (c) 2018 Patrick McCarthy
 
-    
 
-    Permission
-    is hereby granted, free of charge, to any person obtaining a copy
 
-    of this
-    software and associated documentation files (the "Software"), to deal
+    Permission is hereby
+    granted, free of charge, to any person obtaining a copy
 
-    in
-    the Software without restriction, including without limitation the rights
+    of this software
+    and associated documentation files (the "Software"), to deal
 
-    to
-    use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    in the Software
+    without restriction, including without limitation the rights
 
-    copies
-    of the Software, and to permit persons to whom the Software is
+    to use, copy,
+    modify, merge, publish, distribute, sublicense, and/or sell
 
-    furnished
-    to do so, subject to the following conditions:
+    copies of the
+    Software, and to permit persons to whom the Software is
 
-    
+    furnished to do
+    so, subject to the following conditions:
 
-    The above copyright
-    notice and this permission notice shall be included in all
 
-    copies or substantial
-    portions of the Software.
 
-    
+    The above copyright notice and
+    this permission notice shall be included in all
 
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT
-    WARRANTY OF ANY KIND, EXPRESS OR
+    copies or substantial portions
+    of the Software.
 
-    IMPLIED, INCLUDING BUT NOT LIMITED TO
-    THE WARRANTIES OF MERCHANTABILITY,
 
-    FITNESS FOR A PARTICULAR PURPOSE AND
-    NONINFRINGEMENT. IN NO EVENT SHALL THE
 
-    AUTHORS OR COPYRIGHT HOLDERS BE
-    LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF
+    ANY KIND, EXPRESS OR
 
-    LIABILITY, WHETHER IN AN ACTION
-    OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+    OF MERCHANTABILITY,
 
-    OUT OF OR IN CONNECTION WITH
-    THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+    IN NO EVENT SHALL THE
+
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+    DAMAGES OR OTHER
+
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+    ARISING FROM,
+
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+    DEALINGS IN THE
 
     SOFTWARE.
 
-    
 
-    
 
-    
+
+
+
 
 '
   m_isRightToLeft: 0
@@ -8773,7 +8772,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: 448d5839fa2f4b04481c80f20cada1ae, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 4d7be6c4f1abfad48937fa158840842e, type: 2}
 --- !u!4 &1311578064
 Transform:
   m_ObjectHideFlags: 0
@@ -11112,10 +11111,10 @@ RectTransform:
   m_Children:
   - {fileID: 1756014844}
   - {fileID: 915151400}
+  - {fileID: 588621952}
   - {fileID: 1918767945}
   - {fileID: 1688346816}
   - {fileID: 849666779}
-  - {fileID: 588621952}
   - {fileID: 767859932}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

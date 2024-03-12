@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using GameManagers;
 using GameManagers.SeManagers;
 using UnityEngine;
 using Random = System.Random;
@@ -45,6 +46,8 @@ namespace Enemys
 
         public void Hitted(float damage)
         {
+            BattleResultManager.GetInstance().AddBossDamage((int)damage);
+            
             hp -= damage;
             if (hp <= 0)
             {

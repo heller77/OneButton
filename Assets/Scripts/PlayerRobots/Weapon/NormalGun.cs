@@ -2,6 +2,7 @@
 using Character.Weapon.Lasers;
 using Cysharp.Threading.Tasks;
 using Enemys;
+using GameManagers;
 using GameManagers.SeManagers;
 using R3;
 using UnityEngine;
@@ -84,6 +85,9 @@ namespace Character.Weapon
             _laser.StopLaser();
 
             // VanishBullet(bulletInstance);
+
+            //スコア追加
+            BattleResultManager.GetInstance().AddConsumeBullet();
         }
 
         private void VanishBullet(GameObject bullet)
