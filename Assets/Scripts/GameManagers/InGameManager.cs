@@ -144,8 +144,9 @@ namespace GameManagers
 
                 _lockOn.StopAutoChangeCursor();
                 _lockOn.Display();
-                _lockOn.SelectTarget(_enemyManager.GetBossEnemy());
+                
                 _playerRobotManager.StartMove();
+                _lockOn.SelectTarget(_enemyManager.GetBossEnemy());
             });
 
             //最終地点につくまで待機

@@ -86,8 +86,9 @@ namespace Character.LockOns
         /// <summary>
         /// ターゲットを指定する
         /// </summary>
-        public void SelectTarget(IHitable target)
+        public async UniTask SelectTarget(IHitable target)
         {
+            this.CancellationDecideEnemy();
             cursor.Move(CulcurateCursorPosition(target.GetTransform()));
 
             cursor.DisplayInfo(target.GetEnemyType());
@@ -134,6 +135,7 @@ namespace Character.LockOns
 
             while (true)
             {
+                token.ThrowIfCancellationRequested();
                 // Debug.Log("ChangeCursorPositionEverySomeSeconds update");
                 if (this._lockOnState == LockOnState.SelectEnemy)
                 {
