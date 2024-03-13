@@ -39,12 +39,15 @@ namespace Character
 
         [SerializeField] private Button _button;
 
+        [SerializeField] private CockpitDiplayManager _cockpitDiplayManager;
+
         public void Initialize()
         {
             //入力設定
             _inputs = new GameInputs();
             _inputs.Enable();
             _inputs.Player.PushButton.performed += PushButton;
+            _cockpitDiplayManager.AllHide();
         }
 
         /// <summary>
@@ -69,6 +72,7 @@ namespace Character
         /// </summary>
         public void StartBattleMode()
         {
+            this._cockpitDiplayManager.ShowSelect();
             this.isBattleMode = true;
             _lockOn.Display();
         }
@@ -78,6 +82,8 @@ namespace Character
         /// </summary>
         public void StopBattleMode()
         {
+            this._cockpitDiplayManager.AllHide();
+
             this.isBattleMode = false;
             this._lockOn.Hide();
         }
@@ -96,6 +102,7 @@ namespace Character
                 _lockOn.DecideEnemy();
                 //攻撃までチャージする
                 attackComponent.StartCharge();
+                _cockpitDiplayManager.ShowAttack();
             }
             else if (_lockOn.GetState() == LockOn.LockOnState.DecideAttackTarget)
             {
@@ -107,6 +114,9 @@ namespace Character
                 this._button.Push();
 
                 _lockOn.CancellationDecideEnemy();
+                _cockpitDiplayManager.ShowSelect();
+
+                _cockpitDiplayManager.DisplayNice();
             }
         }
 
@@ -119,6 +129,11 @@ namespace Character
             {
                 this.weaponParent.SetActive(false);
             });
+        }
+
+        public void DisplayHide()
+        {
+            _cockpitDiplayManager.AllHide();
         }
 
         public void PowerOn()
