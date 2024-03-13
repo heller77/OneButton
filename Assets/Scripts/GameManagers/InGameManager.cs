@@ -52,7 +52,7 @@ namespace GameManagers
             await Departure();
             await GetOutOfRobot();
             await DisplayScore();
-            await UniTask.Delay(TimeSpan.FromSeconds(10));
+            await UniTask.Delay(TimeSpan.FromSeconds(5));
             SceneManager.LoadScene("Title");
         }
 
@@ -64,6 +64,8 @@ namespace GameManagers
         /// </summary>
         private async UniTask RidingAndRobotPowerOn()
         {
+            this._playerRobotManager.PowerOn();
+
             _playerdetector_ridingAndRobotPowerOn.Play();
             AudioManager.Instance.PlaySe(SeVariable.RobotOnSE, Vector3.zero, 0.1f);
             Debug.Log(_playerdetector_ridingAndRobotPowerOn.duration);

@@ -1,4 +1,5 @@
 ﻿using System;
+using Character.CockpitButtons;
 using Character.LockOns;
 using DG.Tweening;
 using Enemys;
@@ -35,6 +36,8 @@ namespace Character
         [SerializeField] private bool isBattleMode = true;
 
         [SerializeField] private GameObject weaponParent;
+
+        [SerializeField] private Button _button;
 
         public void Initialize()
         {
@@ -101,6 +104,8 @@ namespace Character
                 //攻撃！
                 attackComponent.ChargeAttack(_lockOn.GetTarget());
 
+                this._button.Push();
+
                 _lockOn.CancellationDecideEnemy();
             }
         }
@@ -114,6 +119,11 @@ namespace Character
             {
                 this.weaponParent.SetActive(false);
             });
+        }
+
+        public void PowerOn()
+        {
+            _button.PowerOn();
         }
 
 #if UNITY_EDITOR

@@ -43,6 +43,11 @@ namespace Character.Weapon.Lasers
 
         private LaserMaterialController _materialController;
 
+        /// <summary>
+        /// 貫通した後どれだけ進むかという値
+        /// </summary>
+        [SerializeField] float extraDistance = 1000f;
+
         public Observable<Unit> hitObservable
         {
             get { return hitSubject; }
@@ -135,7 +140,7 @@ namespace Character.Weapon.Lasers
             laserStartEffectTimeline.Play();
 
             //あたるまでレーザを進める
-            StretchLaserUntilCollider(distance);
+            StretchLaserUntilCollider(distance + this.extraDistance);
         }
 
         /// <summary>
