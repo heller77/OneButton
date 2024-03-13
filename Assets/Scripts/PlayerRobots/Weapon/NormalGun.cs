@@ -60,7 +60,6 @@ namespace Character.Weapon
             //     elapsedTime += Time.deltaTime;
             // }
             // transform.LookAt(target.GetTransform());
-            Debug.Log("target look ", target.GetTransform().gameObject);
 
             //敵までの距離を計算
             var distance = Vector3.Distance(target.GetTransform().position, this.transform.position);

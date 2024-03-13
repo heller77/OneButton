@@ -44,13 +44,11 @@ namespace GameManagers.ResultDisplays
             _resultCinemachineVirtualCamera.gameObject.SetActive(true);
 
             // exposure.DOFloat(1.0f, "_exposure", 1);
-            Debug.Log($"{_cinemachineBrain.m_DefaultBlend.m_Time}");
             await UniTask.Delay(
                 TimeSpan.FromSeconds(_cinemachineBrain.m_DefaultBlend.m_Time + CameraMoveEndmarginTime));
 
             var battleData = scoreCalculater.GetBattleData();
             var scoreData = scoreCalculater.GetScore();
-            Debug.Log("scoreData.sun " + scoreData.sum);
             resultScoreTextUi.text = $"mob : {scoreData.knockdownMobScore} \n" +
                                      // $"survive : {scoreData.survivePlayerSideRobotScore} \n" +
                                      $"boss : {scoreData.bossDamageScore} \n" +

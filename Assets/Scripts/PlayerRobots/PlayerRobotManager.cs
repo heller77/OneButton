@@ -97,7 +97,6 @@ namespace Character
 
             if (_lockOn.GetState() == LockOn.LockOnState.SelectEnemy)
             {
-                Debug.Log("playerrobot space");
                 _lockOn.DecideEnemy();
                 //攻撃までチャージする
                 attackComponent.StartCharge();

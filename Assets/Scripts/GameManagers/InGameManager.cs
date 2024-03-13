@@ -68,7 +68,6 @@ namespace GameManagers
 
             _playerdetector_ridingAndRobotPowerOn.Play();
             AudioManager.Instance.PlaySe(SeVariable.RobotOnSE, Vector3.zero, 0.1f);
-            Debug.Log(_playerdetector_ridingAndRobotPowerOn.duration);
             await UniTask.WaitForSeconds((float)_playerdetector_ridingAndRobotPowerOn.duration);
         }
 
@@ -151,7 +150,6 @@ namespace GameManagers
 
             //最終地点につくまで待機
             await arriveDetector_endPoint.playerDetect.FirstAsync();
-            Debug.Log("終了");
         }
 
         public PlayerDetector GetEndPointDetector()

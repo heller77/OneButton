@@ -78,7 +78,6 @@ namespace GameManagers.ScoreCalculater
             long sum = knockdownMobScore + survivePlayerSideRobotScore + bossDamageScore + consumeBulletMinuxScore;
             Score score = new Score(knockdownMobScore, survivePlayerSideRobotScore, bossDamageScore,
                 consumeBulletMinuxScore, sum);
-            Debug.Log($"culcuate sum {score.sum}");
 
             this._score = score;
             return score;

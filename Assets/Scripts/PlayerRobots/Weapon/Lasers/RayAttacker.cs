@@ -12,7 +12,6 @@ namespace Character.Weapon.Lasers
             var hits = Physics.RaycastAll(ray);
             foreach (var raycastHit in hits)
             {
-                Debug.Log(raycastHit.collider.gameObject.name + " にレイがヒットした");
                 if (raycastHit.collider.gameObject.TryGetComponent(out IHitable hit))
                 {
                     hit.Hitted(damage);

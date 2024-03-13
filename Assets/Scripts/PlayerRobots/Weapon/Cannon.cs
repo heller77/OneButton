@@ -37,7 +37,6 @@ namespace Character.Weapon
             float duration = 1.0f;
             while (elapsedTime <= duration)
             {
-                Debug.Log(target.GetTransform().position);
                 float t = elapsedTime / duration;
                 var nowPosition = bulletInstance.transform.position;
                 var diff = target.GetTransform().position - nowPosition;
