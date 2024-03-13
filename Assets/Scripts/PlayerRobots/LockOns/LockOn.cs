@@ -145,7 +145,13 @@ namespace Character.LockOns
 
             while (true)
             {
-                token.ThrowIfCancellationRequested();
+                if (token.IsCancellationRequested)
+                {
+                    Debug.Log("lockon cancel");
+                    this._tokenSource = new CancellationTokenSource();
+                    return;
+                }
+
                 // Debug.Log("ChangeCursorPositionEverySomeSeconds update");
                 if (this._lockOnState == LockOnState.SelectEnemy)
                 {
