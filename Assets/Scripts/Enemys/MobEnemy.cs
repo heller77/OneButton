@@ -86,7 +86,6 @@ namespace Enemys
             //se再生
             AudioManager.Instance.PlaySe(SeVariable.EnemyDeath, this.transform.position, 1);
 
-            Debug.Log("death");
             _enemyManager.RemoveEnemy(this);
 
             //boidも破棄処理を行う

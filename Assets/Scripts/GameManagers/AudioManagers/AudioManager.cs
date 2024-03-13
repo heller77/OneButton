@@ -88,11 +88,7 @@ namespace GameManagers.SeManagers
 
 
             //bgmVolumeを変えたら伝える
-            bgmVolume.Subscribe((bgmvolume) =>
-            {
-                Debug.Log("bgmvalue change!!");
-                bgmPlayer.SetVolume(bgmvolume);
-            });
+            bgmVolume.Subscribe((bgmvolume) => { bgmPlayer.SetVolume(bgmvolume); });
 
             this.audioClips = new Dictionary<int, AudioClip>()
             {

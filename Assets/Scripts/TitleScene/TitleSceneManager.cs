@@ -47,7 +47,6 @@ namespace TitleScene
         /// </summary>
         private async UniTaskVoid GoToInGame()
         {
-            Debug.Log("gotogame");
             var asyncOperation = _gameSceneManager.GoToInGameScene();
             input.Disable();
             input.Dispose();

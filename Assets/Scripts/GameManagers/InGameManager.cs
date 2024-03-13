@@ -98,7 +98,6 @@ namespace GameManagers
         /// </summary>
         private async UniTask IntroductionDeparture()
         {
-            Debug.Log("倒してこい！");
             robotdepartureDirector.Play();
             await UniTask.WaitForSeconds(1.0f);
         }
@@ -122,7 +121,6 @@ namespace GameManagers
         /// </summary>
         private async UniTask Departure()
         {
-            Debug.Log("出発");
             _playerRobotManager.StartMove();
             //敵を動かし始める
             _enemyManager.StartMoveEnemys();

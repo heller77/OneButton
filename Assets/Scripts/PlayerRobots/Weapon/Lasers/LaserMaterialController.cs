@@ -17,7 +17,6 @@ namespace Character.Weapon.Lasers
         /// </summary>
         public void SetLaserExpandValue(float expandValue)
         {
-            Debug.Log($"lasermaterial _LaserExpandValue  set {expandValue}");
             laserMaterial.SetFloat("_LaserExpandValue", expandValue);
         }
     }

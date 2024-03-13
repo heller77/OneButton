@@ -55,7 +55,6 @@ namespace Character
         /// </summary>
         public void StartMove()
         {
-            Debug.Log("start move");
             _moverOnSpline.Play();
         }
 

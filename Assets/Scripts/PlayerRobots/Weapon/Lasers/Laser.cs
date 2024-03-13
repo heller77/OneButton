@@ -62,13 +62,11 @@ namespace Character.Weapon.Lasers
             _laserEndCollider.OnCollisionEnterAsObservable()
                 .Subscribe(other =>
                 {
-                    Debug.Log("hit");
                     Vector3 hitPos;
                     foreach (ContactPoint point in other.contacts)
                     {
                         hitEffectTransform.gameObject.SetActive(true);
                         hitPos = point.point;
-                        Debug.Log(hitPos);
                         var nowLaserPos = transform.position;
                         var vec_hitposToLaser = nowLaserPos - hitPos;
                         hitEffectTransform.transform.LookAt(this.transform.position);
@@ -185,11 +183,9 @@ namespace Character.Weapon.Lasers
             }
 
             //レーザをaccelerationDistanceまで進める
-            Debug.Log("stretch");
             DOTween.To(() => 0, x => { this.StretchLaser(x); }, distance, elapsedTimeToaccelerationDistance)
                 .SetEase(Ease.Linear);
 
-            Debug.Log("expand");
             DOTween.To(() => 0, x => _materialController.SetLaserExpandValue(x), laserThickness,
                     elapsedTimeToaccelerationDistance)
                 .SetEase(Ease.Linear);
