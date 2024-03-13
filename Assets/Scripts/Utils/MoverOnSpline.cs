@@ -11,7 +11,9 @@ namespace Utils
         [SerializeField] private SplineContainer spline;
 
         // 経路上の位置
-        [SerializeField, Range(0.001f, 1)] private float _t;
+        [SerializeField, Range(0.001f, 0.999f)]
+        private float _t;
+
         [SerializeField] private bool isPlay = false;
         [SerializeField] private float completetime = 1.0f;
 
