@@ -52,7 +52,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _Float: 12.4
-    - _NormalMove: 0.3
+    - _NormalMove: 0
     - _QueueControl: 1
     - _QueueOffset: 0
     - _circlesize: 0.1

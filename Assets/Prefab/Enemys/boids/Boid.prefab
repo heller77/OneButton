@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5954698870849782042}
   - component: {fileID: 8154122610440691946}
   - component: {fileID: 4144040617958964949}
+  - component: {fileID: 2675229275097630018}
   m_Layer: 0
   m_Name: Boid
   m_TagString: Untagged
@@ -62,6 +63,27 @@ MonoBehaviour:
   _enemyManager: {fileID: 0}
   _parameterAsset: {fileID: 11400000, guid: 13a4267718470d74093c6ceb54d4994f, type: 2}
   hp: 0
+--- !u!65 &2675229275097630018
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110614137232055060}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 100, y: 100, z: 140.81819}
+  m_Center: {x: 0, y: 0, z: 42.77909}
 --- !u!1001 &9568334912938459
 PrefabInstance:
   m_ObjectHideFlags: 0

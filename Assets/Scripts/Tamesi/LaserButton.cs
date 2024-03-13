@@ -14,7 +14,7 @@ namespace Tamesi
 
         private void Start()
         {
-            _button.OnClickAsObservable().Subscribe(_ => { _laser.LaunchLaser(target); });
+            _button.OnClickAsObservable().Subscribe(_ => { _laser.LaunchLaser(target, 1); });
         }
     }
 }

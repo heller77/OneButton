@@ -66,7 +66,7 @@ namespace Character.Weapon
             var distance = Vector3.Distance(target.GetTransform().position, this.transform.position);
 
             transform.LookAt(target.GetTransform().position);
-            _laser.LaunchLaser(target.GetTransform());
+            _laser.LaunchLaser(target.GetTransform(), attackPower);
 
             bool isHit = false;
             _laser.hitObservable.Subscribe(_ => { isHit = true; });
@@ -79,7 +79,7 @@ namespace Character.Weapon
             //あたるまで待つ
             // await _laser.hitObservable.FirstAsync();
 
-            target.Hitted(attackPower);
+            // target.Hitted(attackPower);
 
             //レーザ止める
             _laser.StopLaser();

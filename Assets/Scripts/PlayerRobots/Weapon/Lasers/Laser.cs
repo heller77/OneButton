@@ -48,6 +48,8 @@ namespace Character.Weapon.Lasers
         /// </summary>
         [SerializeField] float extraDistance = 1000f;
 
+        [SerializeField] private Transform origin;
+
         public Observable<Unit> hitObservable
         {
             get { return hitSubject; }
@@ -99,7 +101,7 @@ namespace Character.Weapon.Lasers
         /// <summary>
         /// レーザを伸ばす
         /// </summary>
-        public void StretchLaser(float length)
+        private void StretchLaser(float length)
         {
             var scale = this.transform.localScale;
             scale.y = length;
@@ -126,7 +128,7 @@ namespace Character.Weapon.Lasers
         /// <summary>
         /// レーザを発射
         /// </summary>
-        public void LaunchLaser(Transform target)
+        public void LaunchLaser(Transform target, float damage)
         {
             this._laserParent.SetActive(true);
             laserEndSphere.SetActive(true);
@@ -139,8 +141,9 @@ namespace Character.Weapon.Lasers
             //レーザ発射アニメーションを再生する
             laserStartEffectTimeline.Play();
 
+
             //あたるまでレーザを進める
-            StretchLaserUntilCollider(distance + this.extraDistance);
+            StretchLaserUntilCollider(distance + this.extraDistance, damage);
         }
 
         /// <summary>
@@ -160,7 +163,7 @@ namespace Character.Weapon.Lasers
         /// <summary>
         /// 物体にあたるまでレーザを伸ばす
         /// </summary>
-        private async UniTask StretchLaserUntilCollider(float distance)
+        private async UniTask StretchLaserUntilCollider(float distance, float damage)
         {
             isLaunching = true;
 
@@ -194,6 +197,8 @@ namespace Character.Weapon.Lasers
 
             await UniTask.Delay(TimeSpan.FromSeconds(elapsedTimeToaccelerationDistance));
 
+            RayAttacker.RayAttack(origin, laserEnd.transform, damage);
+
             //レーザをaccelerationDistanceまで進めた後、まで敵との間に距離があるなら
             //残りは時間内に到着するように
             if (accelerationDistance < distance)
@@ -204,6 +209,8 @@ namespace Character.Weapon.Lasers
                 await UniTask.Delay(TimeSpan.FromSeconds(arriveTime - launchLaserStretchTime));
             }
 
+            //攻撃する
+            RayAttacker.RayAttack(origin, laserEnd.transform, damage);
 
             //フラグをおろす
             isLaunching = false;
