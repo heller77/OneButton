@@ -31,7 +31,7 @@ namespace Character.CockpitButtons
 
         private float fadeMinValue = 0.1f;
 
-        private void Start()
+        private void Awake()
         {
             niceQuadMaterial = niceQuad.GetComponent<MeshRenderer>().material;
             selectTargetMaterial = selectTargetQuad.GetComponent<Renderer>().material;
