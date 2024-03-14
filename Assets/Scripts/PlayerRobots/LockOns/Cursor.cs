@@ -51,6 +51,7 @@ namespace Character.LockOns
         public void ChangeVisualizeToSelectMode()
         {
             _animator.SetTrigger(Selectmode);
+            _animator.ResetTrigger(Decide);
         }
 
         /// <summary>
@@ -59,6 +60,7 @@ namespace Character.LockOns
         public void ChangeVisualizeToDecisionMode()
         {
             _animator.SetTrigger(Decide);
+            _animator.ResetTrigger(Selectmode);
         }
 
         /// <summary>
