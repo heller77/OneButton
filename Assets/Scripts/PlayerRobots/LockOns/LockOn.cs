@@ -128,7 +128,8 @@ namespace Character.LockOns
                 return;
             }
 
-            var target = enemies[index++];
+            var randomindex = Random.Range(0, enemies.Count - 1);
+            var target = enemies[randomindex];
 
             //カーソルを表示し、移動
             // cursor.Display();
