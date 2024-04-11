@@ -6,6 +6,7 @@ using GameLoops;
 using UnityEngine;
 using R3;
 using Sirenix.OdinInspector;
+using Random = UnityEngine.Random;
 
 namespace Character.LockOns
 {
@@ -27,6 +28,7 @@ namespace Character.LockOns
 
         // [SerializeField] private RectTransform lockonUiTransform;
         private Transform cameraTransform;
+        private UnityEngine.Camera camera;
         public IHitable targetEnemy;
 
         [SerializeField] private LockOnState _lockOnState;
@@ -57,7 +59,10 @@ namespace Character.LockOns
 
         public void Initialize()
         {
-            cameraTransform = UnityEngine.Camera.main.transform;
+            var main = UnityEngine.Camera.main;
+            cameraTransform = main.transform;
+            this.camera = main;
+
             this._lockOnState = LockOnState.SelectEnemy;
             ChangeCursorPositionEverySomeSeconds(_tokenSource.Token);
 
@@ -107,7 +112,7 @@ namespace Character.LockOns
         {
             //選択候補の敵取得
             var enemies =
-                this._enemyManager.SearchEnemyInCamera(transform, attackableDistance, cameraTransform.forward);
+                this._enemyManager.SearchEnemyInCamera(transform, attackableDistance, camera);
             //次にカーソルを合わせる敵を取得
             if (enemies.Count <= index)
             {

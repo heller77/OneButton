@@ -120,7 +120,7 @@ namespace Enemys
             return returnMobEnemies;
         }
 
-        public List<IHitable> SearchEnemyInCamera(Transform origin, float searchDistance, Vector3 cameraDir)
+        public List<IHitable> SearchEnemyInCamera(Transform origin, float searchDistance, Camera camera)
         {
             //searchDistance以内に居る敵のリスト
             List<IHitable> returnMobEnemies = new List<IHitable>();
@@ -130,11 +130,14 @@ namespace Enemys
             {
                 if (distance_enemy.Key < searchDistance)
                 {
-                    //カメラの向いてる向きとカメラから敵の位置のベクトルの内積を計算
-                    var dot = Vector3.Dot(Vector3.Normalize(cameraDir),
-                        Vector3.Normalize(distance_enemy.Value.GetTransform().position - origin.position));
-                    // pi/2　より小さければカメラ内にあるとする
-                    if (dot > MathF.Cos(MathF.PI / 4))
+                    // オブジェクトのワールド座標をビューポート座標に変換
+                    Vector3 viewportPoint = camera.WorldToViewportPoint(distance_enemy.Value.GetTransform().position);
+
+                    //カメラの縦方向の下限
+                    float camerayMin = 0.3f;
+                    //カメラに写っているかどうか（camerayMinでカメラの下の方はコックピットなので制限）
+                    if (viewportPoint.x >= 0 && viewportPoint.x <= 1 &&
+                        viewportPoint.y >= camerayMin && viewportPoint.y <= 1 && viewportPoint.z >= 0)
                     {
                         returnMobEnemies.Add(distance_enemy.Value);
                     }
