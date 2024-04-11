@@ -5,6 +5,7 @@ using DG.Tweening;
 using Enemys;
 using GameManagers;
 using MyInputs;
+using R3;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
@@ -48,6 +49,15 @@ namespace Character
             _inputs.Enable();
             _inputs.Player.PushButton.performed += PushButton;
             _cockpitDiplayManager.AllHide();
+
+            _lockOn.LockOnstateChange.Subscribe((state =>
+            {
+                if (state == LockOn.LockOnState.SelectEnemy)
+                {
+                    Debug.Log("lockonstate change event selecteenmy");
+                    _cockpitDiplayManager.ShowSelect();
+                }
+            }));
         }
 
         /// <summary>

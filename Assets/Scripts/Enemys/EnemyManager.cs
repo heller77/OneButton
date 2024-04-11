@@ -120,6 +120,29 @@ namespace Enemys
             return returnMobEnemies;
         }
 
+        /// <summary>
+        /// カメラにtargetが映っているかを判定
+        /// </summary>
+        /// <param name="camera"></param>
+        /// <param name="target"></param>
+        /// <returns></returns>
+        public static bool JudgeTargetisInCamera(Camera camera, IHitable target)
+        {
+            // オブジェクトのワールド座標をビューポート座標に変換
+            Vector3 viewportPoint = camera.WorldToViewportPoint(target.GetTransform().position);
+
+            //カメラの縦方向の下限
+            float camerayMin = 0.3f;
+            //カメラに写っているかどうか（camerayMinでカメラの下の方はコックピットなので制限）
+            if (viewportPoint.x >= 0 && viewportPoint.x <= 1 &&
+                viewportPoint.y >= camerayMin && viewportPoint.y <= 1 && viewportPoint.z >= 0)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         public List<IHitable> SearchEnemyInCamera(Transform origin, float searchDistance, Camera camera)
         {
             //searchDistance以内に居る敵のリスト
@@ -130,14 +153,7 @@ namespace Enemys
             {
                 if (distance_enemy.Key < searchDistance)
                 {
-                    // オブジェクトのワールド座標をビューポート座標に変換
-                    Vector3 viewportPoint = camera.WorldToViewportPoint(distance_enemy.Value.GetTransform().position);
-
-                    //カメラの縦方向の下限
-                    float camerayMin = 0.3f;
-                    //カメラに写っているかどうか（camerayMinでカメラの下の方はコックピットなので制限）
-                    if (viewportPoint.x >= 0 && viewportPoint.x <= 1 &&
-                        viewportPoint.y >= camerayMin && viewportPoint.y <= 1 && viewportPoint.z >= 0)
+                    if (JudgeTargetisInCamera(camera, distance_enemy.Value))
                     {
                         returnMobEnemies.Add(distance_enemy.Value);
                     }

@@ -33,6 +33,13 @@ namespace Character.LockOns
 
         [SerializeField] private LockOnState _lockOnState;
 
+        private Subject<LockOn.LockOnState> lockonstatechange = new Subject<LockOnState>();
+
+        public Observable<LockOnState> LockOnstateChange
+        {
+            get { return lockonstatechange; }
+        }
+
         /// <summary>
         /// ロックオンの状態を表す
         /// None 何もしない、SelectEnemy　攻撃する敵を選んでいる最中、 
@@ -68,6 +75,12 @@ namespace Character.LockOns
 
             //enemymanagerから敵を倒したときのイベント通知を受け取る
             _enemyManager.enemyDestroy.Subscribe((x) => { ChangeTarget(); });
+        }
+
+        private void ChangeLockOnstate(LockOnState lockOnState)
+        {
+            this._lockOnState = lockOnState;
+            this.lockonstatechange.OnNext(this._lockOnState);
         }
 
         public void AutoChangeCursorStart()
@@ -158,6 +171,15 @@ namespace Character.LockOns
                 if (this._lockOnState == LockOnState.SelectEnemy)
                 {
                     ChangeTarget();
+                }
+                else
+                {
+                    //選択中の敵がカメラから外れたら
+                    if (!EnemyManager.JudgeTargetisInCamera(camera, targetEnemy))
+                    {
+                        ChangeLockOnstate(LockOnState.SelectEnemy);
+                        ChangeTarget();
+                    }
                 }
 
                 //cursorChangeTime秒だけまって、またカーソルを移動させる
