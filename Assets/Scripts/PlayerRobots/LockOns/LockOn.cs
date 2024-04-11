@@ -98,6 +98,7 @@ namespace Character.LockOns
 
         public async UniTask SelectTargetAbsolutely(IHitable target)
         {
+            this._lockOnState = LockOnState.SelectEnemy;
             this.CancellationDecideEnemy();
             SelectTarget(target);
         }
