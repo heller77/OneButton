@@ -36,6 +36,7 @@ namespace Enemys.Animations
             //マテリアルのパラメータ初期化
             this.gateMaterial.SetFloat("_NormalMove", 0);
             gateMaterial.SetVector("_gatePos", this.GateTransform.position);
+            gateMaterial.SetFloat("_rotation", 0.0f);
         }
 
         public void GateOpen()
@@ -49,6 +50,7 @@ namespace Enemys.Animations
             boss.SetActive(true);
 
             await this.gateMaterial.DOFloat(gatematerial_normalMove, "_NormalMove", gate_break_time);
+            gateMaterial.SetFloat("_rotation", 100.0f);
         }
     }
 }

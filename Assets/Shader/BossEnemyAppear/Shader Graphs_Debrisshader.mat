@@ -52,13 +52,13 @@ Material:
     m_Ints: []
     m_Floats:
     - _Float: 12.4
-    - _NormalMove: 0.241
+    - _NormalMove: 0
     - _QueueControl: 1
     - _QueueOffset: 0
     - _circlesize: 0.1
     - _holeSize: 3
     - _holesize: 0.471
-    - _rotation: 163.6
+    - _rotation: 0
     - _scale: 117
     m_Colors:
     - _Color: {r: 1.9999999, g: 0.19811319, b: 0.19811319, a: 1}

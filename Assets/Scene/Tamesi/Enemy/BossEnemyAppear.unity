@@ -356,6 +356,7 @@ MonoBehaviour:
   GateTransform: {fileID: 1235535521}
   gateOpenAnimTime: 1
   gateMaterial: {fileID: 2100000, guid: 3b71ab1156fd34b4695432a8a4ad0bc4, type: 2}
+  gateTransform: {fileID: 0}
   gatematerial_normalMove: 0.3
   gate_break_time: 1
   boss: {fileID: 532852397}
@@ -1128,7 +1129,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 112cc56ec7328c647ad04d32ac1f8a9b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1104018803920267826, guid: 112cc56ec7328c647ad04d32ac1f8a9b, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -1391,7 +1392,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: 448d5839fa2f4b04481c80f20cada1ae, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 45660c8df6b9e57479441265267734c7, type: 2}
 --- !u!4 &1964101511
 Transform:
   m_ObjectHideFlags: 0
