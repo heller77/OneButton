@@ -15,6 +15,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
+using unityroom.Api;
 
 namespace GameManagers
 {
@@ -196,6 +197,10 @@ namespace GameManagers
             var scoreCalculater = new ScoreCalculater.ScoreCalculater(battledata, _scoreWeight);
             var score = scoreCalculater.Calculate();
             // this.resultTextui.text = score.ToString();
+
+            //スコアを登録
+            UnityroomApiClient.Instance.SendScore(1, scoreCalculater.GetScore().sum, ScoreboardWriteMode.HighScoreAsc);
+
             await _resultDisplay.resulting(scoreCalculater);
         }
     }
