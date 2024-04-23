@@ -142,6 +142,7 @@ namespace Character.Weapon.Lasers
 
             //あたるまでレーザを進める
             StretchLaserUntilCollider(distance + this.extraDistance, damage);
+            RayAttacker.RayAttack(origin, target.transform, damage);
         }
 
         /// <summary>
