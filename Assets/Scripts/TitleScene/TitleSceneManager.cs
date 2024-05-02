@@ -7,6 +7,7 @@ using MyInputs;
 using R3;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Playables;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
@@ -90,9 +91,7 @@ namespace TitleScene
 
 
             var asyncOperation = _gameSceneManager.GoToInGameScene();
-
-
-            // await blackScreen.DOFade(endValue: 1f, duration: _blackscreenFadeTime);
+// await blackScreen.DOFade(endValue: 1f, duration: _blackscreenFadeTime);
             // loadCircle.SetActive(true);
             // await this.loadingCircleMaterial.DOFloat(_gaugeEnd, _materialPropertyGauge,
             //     _loadingGaugeAnimationTime);
@@ -100,7 +99,14 @@ namespace TitleScene
             Debug.Log("move await");
             await endCameraMoveSubject.FirstAsync();
             Debug.Log("move end");
+            HideconcentrationLine();
+
+            //ローディング画面の表示
+            await this.DisplayLoadingWindow();
+
+            //メインシーンに遷移
             asyncOperation.allowSceneActivation = true;
+            Debug.Log("go to main");
         }
 
         [SerializeField] private float max;
@@ -127,6 +133,44 @@ namespace TitleScene
         {
             // concentrationLineMaterial.SetFloat("_scale", 3.0f);
             concentrationLineMaterial.DOFloat(3.0f, "_scale", duration / 2).SetEase(Ease.InOutQuart);
+        }
+
+        private async UniTask HideconcentrationLine()
+        {
+            concentrationLineMaterial.DOFloat(1.0f, "_scale", 0.7f);
+        }
+
+        /// <summary>
+        /// ローディング画面を表示するUI(rendertextureを表示したimage)
+        /// </summary>
+        [SerializeField] private Image loadingUIPanel;
+
+        private static readonly int AddValue = Shader.PropertyToID("_AddValue");
+
+        [SerializeField] private PlayableDirector ride_timeline_playabledirector;
+
+        private async UniTask DisplayLoadingWindow()
+        {
+            loadingUIPanel.gameObject.SetActive(true);
+            var material = loadingUIPanel.material;
+            var newmaterial = new Material(material);
+            loadingUIPanel.material = newmaterial;
+
+            //カメラの映像を真っ白から、暗い色に
+            newmaterial.SetFloat(AddValue, 1.0f);
+            await newmaterial.DOFloat(0.0f, AddValue, 1.0f);
+            //ライドシーン再生
+            ride_timeline_playabledirector.Play();
+            while (true)
+            {
+                Debug.Log("play timelien ");
+                if (ride_timeline_playabledirector.time >= ride_timeline_playabledirector.duration)
+                {
+                    break;
+                }
+
+                await UniTask.DelayFrame(1);
+            }
         }
     }
 }
