@@ -1,9 +1,10 @@
 ﻿using System;
+using GameLoops;
 using UnityEngine;
 
 namespace Enemys.Boids
 {
-    public class Boid : MonoBehaviour
+    public class Boid : MonoBehaviour, ITickable
     {
         private Vector3 _velocity;
 
@@ -46,11 +47,6 @@ namespace Enemys.Boids
             this._velocity = Vector3.zero;
         }
 
-        private void Update()
-        {
-            MoveByAccelaration();
-        }
-
         /// <summary>
         /// 加速度によって移動させる
         /// </summary>
@@ -66,6 +62,11 @@ namespace Enemys.Boids
 
             var rotation = Quaternion.LookRotation(_velocity);
             transform.SetPositionAndRotation(newPos, rotation);
+        }
+
+        public void Tick()
+        {
+            MoveByAccelaration();
         }
     }
 }

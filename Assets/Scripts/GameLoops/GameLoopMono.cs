@@ -2,6 +2,7 @@
 using Character;
 using Character.LockOns;
 using Character.Weapon.Lasers;
+using Enemys;
 using UnityEngine;
 
 namespace GameLoops
@@ -14,6 +15,9 @@ namespace GameLoops
 
         [SerializeField] private PlayerRobotManager _playerRobotManager;
 
+        [SerializeField] private EnemyManager _enemyManager;
+        
+        
         private void Start()
         {
             _displayWindow.Initialize();
@@ -22,6 +26,11 @@ namespace GameLoops
             _laser.Initialize();
 
             _playerRobotManager.Initialize();
+        }
+
+        private void Update()
+        {
+            _enemyManager.Tick();
         }
     }
 }

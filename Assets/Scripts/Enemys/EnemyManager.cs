@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using Enemys.Boids;
+using GameLoops;
 using R3;
 using UnityEngine;
 
 namespace Enemys
 {
-    public class EnemyManager : MonoBehaviour
+    public class EnemyManager : MonoBehaviour, ITickable
     {
         [SerializeField] private List<MobEnemy> _mobEnemies = new List<MobEnemy>();
         [SerializeField] private BossEnemy _bossEnemy;
@@ -20,6 +21,19 @@ namespace Enemys
             foreach (var manager in _boidsManager)
             {
                 manager.Initialize();
+            }
+        }
+
+        public void Tick()
+        {
+            MoveBoid();
+        }
+
+        public void MoveBoid()
+        {
+            foreach (var manager in _boidsManager)
+            {
+                manager.Tick();
             }
         }
 

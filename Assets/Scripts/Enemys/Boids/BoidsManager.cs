@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using GameLoops;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -8,7 +9,7 @@ namespace Enemys.Boids
     /// <summary>
     ///     Boidsクラスを管理
     /// </summary>
-    public class BoidsManager : MonoBehaviour, GameLoops.IInitializable
+    public class BoidsManager : MonoBehaviour, GameLoops.IInitializable, ITickable
     {
         private readonly List<Boid> boidList = new List<Boid>();
         [SerializeField] private GameObject boidPrefab;
@@ -34,9 +35,15 @@ namespace Enemys.Boids
             }
         }
 
-        private void Update()
+        public void Tick()
         {
+            //動き計算
             ControlBoids();
+
+            foreach (var boid in this.boidList)
+            {
+                boid.Tick();
+            }
         }
 
         /// <summary>
