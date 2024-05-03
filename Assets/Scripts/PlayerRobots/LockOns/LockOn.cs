@@ -64,6 +64,9 @@ namespace Character.LockOns
 
         private CancellationTokenSource _tokenSource = new CancellationTokenSource();
 
+        /// <summary>
+        /// 初期化
+        /// </summary>
         public void Initialize()
         {
             var main = UnityEngine.Camera.main;
@@ -121,6 +124,9 @@ namespace Character.LockOns
             SelectTarget(target);
         }
 
+        /// <summary>
+        /// ターゲットを変える
+        /// </summary>
         public void ChangeTarget()
         {
             //選択候補の敵取得
@@ -187,6 +193,10 @@ namespace Character.LockOns
             }
         }
 
+        /// <summary>
+        /// 現在のターゲットを取得
+        /// </summary>
+        /// <returns></returns>
         public IHitable GetTarget()
         {
             return this.targetEnemy;
@@ -204,11 +214,17 @@ namespace Character.LockOns
             cursor.Display();
         }
 
+        /// <summary>
+        /// カーソルを表示
+        /// </summary>
         public void Display()
         {
             cursor.Display();
         }
 
+        /// <summary>
+        /// カーソルを非表示
+        /// </summary>
         public void Hide()
         {
             cursor.Hide();
