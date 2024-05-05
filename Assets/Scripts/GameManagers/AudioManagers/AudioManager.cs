@@ -51,7 +51,7 @@ namespace GameManagers.SeManagers
         [SerializeField] private AudioClip bgmSource;
         private AudioPlayer bgmPlayer;
 
-        private Dictionary<int, AudioClip> audioClips;
+        private Dictionary<int, AudioClip> audioClips = new Dictionary<int, AudioClip>();
 
         private AudioVolume _volumemanager;
 
@@ -90,14 +90,12 @@ namespace GameManagers.SeManagers
             //bgmVolumeを変えたら伝える
             bgmVolume.Subscribe((bgmvolume) => { bgmPlayer.SetVolume(bgmvolume); });
 
-            this.audioClips = new Dictionary<int, AudioClip>()
+            audioClips = new Dictionary<int, AudioClip>();
+            foreach (SoundEffect se in _seData.GetSoundEffectList())
             {
-                { (int)SeVariable.RobotOnSE, _seData.robotOnSe },
-
-                { (int)SeVariable.normalbulletFireSE, _seData.bulletse },
-                { (int)SeVariable.CanonSe, _seData.canonSe },
-                { (int)SeVariable.EnemyDeath, _seData.enemyDeathSe }
-            };
+                var type = (int)se.soundType;
+                audioClips[type] = se.audioClip;
+            }
 
             //volumemanager生成、初期化
             this._volumemanager = new AudioVolume();
