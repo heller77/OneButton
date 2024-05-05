@@ -122,7 +122,7 @@ namespace GameManagers.SeManagers
             return null;
         }
 
-        public AudioClip GetSeAudioClip(SeVariable seVariable)
+        private AudioClip GetSeAudioClip(SeVariable seVariable)
         {
             return this.audioClips[(int)seVariable];
         }
@@ -137,7 +137,26 @@ namespace GameManagers.SeManagers
             audioPlayer.Play(clip, audioVolume, fadeTime);
         }
 
+        /// <summary>
+        /// enumで再生するAudioClipを指定して再生
+        /// </summary>
+        /// <param name="seVariable">seを指定するenum(enumにseが一つ紐づけられている)</param>
+        /// <param name="sePosition">再生する場所</param>
+        /// <param name="fadeTime">再生する時の始まりのフェード時間（急にはならないように）</param>
+        /// <returns></returns>
         public AudioPlayerID PlaySe(SeVariable seVariable, Vector3 sePosition, float fadeTime)
+        {
+            return PlaySe(GetSeAudioClip(seVariable), sePosition, fadeTime);
+        }
+
+        /// <summary>
+        /// AudioClipを指定して、それを再生する
+        /// </summary>
+        /// <param name="clip">再生すオーディオクリップ</param>
+        /// <param name="sePosition">再生する場所</param>
+        /// <param name="fadeTime">再生する時の始まりのフェード時間（急にはならないように）</param>
+        /// <returns></returns>
+        public AudioPlayerID PlaySe(AudioClip clip, Vector3 sePosition, float fadeTime)
         {
             var audiosPlayer = GetUnusedAudioPlayer();
             if (audiosPlayer == null)
@@ -146,8 +165,7 @@ namespace GameManagers.SeManagers
             }
 
             audiosPlayer.SetPosition(sePosition);
-
-            Play(audiosPlayer, GetSeAudioClip(seVariable), seVolume.Value, fadeTime);
+            Play(audiosPlayer, clip, seVolume.Value, fadeTime);
             return new AudioPlayerID(audiosPlayer, audiosPlayer.GetNowPlaySouncCount());
         }
 
