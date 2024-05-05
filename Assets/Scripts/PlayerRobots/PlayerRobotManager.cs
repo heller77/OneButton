@@ -42,6 +42,26 @@ namespace Character
 
         [SerializeField] private CockpitDiplayManager _cockpitDiplayManager;
 
+        private readonly Subject<Unit> _selectEnemy = new Subject<Unit>();
+
+        /// <summary>
+        /// 敵を選択したら通知される
+        /// </summary>
+        public Observable<Unit> SelectEnemy
+        {
+            get { return this._selectEnemy; }
+        }
+
+        private readonly Subject<Unit> _attack = new Subject<Unit>();
+
+        /// <summary>
+        /// 攻撃したら通知される
+        /// </summary>
+        public Observable<Unit> Attack
+        {
+            get { return this._attack; }
+        }
+
         public void Initialize()
         {
             //入力設定
@@ -111,6 +131,9 @@ namespace Character
                 //攻撃までチャージする
                 attackComponent.StartCharge();
                 _cockpitDiplayManager.ShowAttack();
+
+                //通知
+                _selectEnemy.OnNext(Unit.Default);
             }
             else if (_lockOn.GetState() == LockOn.LockOnState.DecideAttackTarget)
             {
@@ -125,6 +148,9 @@ namespace Character
                 _cockpitDiplayManager.ShowSelect();
 
                 _cockpitDiplayManager.DisplayNice();
+
+                //通知
+                _attack.OnNext(Unit.Default);
             }
         }
 

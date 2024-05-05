@@ -12,6 +12,7 @@ using GameManagers.ScoreCalculater;
 using GameManagers.SeManagers;
 using R3;
 using TMPro;
+using Tutorials;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
@@ -34,6 +35,8 @@ namespace GameManagers
         [SerializeField] private EnemyManager _enemyManager;
 
         [SerializeField] private LockOn _lockOn;
+
+        [SerializeField] private TutorialUiManager _tutorialUiManager;
 
         private void Start()
         {
@@ -132,6 +135,18 @@ namespace GameManagers
             {
                 //プレイヤーが攻撃できるように
                 _playerRobotManager.StartBattleMode();
+                _tutorialUiManager.DisplaySpaceKeyForSelectEnemy();
+                //最初に敵を選択した時
+                _playerRobotManager.SelectEnemy.Take(1).Subscribe(_ =>
+                {
+                    _tutorialUiManager.ExecuteFirstSpaceClickForSelectEnemy();
+                    _tutorialUiManager.DisplaySpaceKeyForAttackEnemy();
+                });
+                //最初に敵を攻撃した時
+                _playerRobotManager.Attack.Take(1).Subscribe(_ =>
+                {
+                    _tutorialUiManager.ExecuteSpaceClickForAttackEnemy();
+                });
             });
 
             //ボス登場箇所までプレイヤーが来たら、ボスを登場させる
