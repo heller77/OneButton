@@ -107,22 +107,14 @@ namespace Character
                 cameraTarget.ChangeTracking(target.GetTransform(), cameramoveDuration);
             });
 
+            //敵を選択した時
             this._selectEnemy.Subscribe(target =>
             {
                 AudioManager.Instance.PlaySe(selectTargetAudioClip, transform.position, 0.1f);
                 robotTarget.ChangeTracking(target.GetTransform(), cameramoveDuration);
-
-                // if (robotmovetotargetTweener != null)
-                // {
-                //     robotmovetotargetTweener.Kill();
-                // }
-                //
-                // robotmovetotargetTweener = robotTransform.DOMove(target.GetTransform().position, 3).OnComplete(() =>
-                // {
-                //     Debug.Log("robotTransform tweener complete");
-                // });
             });
 
+            //ロックオンする敵がいなかったとき
             _lockOn.NotFindEnemy.Subscribe(_ =>
             {
                 robotTarget.Initialize(cameramoveDuration);
