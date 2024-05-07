@@ -29,6 +29,10 @@ namespace Character.LockOns
         // [SerializeField] private RectTransform lockonUiTransform;
         private Transform cameraTransform;
         private UnityEngine.Camera camera;
+
+        /// <summary>
+        /// ロックオンしているターゲット
+        /// </summary>
         public IHitable targetEnemy;
 
         [SerializeField] private LockOnState _lockOnState;
