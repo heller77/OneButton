@@ -13,7 +13,7 @@ namespace Character
         [SerializeField] private Transform bulletFirePosition;
 
         private readonly float _cannonMinPower = 0.5f;
-        [SerializeField] private Cannon cannon;
+        // [SerializeField] private Cannon cannon;
 
         [FormerlySerializedAs("_normalBullet")] [SerializeField]
         private NormalGun normalGun;
@@ -51,16 +51,16 @@ namespace Character
 
         public void ChargeAttack(IHitable target)
         {
-            if (chargePercentage > _cannonMinPower)
-            {
-                var cannonAttackPower = 10;
-                cannon.Attack(target, cannonAttackPower);
-            }
-            else
-            {
-                var normalGunAttackPower = 1;
-                normalGun.Attack(target, normalGunAttackPower);
-            }
+            // if (chargePercentage > _cannonMinPower)
+            // {
+            //     var cannonAttackPower = 10;
+            //     cannon.Attack(target, cannonAttackPower);
+            // }
+            // else
+            // {
+            var normalGunAttackPower = 1;
+            normalGun.Attack(target, normalGunAttackPower);
+            // }
         }
 
         /// <summary>
