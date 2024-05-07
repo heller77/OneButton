@@ -15786,6 +15786,11 @@ Transform:
   - {fileID: 280024434}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 53.835, z: 0}
+--- !u!1 &1373826718 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2932606857191305282, guid: 56a736f969124a746a9fb9a92191f272, type: 3}
+  m_PrefabInstance: {fileID: 797394204736603065}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1387623388
 GameObject:
   m_ObjectHideFlags: 0
@@ -16468,6 +16473,19 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 623654177375963974, guid: 56a736f969124a746a9fb9a92191f272, type: 3}
   m_PrefabInstance: {fileID: 797394204736603065}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1464503923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1373826718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc06389d8002407f939bd854c092b09d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  positionSpeed: 5
 --- !u!1 &1473026556
 GameObject:
   m_ObjectHideFlags: 0
@@ -25266,6 +25284,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1932318750}
+  - component: {fileID: 1932318751}
   m_Layer: 9
   m_Name: robotTarget
   m_TagString: Untagged
@@ -25288,6 +25307,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1485417960}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1932318751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1932318749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc06389d8002407f939bd854c092b09d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  positionSpeed: 5
 --- !u!1 &1953233154
 GameObject:
   m_ObjectHideFlags: 0
@@ -32086,11 +32118,11 @@ PrefabInstance:
     - target: {fileID: 5235038188694054184, guid: 56a736f969124a746a9fb9a92191f272, type: 3}
       propertyPath: robotTarget
       value: 
-      objectReference: {fileID: 1932318750}
+      objectReference: {fileID: 1932318751}
     - target: {fileID: 5235038188694054184, guid: 56a736f969124a746a9fb9a92191f272, type: 3}
       propertyPath: cameraTarget
       value: 
-      objectReference: {fileID: 551729467}
+      objectReference: {fileID: 1464503923}
     - target: {fileID: 5235038188694054184, guid: 56a736f969124a746a9fb9a92191f272, type: 3}
       propertyPath: _enemyManager
       value: 
@@ -32139,7 +32171,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 879495822415557104, guid: 56a736f969124a746a9fb9a92191f272, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1721352574}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2932606857191305282, guid: 56a736f969124a746a9fb9a92191f272, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1464503923}
   m_SourcePrefab: {fileID: 100100000, guid: 56a736f969124a746a9fb9a92191f272, type: 3}
 --- !u!95 &797394204736603066 stripped
 Animator:
