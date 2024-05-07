@@ -3,9 +3,11 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using Enemys;
 using GameLoops;
+using GameManagers.SeManagers;
 using UnityEngine;
 using R3;
 using Sirenix.OdinInspector;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace Character.LockOns
@@ -37,12 +39,25 @@ namespace Character.LockOns
 
         [SerializeField] private LockOnState _lockOnState;
 
+        [SerializeField] private AudioClip changeTargetAudioClip;
+
+        private Subject<IHitable> _changeTargetObservable = new Subject<IHitable>();
+
+        public Observable<IHitable> ChangeTargetObservable
+        {
+            get { return _changeTargetObservable; }
+        }
+
         private Subject<LockOn.LockOnState> lockonstatechange = new Subject<LockOnState>();
 
         public Observable<LockOnState> LockOnstateChange
         {
             get { return lockonstatechange; }
         }
+
+        private Subject<Unit> _notFindEnemy = new Subject<Unit>();
+
+        public Observable<Unit> NotFindEnemy => _notFindEnemy;
 
         /// <summary>
         /// ロックオンの状態を表す
@@ -78,7 +93,7 @@ namespace Character.LockOns
             this.camera = main;
 
             this._lockOnState = LockOnState.SelectEnemy;
-            ChangeCursorPositionEverySomeSeconds(_tokenSource.Token);
+            // ChangeCursorPositionEverySomeSeconds(_tokenSource.Token);
 
             //enemymanagerから敵を倒したときのイベント通知を受け取る
             _enemyManager.enemyDestroy.Subscribe((x) => { ChangeTarget(); });
@@ -90,11 +105,17 @@ namespace Character.LockOns
             this.lockonstatechange.OnNext(this._lockOnState);
         }
 
-        public void AutoChangeCursorStart()
+        /// <summary>
+        /// ターゲットを探索開始
+        /// </summary>
+        public void StartAutoChangeCursor()
         {
             ChangeCursorPositionEverySomeSeconds(_tokenSource.Token);
         }
 
+        /// <summary>
+        /// ターゲット探索をやめる
+        /// </summary>
         public void StopAutoChangeCursor()
         {
             _tokenSource.Cancel();
@@ -136,20 +157,29 @@ namespace Character.LockOns
             //選択候補の敵取得
             var enemies =
                 this._enemyManager.SearchEnemyInCamera(transform, attackableDistance, camera);
-            //次にカーソルを合わせる敵を取得
-            if (enemies.Count <= index)
+            // var enemies =
+            //     this._enemyManager.SearchEnemy(transform, attackableDistance);
+
+            //視界内に敵がいない場合は、全部の敵を取得
+            if (enemies.Count == 0)
             {
-                //indexがenemiesの数より大きかったリセット
-                index = 0;
+                enemies =
+                    this._enemyManager.SearchEnemy(transform, attackableDistance);
             }
+
 
             if (enemies.Count == 0)
             {
+                _notFindEnemy.OnNext(Unit.Default);
+
                 targetEnemy = null;
                 cursor.Hide();
                 cursor.HideInfo();
                 return;
             }
+
+            cursor.Display();
+
 
             var randomindex = Random.Range(0, enemies.Count - 1);
             var target = enemies[randomindex];
@@ -157,6 +187,12 @@ namespace Character.LockOns
             //カーソルを表示し、移動
             // cursor.Display();
             SelectTarget(target);
+
+            //通知
+            _changeTargetObservable.OnNext(target);
+
+            //音再生
+            AudioManager.Instance.PlaySe(changeTargetAudioClip, transform.position, 0.1f);
         }
 
         /// <summary>

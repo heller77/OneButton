@@ -133,6 +133,9 @@ namespace GameManagers
 
             battlemodeStartPoint.playerDetect.Subscribe(_ =>
             {
+                //ターゲット探索開始
+                _lockOn.StartAutoChangeCursor();
+                _playerRobotManager.Initialize();
                 //プレイヤーが攻撃できるように
                 _playerRobotManager.StartBattleMode();
                 _tutorialUiManager.DisplaySpaceKeyForSelectEnemy();

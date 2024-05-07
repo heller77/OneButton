@@ -4,6 +4,7 @@ using Character.LockOns;
 using DG.Tweening;
 using Enemys;
 using GameManagers;
+using GameManagers.SeManagers;
 using MyInputs;
 using R3;
 using UnityEngine;
@@ -59,6 +60,8 @@ namespace Character
         /// </summary>
         [SerializeField] private TrackingTransformMono cameraTarget;
 
+        [SerializeField] private AudioClip selectTargetAudioClip;
+
         private readonly Subject<IHitable> _selectEnemy = new Subject<IHitable>();
 
         /// <summary>
@@ -70,6 +73,8 @@ namespace Character
         }
 
         private readonly Subject<Unit> _attack = new Subject<Unit>();
+        private Tweener robotmovetotargetTweener;
+        [SerializeField] private float cameramoveDuration = 2.0f;
 
         /// <summary>
         /// 攻撃したら通知される
@@ -96,13 +101,32 @@ namespace Character
                 }
             }));
 
-            //敵を選択した時のイベント
+            //ターゲットを変えた時
+            _lockOn.ChangeTargetObservable.Subscribe(target =>
+            {
+                cameraTarget.ChangeTracking(target.GetTransform(), cameramoveDuration);
+            });
+
             this._selectEnemy.Subscribe(target =>
             {
-                // robotTarget.DOMove(target.GetTransform().position, 1.4f);
-                // cameraTarget.DOMove(target.GetTransform().position, 0.3f);
-                robotTarget.ChangeTracking(target.GetTransform(), 1.4f);
-                cameraTarget.ChangeTracking(target.GetTransform(), 1.4f);
+                AudioManager.Instance.PlaySe(selectTargetAudioClip, transform.position, 0.1f);
+                robotTarget.ChangeTracking(target.GetTransform(), cameramoveDuration);
+
+                // if (robotmovetotargetTweener != null)
+                // {
+                //     robotmovetotargetTweener.Kill();
+                // }
+                //
+                // robotmovetotargetTweener = robotTransform.DOMove(target.GetTransform().position, 3).OnComplete(() =>
+                // {
+                //     Debug.Log("robotTransform tweener complete");
+                // });
+            });
+
+            _lockOn.NotFindEnemy.Subscribe(_ =>
+            {
+                robotTarget.Initialize(cameramoveDuration);
+                cameraTarget.Initialize(cameramoveDuration);
             });
         }
 
