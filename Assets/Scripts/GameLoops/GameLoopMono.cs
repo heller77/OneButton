@@ -16,8 +16,8 @@ namespace GameLoops
         [SerializeField] private PlayerRobotManager _playerRobotManager;
 
         [SerializeField] private EnemyManager _enemyManager;
-        
-        
+        [SerializeField] private PlayerRobotManager _robotManager;
+
         private void Start()
         {
             _displayWindow.Initialize();
@@ -31,6 +31,7 @@ namespace GameLoops
         private void Update()
         {
             _enemyManager.Tick();
+            _robotManager.Tick();
         }
     }
 }

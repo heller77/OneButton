@@ -20,7 +20,9 @@ namespace Character
     /// <summary>
     /// ロボットの動きや攻撃を管理する
     /// </summary>
-    public class PlayerRobotManager : MonoBehaviour, GameLoops.IInitializable
+    ///
+    [ExecuteAlways]
+    public class PlayerRobotManager : MonoBehaviour, GameLoops.IInitializable, GameLoops.ITickable
     {
         // [SerializeField] private SplineAnimate _splineAnimate;
         [SerializeField] private MoverOnSpline _moverOnSpline;
@@ -42,12 +44,27 @@ namespace Character
 
         [SerializeField] private CockpitDiplayManager _cockpitDiplayManager;
 
-        private readonly Subject<Unit> _selectEnemy = new Subject<Unit>();
+        /// <summary>
+        /// ロボットのTransform
+        /// </summary>
+        [SerializeField] private Transform robotTransform;
+
+        /// <summary>
+        /// ロボットが注視するオブジェクト
+        /// </summary>
+        [SerializeField] private TrackingTransformMono robotTarget;
+
+        /// <summary>
+        /// カメラが注視するオブジェクト
+        /// </summary>
+        [SerializeField] private TrackingTransformMono cameraTarget;
+
+        private readonly Subject<IHitable> _selectEnemy = new Subject<IHitable>();
 
         /// <summary>
         /// 敵を選択したら通知される
         /// </summary>
-        public Observable<Unit> SelectEnemy
+        public Observable<IHitable> SelectEnemy
         {
             get { return this._selectEnemy; }
         }
@@ -78,6 +95,21 @@ namespace Character
                     _cockpitDiplayManager.ShowSelect();
                 }
             }));
+
+            //敵を選択した時のイベント
+            this._selectEnemy.Subscribe(target =>
+            {
+                // robotTarget.DOMove(target.GetTransform().position, 1.4f);
+                // cameraTarget.DOMove(target.GetTransform().position, 0.3f);
+                robotTarget.ChangeTracking(target.GetTransform(), 1.4f);
+                cameraTarget.ChangeTracking(target.GetTransform(), 1.4f);
+            });
+        }
+
+        public void Tick()
+        {
+            //ターゲットにキャラを向ける
+            robotTransform.LookAt(robotTarget.transform);
         }
 
         /// <summary>
@@ -103,6 +135,8 @@ namespace Character
         {
             this._cockpitDiplayManager.ShowSelect();
             this.isBattleMode = true;
+            //カーソル表示
+            _lockOn.ChangeTarget();
             _lockOn.Display();
         }
 
@@ -132,8 +166,9 @@ namespace Character
                 attackComponent.StartCharge();
                 _cockpitDiplayManager.ShowAttack();
 
+                var target = _lockOn.GetTarget();
                 //通知
-                _selectEnemy.OnNext(Unit.Default);
+                _selectEnemy.OnNext(target);
             }
             else if (_lockOn.GetState() == LockOn.LockOnState.DecideAttackTarget)
             {
