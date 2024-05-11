@@ -140,6 +140,9 @@ namespace Character.LockOns
 
             //今ターゲットにしている敵を取得できるようにフィールドに代入。
             this.targetEnemy = target;
+
+            //通知
+            _changeTargetObservable.OnNext(target);
         }
 
         public async UniTask SelectTargetAbsolutely(IHitable target)
@@ -188,8 +191,6 @@ namespace Character.LockOns
             // cursor.Display();
             SelectTarget(target);
 
-            //通知
-            _changeTargetObservable.OnNext(target);
 
             //音再生
             AudioManager.Instance.PlaySe(changeTargetAudioClip, transform.position, 0.1f);
