@@ -2,6 +2,10 @@
 
 namespace GameManagers.SeManagers.AudioVolumes
 {
+    /// <summary>
+    /// 音量を管理
+    /// 保存して、Initializeで読み込む
+    /// </summary>
     public class AudioVolume
     {
         private float volume = 0.1f;

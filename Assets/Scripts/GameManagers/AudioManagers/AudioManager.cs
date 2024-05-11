@@ -1,13 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using GameManagers.SeManagers;
 using GameManagers.SeManagers.AudioVolumes;
-using Unity.VisualScripting;
-using UnityEngine;
 using R3;
-using UnityEngine.Serialization;
+using UnityEngine;
 
-namespace GameManagers.SeManagers
+namespace GameManagers.AudioManagers
 {
+    /// <summary>
+    /// seのenum
+    /// enumとseが紐づけられてAudioManagerで利用可能
+    /// </summary>
     public enum SeVariable
     {
         normalbulletFireSE = 0,
@@ -17,7 +19,8 @@ namespace GameManagers.SeManagers
     }
 
     /// <summary>
-    /// 
+    /// 音を再生するAudioPlayerの識別子
+    /// AudioManaerで再生して、それを止める時のAudioPlayerへの参照
     /// </summary>
     public struct AudioPlayerID
     {
@@ -31,21 +34,29 @@ namespace GameManagers.SeManagers
         }
     }
 
+    /// <summary>
+    /// 音の再生を管理する
+    /// 
+    /// </summary>
     public class AudioManager : MonoBehaviour
     {
         [SerializeField] private R3.SerializableReactiveProperty<float> seVolume;
         [SerializeField] private R3.SerializableReactiveProperty<float> bgmVolume;
 
-        // [SerializeField] private AudioClip bulletse;
-        // [SerializeField] private AudioClip robotOnSe;
-        // [SerializeField] private AudioClip canonSe;
-        // [SerializeField] private AudioClip enemyDeathSe;
+        /// <summary>
+        /// enumに紐づけられたseのデータ
+        /// enum指定で呼び出したいseがまとめられている
+        /// </summary>
         [SerializeField] private SeData _seData;
 
         [SerializeField] private GameObject sePlayerPrefab;
         [SerializeField] private GameObject bgmPlayerPrefab;
 
         private List<AudioPlayer> sePlayersList;
+
+        /// <summary>
+        /// 同時に再生するseの数
+        /// </summary>
         [SerializeField] private int audioPlayerCount = 1;
 
         [SerializeField] private AudioClip bgmSource;
@@ -76,7 +87,6 @@ namespace GameManagers.SeManagers
             bgmPlayer = Instantiate(bgmPlayerPrefab).GetComponent<AudioPlayer>();
             bgmPlayer.Initialize(bgmPlayer.GetComponent<AudioSource>());
 
-
             //sevolume変えたら伝える
             seVolume.Subscribe((seVolume) =>
             {
@@ -85,7 +95,6 @@ namespace GameManagers.SeManagers
                     audioPlayer.SetVolume(seVolume);
                 }
             });
-
 
             //bgmVolumeを変えたら伝える
             bgmVolume.Subscribe((bgmvolume) => { bgmPlayer.SetVolume(bgmvolume); });
@@ -109,6 +118,9 @@ namespace GameManagers.SeManagers
             this.bgmVolume.Value = 0.2f * volume;
         }
 
+        /// <summary>
+        /// 使っていないAudioPlayerを取得
+        /// </summary>
         private AudioPlayer GetUnusedAudioPlayer()
         {
             for (var i = 0; i < audioPlayerCount; ++i)

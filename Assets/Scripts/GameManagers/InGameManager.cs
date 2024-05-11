@@ -5,6 +5,7 @@ using Cinemachine;
 using Cysharp.Threading.Tasks;
 using Enemys;
 using Enemys.Animations;
+using GameManagers.AudioManagers;
 using GameManagers.EventImplements;
 using GameManagers.EventImplements.PlayerDetector;
 using GameManagers.ResultDisplays;

@@ -4,6 +4,7 @@ using Character.LockOns;
 using DG.Tweening;
 using Enemys;
 using GameManagers;
+using GameManagers.AudioManagers;
 using GameManagers.SeManagers;
 using MyInputs;
 using R3;

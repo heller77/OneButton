@@ -4,6 +4,7 @@ using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Enemys;
 using GameManagers;
+using GameManagers.AudioManagers;
 using GameManagers.SeManagers;
 using R3;
 using Unity.Mathematics;
