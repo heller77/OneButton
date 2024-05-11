@@ -40,11 +40,17 @@ namespace Enemys.ExplosionEffect
                 maxSize: poolMaxSize);
         }
 
+        /// <summary>
+        /// エフェクトを取得(objectpoolで管理)
+        /// </summary>
         public GameObject GetExplosionEffectPool()
         {
             return _objectPool.Get();
         }
 
+        /// <summary>
+        /// エフェクトを解放（objectpool）
+        /// </summary>
         public void Release(GameObject releaseTarget)
         {
             _objectPool.Release(releaseTarget);

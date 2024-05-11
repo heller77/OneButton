@@ -1,7 +1,7 @@
 ﻿namespace Enemys
 {
     /// <summary>
-    /// あるとき発動する罠のようなもの
+    /// 任意のタイミングで発動する罠のようなもの
     /// </summary>
     public interface ITrapable
     {

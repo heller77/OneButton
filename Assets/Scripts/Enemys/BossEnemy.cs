@@ -26,10 +26,16 @@ namespace Enemys
 
         private bool isArrive = true;
 
+        /// <summary>
+        /// 起動
+        /// </summary>
         public void Boot()
         {
         }
 
+        /// <summary>
+        /// 破壊
+        /// </summary>
         public void Destruction()
         {
             AudioManager.Instance.PlaySe(SeVariable.EnemyDeath, this.transform.position, 1);
@@ -44,10 +50,13 @@ namespace Enemys
             }
         }
 
+        /// <summary>
+        /// ダメージを与える
+        /// </summary>
         public void Hitted(float damage)
         {
             BattleResultManager.GetInstance().AddBossDamage((int)damage);
-            
+
             hp -= damage;
             if (hp <= 0)
             {
@@ -60,7 +69,7 @@ namespace Enemys
             return transform;
         }
 
-        public bool isHitable()
+        public bool IsHitable()
         {
             return isArrive;
         }
@@ -75,6 +84,10 @@ namespace Enemys
         /// </summary>
         [SerializeField] private float bossAttackableRadius = 1000.0f;
 
+        /// <summary>
+        /// 攻撃できる範囲を取得
+        /// </summary>
+        /// <returns></returns>
         public float GetBossAttackableRadius()
         {
             return this.bossAttackableRadius;

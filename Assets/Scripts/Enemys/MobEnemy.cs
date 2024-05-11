@@ -17,6 +17,9 @@ using Observable = R3.Observable;
 
 namespace Enemys
 {
+    /// <summary>
+    /// モブ敵
+    /// </summary>
     public class MobEnemy : MonoBehaviour, ITarget, IHitable
     {
         [SerializeField] private EnemyManager _enemyManager;
@@ -32,7 +35,7 @@ namespace Enemys
 
         private void Start()
         {
-            _enemyManager.Add(this);
+            _enemyManager.AddMobEnemy(this);
             hp = _parameterAsset.maxhp;
         }
 
@@ -66,7 +69,7 @@ namespace Enemys
             return this.transform;
         }
 
-        public bool isHitable()
+        public bool IsHitable()
         {
             return isArrive;
         }
@@ -81,6 +84,9 @@ namespace Enemys
             this.gameObject.SetActive(false);
         }
 
+        /// <summary>
+        /// 敵破壊（倒したときに呼ばれる）
+        /// </summary>
         private void Destruction()
         {
             //se再生

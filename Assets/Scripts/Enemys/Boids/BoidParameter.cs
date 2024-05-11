@@ -3,6 +3,9 @@ using UnityEngine.Serialization;
 
 namespace Enemys.Boids
 {
+    /// <summary>
+    /// boidsアルゴリズムのパラメータ
+    /// </summary>
     [CreateAssetMenu(menuName = "Boid/Param")]
     public class BoidParameter : ScriptableObject
     {

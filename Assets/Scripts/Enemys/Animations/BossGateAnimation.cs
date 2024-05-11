@@ -7,6 +7,7 @@ namespace Enemys.Animations
 {
     /// <summary>
     /// ボスのゲート
+    /// ゲートを開ける演出を管理
     /// </summary>
     public class BossGateAnimation : MonoBehaviour
     {
@@ -39,11 +40,9 @@ namespace Enemys.Animations
             gateMaterial.SetFloat("_rotation", 0.0f);
         }
 
-        public void GateOpen()
-        {
-            GateOpenAsync();
-        }
-
+        /// <summary>
+        /// ゲートを上げる
+        /// </summary>
         public async UniTask GateOpenAsync()
         {
             await GateTransform.DOScale(gatesize, gateOpenAnimTime);

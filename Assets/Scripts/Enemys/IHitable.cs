@@ -12,13 +12,17 @@ namespace Enemys
         /// </summary>
         public void Hitted(float damage);
 
+        /// <summary>
+        /// 位置を取得
+        /// </summary>
+        /// <returns></returns>
         public Transform GetTransform();
 
         /// <summary>
         /// 攻撃できるかどうか
         /// </summary>
         /// <returns></returns>
-        public bool isHitable();
+        public bool IsHitable();
 
         public EnemyType GetEnemyType();
     }

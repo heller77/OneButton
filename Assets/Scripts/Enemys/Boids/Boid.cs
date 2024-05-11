@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Enemys.Boids
 {
+    /// <summary>
+    /// モブ敵の動きを管理する
+    /// </summary>
     public class Boid : MonoBehaviour, ITickable
     {
         private Vector3 _velocity;
@@ -11,6 +14,11 @@ namespace Enemys.Boids
         [SerializeField] private Vector3 _acceleration;
         private BoidParameter _parameter;
         private BoidsManager _manager;
+
+        public Vector3 GetAcceleration()
+        {
+            return this._acceleration;
+        }
 
         public void SetAcceleration(Vector3 accel)
         {
@@ -22,19 +30,18 @@ namespace Enemys.Boids
             this._manager = boidsManager;
         }
 
-        public void Destruction()
-        {
-            _manager.RemoveBoid(this);
-        }
-
-        public Vector3 GetAcceleration()
-        {
-            return this._acceleration;
-        }
-
         public void SetBoidParameter(BoidParameter parameter)
         {
             this._parameter = parameter;
+        }
+        
+
+        /// <summary>
+        /// 破壊
+        /// </summary>
+        public void Destruction()
+        {
+            _manager.RemoveBoid(this);
         }
 
         public Vector3 GetVelocity()
