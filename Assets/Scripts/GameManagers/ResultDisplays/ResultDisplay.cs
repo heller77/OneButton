@@ -10,6 +10,9 @@ using UnityEngine.Serialization;
 
 namespace GameManagers.ResultDisplays
 {
+    /// <summary>
+    /// リザルトの表示を行う
+    /// </summary>
     public class ResultDisplay : MonoBehaviour
     {
         [SerializeField] private GameObject resultCameraParentGameObject;
