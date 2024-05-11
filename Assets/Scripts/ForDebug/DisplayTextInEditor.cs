@@ -5,6 +5,10 @@ using UnityEditor;
 
 namespace ForDebug
 {
+    /// <summary>
+    /// デバッグ用の機能
+    /// テキストを特定オブジェクトの上に表示
+    /// </summary>
     public class DisplayTextInEditor : MonoBehaviour
     {
         [SerializeField] protected string displayText = "";

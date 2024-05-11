@@ -7,6 +7,10 @@ using UnityEngine;
 
 namespace GameLoops
 {
+    /// <summary>
+    /// 明示的にゲーム開始時と毎フレーム関数を呼ぶクラス
+    /// unityのstartやupdateだと処理の順序が分かりにくいので、順序に意味がある物を管理
+    /// </summary>
     public class GameLoopMono : MonoBehaviour
     {
         [SerializeField] private EnemyDisplayWindow _displayWindow;
@@ -23,8 +27,6 @@ namespace GameLoops
             _lockOn.Initialize();
 
             _laser.Initialize();
-
-            // _playerRobotManager.Initialize();
         }
 
         private void Update()
