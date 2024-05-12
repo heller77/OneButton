@@ -3,6 +3,9 @@ using UnityEngine.UI;
 
 namespace Tutorials
 {
+    /// <summary>
+    /// インゲームで操作などを説明するチュートリアルUI
+    /// </summary>
     public class TutorialLogUI : MonoBehaviour
     {
         /// <summary>

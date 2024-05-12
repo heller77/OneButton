@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 namespace Tutorials
 {
+    /// <summary>
+    /// TutorialLogUIを使い、チュートリアルを表示
+    /// </summary>
     public class TutorialUiManager : MonoBehaviour
     {
         [SerializeField] private RectTransform loguiParent;
