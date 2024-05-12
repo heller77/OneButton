@@ -3,7 +3,7 @@
 namespace TitleScene.UIs
 {
     /// <summary>
-    /// ライセンス表示を管理
+    ///     ライセンス表示を管理
     /// </summary>
     public class DisplayLiscense : MonoBehaviour
     {

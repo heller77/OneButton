@@ -1,5 +1,4 @@
-﻿using System;
-using Cinemachine;
+﻿using Cinemachine;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using GameManagers;
@@ -8,17 +7,16 @@ using R3;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Playables;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace TitleScene
 {
     /// <summary>
-    /// タイトルシーンの管理をする
+    ///     タイトルシーンの管理をする
     /// </summary>
     public class TitleSceneManager : MonoBehaviour
     {
-        private GameInputs input;
+        private static readonly int AddValue = Shader.PropertyToID("_AddValue");
 
         [SerializeField] private GameSceneManager _gameSceneManager;
 
@@ -29,27 +27,40 @@ namespace TitleScene
         [SerializeField] private CinemachineVirtualCamera _loading_virtualCamera;
 
         /// <summary>
-        /// 最初のシネマシン（固定）
+        ///     最初のシネマシン（固定）
         /// </summary>
         [SerializeField] private GameObject defaultCinemachine;
 
         [SerializeField] private GameObject trackedCinemachine;
-        private CinemachineTrackedDolly _locadingcameradolly;
         [SerializeField] private CanvasGroup tittleUICanvasGroup;
+        [SerializeField] private Image concentrationLineImage;
 
-        private readonly string _materialPropertyGauge = "_gauge";
-        private float _gaugeStart = 1.6f;
-        private float _gaugeEnd = 0.5f;
+        [SerializeField] private float max;
+        [SerializeField] private float duration;
+
+        /// <summary>
+        ///     ローディング画面を表示するUI(rendertextureを表示したimage)
+        /// </summary>
+        [SerializeField] private Image loadingUIPanel;
+
+        [SerializeField] private PlayableDirector ride_timeline_playabledirector;
 
         //ローディング画面でのFade時間
         private readonly float _blackscreenFadeTime = 1;
         readonly float _loadingGaugeAnimationTime = 5;
 
+        private readonly string _materialPropertyGauge = "_gauge";
+        private float _gaugeEnd = 0.5f;
+        private readonly float _gaugeStart = 1.6f;
+        private CinemachineTrackedDolly _locadingcameradolly;
+
         //集中線マテリアルのプロパティブロック
         // private MaterialPropertyBlock concentrationLineMaterialPropertyBlock;
         // private int concentrationLineMaterial_PropertyID;
         private Material concentrationLineMaterial;
-        [SerializeField] private Image concentrationLineImage;
+
+        readonly Subject<Unit> endCameraMoveSubject = new Subject<Unit>();
+        private GameInputs input;
 
         private void Start()
         {
@@ -69,10 +80,8 @@ namespace TitleScene
             GoToInGame();
         }
 
-        Subject<Unit> endCameraMoveSubject = new Subject<Unit>();
-
         /// <summary>
-        /// インゲームに遷移。
+        ///     インゲームに遷移。
         /// </summary>
         private async UniTaskVoid GoToInGame()
         {
@@ -102,18 +111,15 @@ namespace TitleScene
             HideconcentrationLine();
 
             //ローディング画面の表示
-            await this.DisplayLoadingWindow();
+            await DisplayLoadingWindow();
 
             //メインシーンに遷移
             asyncOperation.allowSceneActivation = true;
             Debug.Log("go to main");
         }
 
-        [SerializeField] private float max;
-        [SerializeField] private float duration;
-
         /// <summary>
-        /// 出口までカメラを持っていき、ローディング画面に遷移
+        ///     出口までカメラを持っていき、ローディング画面に遷移
         /// </summary>
         private async UniTask GotoExit()
         {
@@ -121,7 +127,7 @@ namespace TitleScene
             float frameTime = 0.1f;
             for (int i = 0; i < duration / frameTime; i++)
             {
-                this._locadingcameradolly.m_PathPosition += speedPerSecond * frameTime;
+                _locadingcameradolly.m_PathPosition += speedPerSecond * frameTime;
 
                 await UniTask.WaitForSeconds(frameTime);
             }
@@ -139,15 +145,6 @@ namespace TitleScene
         {
             concentrationLineMaterial.DOFloat(1.0f, "_scale", 0.7f);
         }
-
-        /// <summary>
-        /// ローディング画面を表示するUI(rendertextureを表示したimage)
-        /// </summary>
-        [SerializeField] private Image loadingUIPanel;
-
-        private static readonly int AddValue = Shader.PropertyToID("_AddValue");
-
-        [SerializeField] private PlayableDirector ride_timeline_playabledirector;
 
         private async UniTask DisplayLoadingWindow()
         {
