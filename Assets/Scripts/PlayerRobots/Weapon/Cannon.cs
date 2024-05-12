@@ -12,6 +12,9 @@ using UnityEngine;
 
 namespace Character.Weapon
 {
+    /// <summary>
+    /// 大砲
+    /// </summary>
     public class Cannon : MonoBehaviour
     {
         /// <summary>

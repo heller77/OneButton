@@ -3,7 +3,7 @@
 namespace Character.LockOns
 {
     /// <summary>
-    /// ロボットに乗った時に
+    /// 敵を選択するカーソル
     /// </summary>
     public class Cursor : MonoBehaviour
     {

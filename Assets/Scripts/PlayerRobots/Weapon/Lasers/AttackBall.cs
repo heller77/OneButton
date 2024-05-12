@@ -6,6 +6,10 @@ using UnityEngine;
 
 namespace Character.Weapon.Lasers
 {
+    /// <summary>
+    /// レーザ終点の球
+    /// 今は使ってない(2024 5 11)
+    /// </summary>
     public class AttackBall : MonoBehaviour
     {
         [SerializeField] private Collider _collider;

@@ -13,9 +13,9 @@ namespace Character
         [SerializeField] private Material pushedMaterial;
         [SerializeField] private Light buttonLight;
         
-
         private void Update()
         {
+            //todo : touch操作に対応できてないので、inputsystemを使う様に
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 animator.SetBool("push", true);

@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace Character.CockpitButtons
 {
+    /// <summary>
+    /// コックピットにあるボタンのアニメーションを管理
+    /// </summary>
     public class Button : MonoBehaviour
     {
         [SerializeField] private Animator buttonAnimatpr;
@@ -16,10 +19,8 @@ namespace Character.CockpitButtons
         private void Start()
         {
             var trigger = buttonAnimatpr.GetBehaviour<ObservableStateMachineTrigger>();
-            var a = trigger.OnStateEnterAsObservable().Where(x => x.StateInfo.IsName("push")).Subscribe(x =>
-            {
-                this.pushAnimationSubject.OnNext(Unit.Default);
-            }).AddTo(this);
+            var triggerDisposable = trigger.OnStateEnterAsObservable().Where(x => x.StateInfo.IsName("push"))
+                .Subscribe(x => { this.pushAnimationSubject.OnNext(Unit.Default); }).AddTo(this);
         }
 
         public void PowerOn()

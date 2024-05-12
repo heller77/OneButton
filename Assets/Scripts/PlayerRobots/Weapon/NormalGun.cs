@@ -10,6 +10,9 @@ using UnityEngine;
 
 namespace Character.Weapon
 {
+    /// <summary>
+    /// 通常銃
+    /// </summary>
     public class NormalGun : MonoBehaviour
     {
         [SerializeField] private GameObject bulletPrefab;
@@ -21,7 +24,7 @@ namespace Character.Weapon
         [SerializeField] private Transform ta;
 
         /// <summary>
-        /// 
+        /// 攻撃
         /// </summary>
         public async void Attack(IHitable target, float attackPower)
         {

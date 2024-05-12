@@ -6,6 +6,9 @@ using UnityEngine.Serialization;
 
 namespace Character.CockpitButtons
 {
+    /// <summary>
+    /// コックピットにあるディスプレイの管理
+    /// </summary>
     public class CockpitDiplayManager : MonoBehaviour
     {
         [SerializeField] private GameObject niceQuad;
