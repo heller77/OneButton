@@ -56,18 +56,18 @@ namespace Character.Weapon.Lasers
         [SerializeField] private float laserThickness = 20;
 
         /// <summary>
-        ///     レーザの末尾の部分の当たり判定
-        /// </summary>
-        private SphereCollider _laserEndCollider;
-
-        private LaserMaterialController _materialController;
-
-        /// <summary>
         ///     ここまでは一定の速度でレーザを進めるという距離
         /// </summary>
         private readonly float accelerationDistance = 100;
 
         private readonly Subject<Unit> hitSubject = new Subject<Unit>();
+
+        /// <summary>
+        ///     レーザの末尾の部分の当たり判定
+        /// </summary>
+        private SphereCollider _laserEndCollider;
+
+        private LaserMaterialController _materialController;
 
         private bool isLaunching;
 

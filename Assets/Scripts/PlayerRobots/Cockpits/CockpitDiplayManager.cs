@@ -2,37 +2,36 @@
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Character.CockpitButtons
 {
     /// <summary>
-    /// コックピットにあるディスプレイの管理
+    ///     コックピットにあるディスプレイの管理
     /// </summary>
     public class CockpitDiplayManager : MonoBehaviour
     {
         [SerializeField] private GameObject niceQuad;
         [SerializeField] private float niceColorMaxIntesity = 10;
-        [SerializeField] private float niceColorMinIntesity = 0;
-
-        private Material niceQuadMaterial;
+        [SerializeField] private float niceColorMinIntesity;
 
         /// <summary>
-        /// selecttargetとattackのfadetime
+        ///     selecttargetとattackのfadetime
         /// </summary>
         [SerializeField] private float fadeStartTime = 0.1f;
 
         [SerializeField] private float fadeEndTime = 0.1f;
 
         [SerializeField] private GameObject selectTargetQuad;
-        private Material selectTargetMaterial;
 
         [SerializeField] private GameObject attackQuad;
-        private Material attackMaterial;
 
         [SerializeField] private float niceDisplayTime = 0.4f;
+        private Material attackMaterial;
 
-        private float fadeMinValue = 0.1f;
+        private readonly float fadeMinValue = 0.1f;
+
+        private Material niceQuadMaterial;
+        private Material selectTargetMaterial;
 
         private void Awake()
         {

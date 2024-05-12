@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Character
 {
@@ -12,7 +11,7 @@ namespace Character
 
         [SerializeField] private Material pushedMaterial;
         [SerializeField] private Light buttonLight;
-        
+
         private void Update()
         {
             //todo : touch操作に対応できてないので、inputsystemを使う様に

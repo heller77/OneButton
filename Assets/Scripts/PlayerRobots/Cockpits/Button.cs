@@ -1,5 +1,4 @@
-﻿using System;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using R3;
 using R3.Triggers;
 using UnityEngine;
@@ -7,20 +6,20 @@ using UnityEngine;
 namespace Character.CockpitButtons
 {
     /// <summary>
-    /// コックピットにあるボタンのアニメーションを管理
+    ///     コックピットにあるボタンのアニメーションを管理
     /// </summary>
     public class Button : MonoBehaviour
     {
         [SerializeField] private Animator buttonAnimatpr;
+        private bool isPushAnimation;
 
-        private Subject<Unit> pushAnimationSubject = new Subject<Unit>();
-        private bool isPushAnimation = false;
+        private readonly Subject<Unit> pushAnimationSubject = new Subject<Unit>();
 
         private void Start()
         {
             var trigger = buttonAnimatpr.GetBehaviour<ObservableStateMachineTrigger>();
             var triggerDisposable = trigger.OnStateEnterAsObservable().Where(x => x.StateInfo.IsName("push"))
-                .Subscribe(x => { this.pushAnimationSubject.OnNext(Unit.Default); }).AddTo(this);
+                .Subscribe(x => { pushAnimationSubject.OnNext(Unit.Default); }).AddTo(this);
         }
 
         public void PowerOn()
