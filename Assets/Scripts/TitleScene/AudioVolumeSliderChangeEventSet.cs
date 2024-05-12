@@ -7,6 +7,10 @@ using UnityEngine;
 
 namespace TitleScene
 {
+    /// <summary>
+    /// 音のボリュームを設定するスライダーを管理
+    /// スライダーを変更した時に起きる演出も管理
+    /// </summary>
     public class AudioVolumeSliderChangeEventSet : MonoBehaviour
     {
         [SerializeField] private AudioVolumeSlider _audioVolumeSlider;
@@ -26,6 +30,7 @@ namespace TitleScene
 
         private void Start()
         {
+            //スライダを変更した時のイベントを設定
             _audioVolumeSlider.sliderObservable.Subscribe(volume =>
             {
                 int emitNum = (int)((emitMax - emitMin) * volume + emitMin);
