@@ -40,7 +40,7 @@ namespace Enemys.Animations
         }
 
         /// <summary>
-        ///     ゲートを空ける
+        ///     ゲートを開ける
         /// </summary>
         public async UniTask GateOpenAsync()
         {
