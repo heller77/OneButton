@@ -1,16 +1,14 @@
-﻿using System;
-using Character.CockpitButtons;
+﻿using Character.CockpitButtons;
 using Character.LockOns;
 using DG.Tweening;
 using Enemys;
-using GameManagers;
-using GameManagers.SeManagers;
+using GameLoops;
+using GameManagers.AudioManagers;
 using MyInputs;
 using R3;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
-using UnityEngine.Splines;
 using Utils;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -19,11 +17,10 @@ using UnityEditor;
 namespace Character
 {
     /// <summary>
-    /// ロボットの動きや攻撃を管理する
+    ///     ロボットの動きや攻撃を管理する
     /// </summary>
-    ///
     [ExecuteAlways]
-    public class PlayerRobotManager : MonoBehaviour, GameLoops.IInitializable, GameLoops.ITickable
+    public class PlayerRobotManager : MonoBehaviour, IInitializable, ITickable
     {
         // [SerializeField] private SplineAnimate _splineAnimate;
         [SerializeField] private MoverOnSpline _moverOnSpline;
@@ -35,8 +32,6 @@ namespace Character
 
         [SerializeField] private LockOn _lockOn;
 
-        private GameInputs _inputs;
-
         [SerializeField] private bool isBattleMode = true;
 
         [SerializeField] private GameObject weaponParent;
@@ -46,43 +41,56 @@ namespace Character
         [SerializeField] private CockpitDiplayManager _cockpitDiplayManager;
 
         /// <summary>
-        /// ロボットのTransform
+        ///     ロボットのTransform
         /// </summary>
         [SerializeField] private Transform robotTransform;
 
         /// <summary>
-        /// ロボットが注視するオブジェクト
+        ///     ロボットが注視するオブジェクト
         /// </summary>
         [SerializeField] private TrackingTransformMono robotTarget;
 
         /// <summary>
-        /// カメラが注視するオブジェクト
+        ///     カメラが注視するオブジェクト
         /// </summary>
         [SerializeField] private TrackingTransformMono cameraTarget;
 
         [SerializeField] private AudioClip selectTargetAudioClip;
+        [SerializeField] private float cameramoveDuration = 2.0f;
+
+        private readonly Subject<Unit> _attack = new Subject<Unit>();
 
         private readonly Subject<IHitable> _selectEnemy = new Subject<IHitable>();
 
+        private GameInputs _inputs;
+        private Tweener robotmovetotargetTweener;
+
         /// <summary>
-        /// 敵を選択したら通知される
+        ///     敵を選択したら通知される
         /// </summary>
         public Observable<IHitable> SelectEnemy
         {
-            get { return this._selectEnemy; }
+            get { return _selectEnemy; }
         }
 
-        private readonly Subject<Unit> _attack = new Subject<Unit>();
-        private Tweener robotmovetotargetTweener;
-        [SerializeField] private float cameramoveDuration = 2.0f;
-
         /// <summary>
-        /// 攻撃したら通知される
+        ///     攻撃したら通知される
         /// </summary>
         public Observable<Unit> Attack
         {
-            get { return this._attack; }
+            get { return _attack; }
         }
+
+#if UNITY_EDITOR
+        private void OnDrawGizmos()
+        {
+            //テキストの設定
+            var guiStyle = new GUIStyle
+                { fontSize = 20, normal = { textColor = Color.green }, alignment = TextAnchor.UpperCenter };
+            //名前をシーンビュー上に表示
+            Handles.Label(transform.position + new Vector3(0, 10, 0), gameObject.name, guiStyle);
+        }
+#endif
 
         public void Initialize()
         {
@@ -108,7 +116,7 @@ namespace Character
             });
 
             //敵を選択した時
-            this._selectEnemy.Subscribe(target =>
+            _selectEnemy.Subscribe(target =>
             {
                 AudioManager.Instance.PlaySe(selectTargetAudioClip, transform.position, 0.1f);
                 robotTarget.ChangeTracking(target.GetTransform(), cameramoveDuration);
@@ -129,7 +137,7 @@ namespace Character
         }
 
         /// <summary>
-        /// 動きをスタート
+        ///     動きをスタート
         /// </summary>
         public void StartMove()
         {
@@ -137,7 +145,7 @@ namespace Character
         }
 
         /// <summary>
-        /// 動きを止める
+        ///     動きを止める
         /// </summary>
         public void StopMove()
         {
@@ -145,32 +153,32 @@ namespace Character
         }
 
         /// <summary>
-        /// バトルモードOn : カーソルを表示したり攻撃出来たりするようになる
+        ///     バトルモードOn : カーソルを表示したり攻撃出来たりするようになる
         /// </summary>
         public void StartBattleMode()
         {
-            this._cockpitDiplayManager.ShowSelect();
-            this.isBattleMode = true;
+            _cockpitDiplayManager.ShowSelect();
+            isBattleMode = true;
             //カーソル表示
             _lockOn.ChangeTarget();
             _lockOn.Display();
         }
 
         /// <summary>
-        /// バトルモードOff : カーソルを表示したり攻撃出来なくなる
+        ///     バトルモードOff : カーソルを表示したり攻撃出来なくなる
         /// </summary>
         public void StopBattleMode()
         {
-            this._cockpitDiplayManager.AllHide();
+            _cockpitDiplayManager.AllHide();
 
-            this.isBattleMode = false;
-            this._lockOn.Hide();
+            isBattleMode = false;
+            _lockOn.Hide();
         }
 
         private void PushButton(InputAction.CallbackContext callbackContext)
         {
             //バトルモードじゃないなら攻撃しない
-            if (!this.isBattleMode)
+            if (!isBattleMode)
             {
                 return;
             }
@@ -193,7 +201,7 @@ namespace Character
                 //攻撃！
                 attackComponent.ChargeAttack(_lockOn.GetTarget());
 
-                this._button.Push();
+                _button.Push();
 
                 _lockOn.CancellationDecideEnemy();
                 _cockpitDiplayManager.ShowSelect();
@@ -206,13 +214,13 @@ namespace Character
         }
 
         /// <summary>
-        /// 武器を非表示にする（リザルトシーン時に使用）
+        ///     武器を非表示にする（リザルトシーン時に使用）
         /// </summary>
         public void HideWeapon()
         {
             weaponParent.transform.DOMove(new Vector3(0, -5.1f, 0), 0.1f).OnComplete(() =>
             {
-                this.weaponParent.SetActive(false);
+                weaponParent.SetActive(false);
             });
         }
 
@@ -225,16 +233,5 @@ namespace Character
         {
             _button.PowerOn();
         }
-
-#if UNITY_EDITOR
-        private void OnDrawGizmos()
-        {
-            //テキストの設定
-            var guiStyle = new GUIStyle
-                { fontSize = 20, normal = { textColor = Color.green }, alignment = TextAnchor.UpperCenter };
-            //名前をシーンビュー上に表示
-            Handles.Label(transform.position + new Vector3(0, 10, 0), this.gameObject.name, guiStyle);
-        }
-#endif
     }
 }

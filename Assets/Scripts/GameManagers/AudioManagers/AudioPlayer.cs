@@ -1,15 +1,15 @@
-﻿using System;
-using DG.Tweening;
+﻿using DG.Tweening;
 using UnityEngine;
 
-namespace GameManagers.SeManagers
+namespace GameManagers.AudioManagers
 {
     /// <summary>
-    /// seを再生する
+    ///     seを再生する
     /// </summary>
     [RequireComponent(typeof(AudioSource))]
     public class AudioPlayer : MonoBehaviour
     {
+        private int nowPlaySoundCount;
         private AudioSource source;
 
         public void Initialize(AudioSource source)
@@ -25,11 +25,11 @@ namespace GameManagers.SeManagers
 
         public void SetPosition(Vector3 position)
         {
-            this.transform.position = position;
+            transform.position = position;
         }
 
         /// <summary>
-        /// clipを再生する
+        ///     clipを再生する
         /// </summary>
         /// <param name="clip"></param>
         public void Play(AudioClip clip, float audioVolume, float duration = 1)
@@ -42,8 +42,6 @@ namespace GameManagers.SeManagers
 
             nowPlaySoundCount++;
         }
-
-        private int nowPlaySoundCount = 0;
 
         public void Stop(int id, float fadeTime)
         {
@@ -60,7 +58,7 @@ namespace GameManagers.SeManagers
 
         public void SetVolume(float volume)
         {
-            this.source.volume = volume;
+            source.volume = volume;
         }
     }
 }

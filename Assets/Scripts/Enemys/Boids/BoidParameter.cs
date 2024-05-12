@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Enemys.Boids
 {
+    /// <summary>
+    ///     boidsアルゴリズムのパラメータ
+    /// </summary>
     [CreateAssetMenu(menuName = "Boid/Param")]
     public class BoidParameter : ScriptableObject
     {
@@ -14,15 +16,15 @@ namespace Enemys.Boids
         public float nearboidsDistance;
 
         /// <summary>
-        /// 行動を制限する球の半径
+        ///     行動を制限する球の半径
         /// </summary>
         public float restrictionSphereRadius;
 
         public float restrictionStartDistance;
 
         /// <summary>
-        /// Boidsの中心へと向かう力（遠いほど強くなるように計算される）
-        /// restrictionStartDistanceより
+        ///     Boidsの中心へと向かう力（遠いほど強くなるように計算される）
+        ///     restrictionStartDistanceより
         /// </summary>
         public float powerToBoidsCenter;
 

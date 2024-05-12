@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GameManagers.SeManagers
+namespace GameManagers.AudioManagers
 {
     [Serializable]
     public class SoundEffect
@@ -11,6 +11,9 @@ namespace GameManagers.SeManagers
         public AudioClip audioClip;
     }
 
+    /// <summary>
+    ///     se一覧を管理する
+    /// </summary>
     [CreateAssetMenu(fileName = "sedata", menuName = "ScriptableObjects/sedata")]
     public class SeData : ScriptableObject
     {
@@ -18,7 +21,7 @@ namespace GameManagers.SeManagers
 
         public List<SoundEffect> GetSoundEffectList()
         {
-            return this.seList;
+            return seList;
         }
     }
 }

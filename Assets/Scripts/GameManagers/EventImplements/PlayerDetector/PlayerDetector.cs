@@ -1,28 +1,22 @@
 ﻿using Character;
-using Cysharp.Threading.Tasks;
 using R3;
 using UnityEngine;
 
 namespace GameManagers.EventImplements.PlayerDetector
 {
     /// <summary>
-    /// プレイヤーを検知する
+    ///     プレイヤーを検知する
     /// </summary>
     public class PlayerDetector : MonoBehaviour
     {
-        private Subject<Unit> _playerdetect = new Subject<Unit>();
+        private readonly Subject<Unit> _playerdetect = new Subject<Unit>();
 
         /// <summary>
-        /// プレイヤーが来たら発火する
+        ///     プレイヤーが来たら発火する
         /// </summary>
-        public R3.Observable<Unit> playerDetect
+        public Observable<Unit> playerDetect
         {
-            get { return this._playerdetect; }
-        }
-
-        public void Detect()
-        {
-            _playerdetect.OnNext(Unit.Default);
+            get { return _playerdetect; }
         }
 
         private void OnTriggerEnter(Collider other)
@@ -31,6 +25,11 @@ namespace GameManagers.EventImplements.PlayerDetector
             {
                 Detect();
             }
+        }
+
+        public void Detect()
+        {
+            _playerdetect.OnNext(Unit.Default);
         }
     }
 }

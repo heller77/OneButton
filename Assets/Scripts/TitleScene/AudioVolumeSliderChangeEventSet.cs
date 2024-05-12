@@ -1,19 +1,22 @@
-﻿using System;
-using GameManagers.SeManagers;
+﻿using GameManagers.AudioManagers;
 using R3;
 using UI;
 using UnityEngine;
 
 namespace TitleScene
 {
+    /// <summary>
+    ///     音のボリュームを設定するスライダーを管理
+    ///     スライダーを変更した時に起きる演出も管理
+    /// </summary>
     public class AudioVolumeSliderChangeEventSet : MonoBehaviour
     {
         [SerializeField] private AudioVolumeSlider _audioVolumeSlider;
         [SerializeField] private ParticleSystem _particleSystem;
 
         /// <summary>
-        /// seが鳴る場所
-        /// ロボットアームがびりびりしているところ
+        ///     seが鳴る場所
+        ///     ロボットアームがびりびりしているところ
         /// </summary>
         [SerializeField] private Transform sePlace;
 
@@ -21,10 +24,11 @@ namespace TitleScene
         [SerializeField] private float emitMin = 5;
 
         [SerializeField] private Animator armAnimator;
-        private string moveArmState = "MoveArm";
+        private readonly string moveArmState = "MoveArm";
 
         private void Start()
         {
+            //スライダを変更した時のイベントを設定
             _audioVolumeSlider.sliderObservable.Subscribe(volume =>
             {
                 int emitNum = (int)((emitMax - emitMin) * volume + emitMin);

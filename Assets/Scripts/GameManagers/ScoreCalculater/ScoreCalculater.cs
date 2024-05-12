@@ -1,8 +1,10 @@
 ﻿using System;
-using UnityEngine;
 
 namespace GameManagers.ScoreCalculater
 {
+    /// <summary>
+    ///     スコア毎の重みを保持
+    /// </summary>
     [Serializable]
     public struct ScoreWeight
     {
@@ -21,6 +23,9 @@ namespace GameManagers.ScoreCalculater
         }
     }
 
+    /// <summary>
+    ///     スコア構造体
+    /// </summary>
     public struct Score
     {
         public int knockdownMobScore;
@@ -41,30 +46,37 @@ namespace GameManagers.ScoreCalculater
         }
     }
 
+    /// <summary>
+    ///     スコアを計算
+    /// </summary>
     public class ScoreCalculater
     {
-        private BattleResultData _battleResultData;
+        private readonly BattleResultData _battleResultData;
 
-        private ScoreWeight _scoreWeight;
+        private readonly ScoreWeight _scoreWeight;
 
         private Score _score;
 
         public ScoreCalculater(BattleResultData data, ScoreWeight scoreWeight)
         {
-            this._battleResultData = data;
-            this._scoreWeight = scoreWeight;
+            _battleResultData = data;
+            _scoreWeight = scoreWeight;
         }
 
         public BattleResultData GetBattleData()
         {
-            return this._battleResultData;
+            return _battleResultData;
         }
 
         public Score GetScore()
         {
-            return this._score;
+            return _score;
         }
 
+        /// <summary>
+        ///     スコアを計算
+        /// </summary>
+        /// <returns></returns>
         public Score Calculate()
         {
             int knockdownMobScore = _scoreWeight.knockdownMob_ScoreWeight * _battleResultData.knockDownMobEnemyCount;
@@ -79,7 +91,7 @@ namespace GameManagers.ScoreCalculater
             Score score = new Score(knockdownMobScore, survivePlayerSideRobotScore, bossDamageScore,
                 consumeBulletMinuxScore, sum);
 
-            this._score = score;
+            _score = score;
             return score;
         }
     }

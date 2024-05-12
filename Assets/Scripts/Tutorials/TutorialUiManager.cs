@@ -1,27 +1,27 @@
 ﻿using System;
-using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using R3;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Tutorials
 {
+    /// <summary>
+    ///     TutorialLogUIを使い、チュートリアルを表示
+    /// </summary>
     public class TutorialUiManager : MonoBehaviour
     {
+        private static readonly int DisplayValue = Shader.PropertyToID("_displayValue");
         [SerializeField] private RectTransform loguiParent;
         [SerializeField] private GameObject loguiPrefab;
 
         [SerializeField] private Texture _textimageSpaceclickforselect;
         [SerializeField] private Texture _textimageSpaceclickforattack;
 
-        private static readonly int DisplayValue = Shader.PropertyToID("_displayValue");
-
         private TutorialLogUI nowDisplayMissionUI;
 
         private void GenerateTutorialUI()
         {
-            if (this.nowDisplayMissionUI != null)
+            if (nowDisplayMissionUI != null)
             {
                 // var pos = nowtarget.gameObject.GetComponent<RectTransform>().position;
                 // pos.y -= 1;
@@ -29,8 +29,8 @@ namespace Tutorials
                 nowDisplayMissionUI.gameObject.GetComponent<RectTransform>().DOAnchorPosY(-150, 0.4f);
             }
 
-            GameObject logui = Instantiate(loguiPrefab) as GameObject;
-            logui.transform.SetParent(this.loguiParent, false);
+            GameObject logui = Instantiate(loguiPrefab);
+            logui.transform.SetParent(loguiParent, false);
             logui.SetActive(true);
 
             nowDisplayMissionUI = logui.GetComponent<TutorialLogUI>();
@@ -38,18 +38,18 @@ namespace Tutorials
         }
 
         /// <summary>
-        /// 敵を選択するのにスペースキーをクリックするUIを表示
+        ///     敵を選択するのにスペースキーをクリックするUIを表示
         /// </summary>
         public void DisplaySpaceKeyForSelectEnemy()
         {
             GenerateTutorialUI();
             nowDisplayMissionUI.CheckMark.material.SetFloat(DisplayValue, 0);
-            nowDisplayMissionUI.TextImage.texture = this._textimageSpaceclickforselect;
+            nowDisplayMissionUI.TextImage.texture = _textimageSpaceclickforselect;
             nowDisplayMissionUI.TextImage.material.SetFloat(DisplayValue, 1);
         }
 
         /// <summary>
-        /// 敵を選択出来たら
+        ///     敵を選択出来たら
         /// </summary>
         public void ExecuteFirstSpaceClickForSelectEnemy()
         {
@@ -64,18 +64,18 @@ namespace Tutorials
         }
 
         /// <summary>
-        /// 敵を攻撃するのにスペースキーをクリックするUIを表示
+        ///     敵を攻撃するのにスペースキーをクリックするUIを表示
         /// </summary>
         public void DisplaySpaceKeyForAttackEnemy()
         {
             GenerateTutorialUI();
             nowDisplayMissionUI.CheckMark.material.SetFloat(DisplayValue, 0);
-            nowDisplayMissionUI.TextImage.texture = this._textimageSpaceclickforattack;
+            nowDisplayMissionUI.TextImage.texture = _textimageSpaceclickforattack;
             nowDisplayMissionUI.TextImage.material.SetFloat(DisplayValue, 1);
         }
 
         /// <summary>
-        /// 敵を攻撃出来たら
+        ///     敵を攻撃出来たら
         /// </summary>
         public void ExecuteSpaceClickForAttackEnemy()
         {

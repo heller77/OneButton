@@ -562,7 +562,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 369630811}
         m_TargetAssemblyTypeName: Enemys.Animations.BossGateAnimation, Assembly-CSharp
-        m_MethodName: GateOpen
+        m_MethodName: OpenGate
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

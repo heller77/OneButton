@@ -3,22 +3,30 @@ using UnityEngine.UI;
 
 namespace Tutorials
 {
+    /// <summary>
+    ///     インゲームで操作などを説明するチュートリアルUI
+    /// </summary>
     public class TutorialLogUI : MonoBehaviour
     {
         /// <summary>
-        /// チェックマーク（Image）
+        ///     チェックマーク（Image）
         /// </summary>
         [SerializeField] private RawImage _chckMark;
+
+        /// <summary>
+        ///     操作を説明するテキスト画像
+        /// </summary>
+        [SerializeField] private RawImage _textImage;
+
+        /// <summary>
+        ///     チェックマークとかの親
+        /// </summary>
+        [SerializeField] private RectTransform _tutorialUIParent;
 
         public RawImage CheckMark
         {
             get => _chckMark;
         }
-
-        /// <summary>
-        /// 操作を説明するテキスト画像
-        /// </summary>
-        [SerializeField] private RawImage _textImage;
 
         public RawImage TextImage
         {
@@ -29,11 +37,6 @@ namespace Tutorials
         {
             get => _tutorialUIParent;
         }
-
-        /// <summary>
-        /// チェックマークとかの親
-        /// </summary>
-        [SerializeField] private RectTransform _tutorialUIParent;
 
         public void Initialize()
         {

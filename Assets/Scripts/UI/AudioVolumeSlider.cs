@@ -1,31 +1,29 @@
-﻿using System;
-using GameManagers.SeManagers;
+﻿using GameManagers.AudioManagers;
 using GameManagers.SeManagers.AudioVolumes;
 using R3;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
-using Observable = UnityEngine.InputSystem.Utilities.Observable;
 
 namespace UI
 {
+    /// <summary>
+    ///     音のボリュームを変更するスライダー
+    /// </summary>
     public class AudioVolumeSlider : MonoBehaviour, IPointerUpHandler
     {
-        private Slider _seslider;
-
+        private readonly Subject<float> _sliderSubject = new Subject<float>();
         private AudioVolume _audioVolume;
-        private Subject<float> _sliderSubject = new Subject<float>();
+        private Slider _seslider;
 
         public Observable<float> sliderObservable
         {
-            get { return this._sliderSubject; }
+            get { return _sliderSubject; }
         }
 
         private void Awake()
         {
-            this._seslider = GetComponent<Slider>();
+            _seslider = GetComponent<Slider>();
 
 
             _audioVolume = new AudioVolume();
@@ -47,7 +45,7 @@ namespace UI
 
         public void OnPointerUp(PointerEventData eventData)
         {
-            _sliderSubject.OnNext(this._seslider.value);
+            _sliderSubject.OnNext(_seslider.value);
         }
     }
 }
