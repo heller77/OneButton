@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Utils
 {
+    /// <summary>
+    /// 特定のオブジェクトを追跡（トラッキング）させる
+    /// </summary>
     public class TrackingTransformMono : MonoBehaviour
     {
         /// <summary>

@@ -5,6 +5,9 @@ using UnityEngine.Splines;
 
 namespace Utils
 {
+    /// <summary>
+    /// スプライン上を移動させるクラス
+    /// </summary>
     [ExecuteAlways]
     public class MoverOnSpline : MonoBehaviour
     {

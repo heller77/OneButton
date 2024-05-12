@@ -12,6 +12,9 @@ using Observable = UnityEngine.InputSystem.Utilities.Observable;
 
 namespace UI
 {
+    /// <summary>
+    /// 音のボリュームを変更するスライダー
+    /// </summary>
     public class AudioVolumeSlider : MonoBehaviour, IPointerUpHandler
     {
         private Slider _seslider;

@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Utils
 {
+    /// <summary>
+    /// ビルポートさせたいオブジェクトにつける
+    /// </summary>
     public class BillPort : MonoBehaviour
     {
         private void Update()
