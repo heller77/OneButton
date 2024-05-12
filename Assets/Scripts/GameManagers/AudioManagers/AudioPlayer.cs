@@ -4,11 +4,12 @@ using UnityEngine;
 namespace GameManagers.AudioManagers
 {
     /// <summary>
-    /// seを再生する
+    ///     seを再生する
     /// </summary>
     [RequireComponent(typeof(AudioSource))]
     public class AudioPlayer : MonoBehaviour
     {
+        private int nowPlaySoundCount;
         private AudioSource source;
 
         public void Initialize(AudioSource source)
@@ -24,11 +25,11 @@ namespace GameManagers.AudioManagers
 
         public void SetPosition(Vector3 position)
         {
-            this.transform.position = position;
+            transform.position = position;
         }
 
         /// <summary>
-        /// clipを再生する
+        ///     clipを再生する
         /// </summary>
         /// <param name="clip"></param>
         public void Play(AudioClip clip, float audioVolume, float duration = 1)
@@ -41,8 +42,6 @@ namespace GameManagers.AudioManagers
 
             nowPlaySoundCount++;
         }
-
-        private int nowPlaySoundCount = 0;
 
         public void Stop(int id, float fadeTime)
         {
@@ -59,7 +58,7 @@ namespace GameManagers.AudioManagers
 
         public void SetVolume(float volume)
         {
-            this.source.volume = volume;
+            source.volume = volume;
         }
     }
 }

@@ -26,9 +26,9 @@ namespace Character.CockpitButtons
         [SerializeField] private GameObject attackQuad;
 
         [SerializeField] private float niceDisplayTime = 0.4f;
-        private Material attackMaterial;
 
         private readonly float fadeMinValue = 0.1f;
+        private Material attackMaterial;
 
         private Material niceQuadMaterial;
         private Material selectTargetMaterial;

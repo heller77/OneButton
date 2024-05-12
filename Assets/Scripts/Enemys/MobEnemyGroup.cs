@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Splines;
-using Utils;
 
 public enum EnemyType
 {
@@ -20,14 +18,14 @@ namespace Enemys
 
         [SerializeField] private SplineAnimate _splineAnimate;
 
-        public void MoveStart()
-        {
-            _splineAnimate.Play();
-        }
-
         public void Boot()
         {
             MoveStart();
+        }
+
+        public void MoveStart()
+        {
+            _splineAnimate.Play();
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using GameManagers.SeManagers;
 using GameManagers.SeManagers.AudioVolumes;
 using R3;
 using UnityEngine;
@@ -7,8 +6,8 @@ using UnityEngine;
 namespace GameManagers.AudioManagers
 {
     /// <summary>
-    /// seのenum
-    /// enumとseが紐づけられてAudioManagerで利用可能
+    ///     seのenum
+    ///     enumとseが紐づけられてAudioManagerで利用可能
     /// </summary>
     public enum SeVariable
     {
@@ -19,8 +18,8 @@ namespace GameManagers.AudioManagers
     }
 
     /// <summary>
-    /// 音を再生するAudioPlayerの識別子
-    /// AudioManaerで再生して、それを止める時のAudioPlayerへの参照
+    ///     音を再生するAudioPlayerの識別子
+    ///     AudioManaerで再生して、それを止める時のAudioPlayerへの参照
     /// </summary>
     public struct AudioPlayerID
     {
@@ -35,47 +34,41 @@ namespace GameManagers.AudioManagers
     }
 
     /// <summary>
-    /// 音の再生を管理する
-    /// 
+    ///     音の再生を管理する
     /// </summary>
     public class AudioManager : MonoBehaviour
     {
-        [SerializeField] private R3.SerializableReactiveProperty<float> seVolume;
-        [SerializeField] private R3.SerializableReactiveProperty<float> bgmVolume;
+        [SerializeField] private SerializableReactiveProperty<float> seVolume;
+        [SerializeField] private SerializableReactiveProperty<float> bgmVolume;
 
         /// <summary>
-        /// enumに紐づけられたseのデータ
-        /// enum指定で呼び出したいseがまとめられている
+        ///     enumに紐づけられたseのデータ
+        ///     enum指定で呼び出したいseがまとめられている
         /// </summary>
         [SerializeField] private SeData _seData;
 
         [SerializeField] private GameObject sePlayerPrefab;
         [SerializeField] private GameObject bgmPlayerPrefab;
 
-        private List<AudioPlayer> sePlayersList;
-
         /// <summary>
-        /// 同時に再生するseの数
+        ///     同時に再生するseの数
         /// </summary>
         [SerializeField] private int audioPlayerCount = 1;
 
         [SerializeField] private AudioClip bgmSource;
-        private AudioPlayer bgmPlayer;
-
-        private Dictionary<int, AudioClip> audioClips = new Dictionary<int, AudioClip>();
 
         private AudioVolume _volumemanager;
 
-        private static AudioManager _instance;
+        private Dictionary<int, AudioClip> audioClips = new Dictionary<int, AudioClip>();
+        private AudioPlayer bgmPlayer;
 
-        public static AudioManager Instance
-        {
-            get { return _instance; }
-        }
+        private List<AudioPlayer> sePlayersList;
+
+        public static AudioManager Instance { get; private set; }
 
         private void Awake()
         {
-            _instance = this;
+            Instance = this;
             sePlayersList = new List<AudioPlayer>(audioPlayerCount);
             for (var i = 0; i < audioPlayerCount; i++)
             {
@@ -88,7 +81,7 @@ namespace GameManagers.AudioManagers
             bgmPlayer.Initialize(bgmPlayer.GetComponent<AudioSource>());
 
             //sevolume変えたら伝える
-            seVolume.Subscribe((seVolume) =>
+            seVolume.Subscribe(seVolume =>
             {
                 foreach (var audioPlayer in sePlayersList)
                 {
@@ -97,7 +90,7 @@ namespace GameManagers.AudioManagers
             });
 
             //bgmVolumeを変えたら伝える
-            bgmVolume.Subscribe((bgmvolume) => { bgmPlayer.SetVolume(bgmvolume); });
+            bgmVolume.Subscribe(bgmvolume => { bgmPlayer.SetVolume(bgmvolume); });
 
             audioClips = new Dictionary<int, AudioClip>();
             foreach (SoundEffect se in _seData.GetSoundEffectList())
@@ -107,19 +100,19 @@ namespace GameManagers.AudioManagers
             }
 
             //volumemanager生成、初期化
-            this._volumemanager = new AudioVolume();
+            _volumemanager = new AudioVolume();
             _volumemanager.Initialize();
             SetAudioVolume(_volumemanager.GetVolume());
         }
 
         public void SetAudioVolume(float volume)
         {
-            this.seVolume.Value = volume;
-            this.bgmVolume.Value = 0.2f * volume;
+            seVolume.Value = volume;
+            bgmVolume.Value = 0.2f * volume;
         }
 
         /// <summary>
-        /// 使っていないAudioPlayerを取得
+        ///     使っていないAudioPlayerを取得
         /// </summary>
         private AudioPlayer GetUnusedAudioPlayer()
         {
@@ -136,11 +129,11 @@ namespace GameManagers.AudioManagers
 
         private AudioClip GetSeAudioClip(SeVariable seVariable)
         {
-            return this.audioClips[(int)seVariable];
+            return audioClips[(int)seVariable];
         }
 
         /// <summary>
-        /// 音を再生するだけ
+        ///     音を再生するだけ
         /// </summary>
         /// <param name="audioPlayer"></param>
         /// <param name="clip"></param>
@@ -150,7 +143,7 @@ namespace GameManagers.AudioManagers
         }
 
         /// <summary>
-        /// enumで再生するAudioClipを指定して再生
+        ///     enumで再生するAudioClipを指定して再生
         /// </summary>
         /// <param name="seVariable">seを指定するenum(enumにseが一つ紐づけられている)</param>
         /// <param name="sePosition">再生する場所</param>
@@ -162,7 +155,7 @@ namespace GameManagers.AudioManagers
         }
 
         /// <summary>
-        /// AudioClipを指定して、それを再生する
+        ///     AudioClipを指定して、それを再生する
         /// </summary>
         /// <param name="clip">再生すオーディオクリップ</param>
         /// <param name="sePosition">再生する場所</param>

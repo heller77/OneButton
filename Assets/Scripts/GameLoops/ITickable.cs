@@ -1,7 +1,7 @@
 ﻿namespace GameLoops
 {
     /// <summary>
-    /// GameLoopMonoで毎フレーム関数呼ばれたい時に使うインターフェイス
+    ///     GameLoopMonoで毎フレーム関数呼ばれたい時に使うインターフェイス
     /// </summary>
     public interface ITickable
     {

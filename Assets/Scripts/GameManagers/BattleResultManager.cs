@@ -1,11 +1,9 @@
-﻿using UnityEngine;
-
-namespace GameManagers
+﻿namespace GameManagers
 {
     /// <summary>
-    /// バトルの戦闘データ
-    /// モブ敵　生き残った味方の敵　ボスへのダメージ　使用した為の弾
-    /// のコストを管理
+    ///     バトルの戦闘データ
+    ///     モブ敵　生き残った味方の敵　ボスへのダメージ　使用した為の弾
+    ///     のコストを管理
     /// </summary>
     public struct BattleResultData
     {
@@ -34,6 +32,13 @@ namespace GameManagers
     {
         private static BattleResultManager _instance;
 
+        private BattleResultData data;
+
+        public BattleResultManager()
+        {
+            data = new BattleResultData(0, 0, 0, 0);
+        }
+
         public static BattleResultManager GetInstance()
         {
             if (_instance is null)
@@ -44,16 +49,9 @@ namespace GameManagers
             return _instance;
         }
 
-        private BattleResultData data;
-
         public BattleResultData GetBattleResultData()
         {
-            return this.data;
-        }
-
-        public BattleResultManager()
-        {
-            this.data = new BattleResultData(0, 0, 0, 0);
+            return data;
         }
 
         public void AddKnockMobEnemy()

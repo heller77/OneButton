@@ -1,17 +1,14 @@
 ﻿using System;
 using Cinemachine;
 using Cysharp.Threading.Tasks;
-using DG.Tweening;
-using GameManagers.ScoreCalculater;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Playables;
-using UnityEngine.Serialization;
 
 namespace GameManagers.ResultDisplays
 {
     /// <summary>
-    /// リザルトの表示を行う
+    ///     リザルトの表示を行う
     /// </summary>
     public class ResultDisplay : MonoBehaviour
     {
@@ -25,22 +22,22 @@ namespace GameManagers.ResultDisplays
         [SerializeField] private Material exposure;
 
         /// <summary>
-        /// カメラ切り替えが終わった後にリザルト表示までの時間（秒）
+        ///     カメラ切り替えが終わった後にリザルト表示までの時間（秒）
         /// </summary>
         [SerializeField] private float CameraMoveEndmarginTime = 1f;
 
         /// <summary>
-        ///スコアの詳細を表示するUI
+        ///     スコアの詳細を表示するUI
         /// </summary>
         [SerializeField] private TextMeshProUGUI resultScoreTextUi;
 
         /// <summary>
-        /// スコアの合計を表示するUI
+        ///     スコアの合計を表示するUI
         /// </summary>
         [SerializeField] private TextMeshProUGUI scoreSumTextUi;
 
         /// <summary>
-        /// リザルト表示
+        ///     リザルト表示
         /// </summary>
         public async UniTask resulting(ScoreCalculater.ScoreCalculater scoreCalculater)
         {

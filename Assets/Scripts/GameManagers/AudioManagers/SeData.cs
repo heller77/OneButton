@@ -12,7 +12,7 @@ namespace GameManagers.AudioManagers
     }
 
     /// <summary>
-    /// se一覧を管理する
+    ///     se一覧を管理する
     /// </summary>
     [CreateAssetMenu(fileName = "sedata", menuName = "ScriptableObjects/sedata")]
     public class SeData : ScriptableObject
@@ -21,7 +21,7 @@ namespace GameManagers.AudioManagers
 
         public List<SoundEffect> GetSoundEffectList()
         {
-            return this.seList;
+            return seList;
         }
     }
 }

@@ -11,9 +11,9 @@ namespace Character.CockpitButtons
     public class Button : MonoBehaviour
     {
         [SerializeField] private Animator buttonAnimatpr;
-        private bool isPushAnimation;
 
         private readonly Subject<Unit> pushAnimationSubject = new Subject<Unit>();
+        private bool isPushAnimation;
 
         private void Start()
         {

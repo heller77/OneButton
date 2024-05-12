@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using GameManagers;
 using GameManagers.AudioManagers;
-using GameManagers.SeManagers;
 using UnityEngine;
-using Random = System.Random;
 
 namespace Enemys
 {
     /// <summary>
-    /// 敵の母艦
+    ///     敵の母艦
     /// </summary>
     public class BossEnemy : MonoBehaviour, ITrapable, IHitable
     {
@@ -25,34 +22,24 @@ namespace Enemys
         [SerializeField] private float hp = 1;
         [SerializeField] private EnemyManager _enemyManager;
 
-        private bool isArrive = true;
+        /// <summary>
+        ///     ボスを攻撃できる距離の範囲（はたしてボスがもっているのが正しいのか？）
+        /// </summary>
+        [SerializeField] private float bossAttackableRadius = 1000.0f;
+
+        private readonly bool isArrive = true;
 
         /// <summary>
-        /// 起動
+        ///     ボスを攻撃できる範囲をギズモで表示
         /// </summary>
-        public void Boot()
+        private void OnDrawGizmos()
         {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position, bossAttackableRadius);
         }
 
         /// <summary>
-        /// 破壊
-        /// </summary>
-        public void Destruction()
-        {
-            AudioManager.Instance.PlaySe(SeVariable.EnemyDeath, this.transform.position, 1);
-            _particleSystem.Play();
-            _enemyManager.RemoveBoss();
-            defaultObject.SetActive(false);
-            destructionObject.SetActive(true);
-            foreach (var part in parts)
-            {
-                var powerDir = part.transform.position - powerOriginTransform.transform.position;
-                part.AddForce(destructionPower * powerDir);
-            }
-        }
-
-        /// <summary>
-        /// ダメージを与える
+        ///     ダメージを与える
         /// </summary>
         public void Hitted(float damage)
         {
@@ -61,7 +48,7 @@ namespace Enemys
             hp -= damage;
             if (hp <= 0)
             {
-                this.Destruction();
+                Destruction();
             }
         }
 
@@ -81,26 +68,36 @@ namespace Enemys
         }
 
         /// <summary>
-        /// ボスを攻撃できる距離の範囲（はたしてボスがもっているのが正しいのか？）
+        ///     起動
         /// </summary>
-        [SerializeField] private float bossAttackableRadius = 1000.0f;
+        public void Boot()
+        {
+        }
 
         /// <summary>
-        /// 攻撃できる範囲を取得
+        ///     破壊
+        /// </summary>
+        public void Destruction()
+        {
+            AudioManager.Instance.PlaySe(SeVariable.EnemyDeath, transform.position, 1);
+            _particleSystem.Play();
+            _enemyManager.RemoveBoss();
+            defaultObject.SetActive(false);
+            destructionObject.SetActive(true);
+            foreach (var part in parts)
+            {
+                var powerDir = part.transform.position - powerOriginTransform.transform.position;
+                part.AddForce(destructionPower * powerDir);
+            }
+        }
+
+        /// <summary>
+        ///     攻撃できる範囲を取得
         /// </summary>
         /// <returns></returns>
         public float GetBossAttackableRadius()
         {
-            return this.bossAttackableRadius;
-        }
-
-        /// <summary>
-        /// ボスを攻撃できる範囲をギズモで表示
-        /// </summary>
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(transform.position, bossAttackableRadius);
+            return bossAttackableRadius;
         }
     }
 }

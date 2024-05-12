@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Enemys.Boids;
 using GameLoops;
 using R3;
@@ -9,21 +8,29 @@ using UnityEngine;
 namespace Enemys
 {
     /// <summary>
-    /// 敵を管理する
+    ///     敵を管理する
     /// </summary>
     public class EnemyManager : MonoBehaviour, ITickable
     {
         [SerializeField] private List<MobEnemy> _mobEnemies = new List<MobEnemy>();
         [SerializeField] private BossEnemy _bossEnemy;
 
-        private Subject<Unit> _enemyDestroy = new Subject<Unit>();
+        [SerializeField] private List<BoidsManager> _boidsManager = new List<BoidsManager>();
+
+        private readonly Subject<Unit> _enemyDestroy = new Subject<Unit>();
 
         public Observable<Unit> enemyDestroy
         {
-            get { return this._enemyDestroy; }
+            get { return _enemyDestroy; }
         }
 
-        [SerializeField] private List<BoidsManager> _boidsManager = new List<BoidsManager>();
+        /// <summary>
+        ///     毎フレーム呼ばれる
+        /// </summary>
+        public void Tick()
+        {
+            MoveBoid();
+        }
 
         public void StartMoveEnemys()
         {
@@ -34,15 +41,7 @@ namespace Enemys
         }
 
         /// <summary>
-        /// 毎フレーム呼ばれる
-        /// </summary>
-        public void Tick()
-        {
-            MoveBoid();
-        }
-
-        /// <summary>
-        /// boidsmanagerのTickを呼び出す
+        ///     boidsmanagerのTickを呼び出す
         /// </summary>
         public void MoveBoid()
         {
@@ -53,7 +52,7 @@ namespace Enemys
         }
 
         /// <summary>
-        /// boidsManagerを追加
+        ///     boidsManagerを追加
         /// </summary>
         public void AddBoidManager(BoidsManager boidsManager)
         {
@@ -61,7 +60,7 @@ namespace Enemys
         }
 
         /// <summary>
-        /// 敵を追加
+        ///     敵を追加
         /// </summary>
         /// <param name="mobEnemy"></param>
         public void AddMobEnemy(MobEnemy mobEnemy)
@@ -70,7 +69,7 @@ namespace Enemys
         }
 
         /// <summary>
-        /// 敵のリストから引数で指定した敵を削除
+        ///     敵のリストから引数で指定した敵を削除
         /// </summary>
         /// <param name="mobEnemy"></param>
         /// <returns></returns>
@@ -81,16 +80,16 @@ namespace Enemys
         }
 
         /// <summary>
-        /// ボスを削除
+        ///     ボスを削除
         /// </summary>
         public void RemoveBoss()
         {
-            this._bossEnemy = null;
+            _bossEnemy = null;
         }
 
         /// <summary>
-        /// 全ての敵を削除
-        /// todo : 管理対象から消すだけで敵は居なくならない
+        ///     全ての敵を削除
+        ///     todo : 管理対象から消すだけで敵は居なくならない
         /// </summary>
         public void RemoveAllEnemy()
         {
@@ -98,7 +97,7 @@ namespace Enemys
         }
 
         /// <summary>
-        /// カメラの向きにある敵を取得
+        ///     カメラの向きにある敵を取得
         /// </summary>
         public IHitable GetMostNearEnemyInCameraDirection(Transform origin, Vector3 cameraDir)
         {
@@ -124,7 +123,7 @@ namespace Enemys
         }
 
         /// <summary>
-        /// 指定距離以内の敵すべｔを取得
+        ///     指定距離以内の敵すべｔを取得
         /// </summary>
         /// <param name="origin">探索の中心</param>
         /// <param name="searchDistance">検索距離</param>
@@ -147,7 +146,7 @@ namespace Enemys
         }
 
         /// <summary>
-        /// カメラにtargetが映っているかを判定
+        ///     カメラにtargetが映っているかを判定
         /// </summary>
         /// <param name="camera">カメラ</param>
         /// <param name="target">ターゲット</param>
@@ -190,7 +189,7 @@ namespace Enemys
         }
 
         /// <summary>
-        /// 有効なターゲットとの距離を計算し、辞書を返す
+        ///     有効なターゲットとの距離を計算し、辞書を返す
         /// </summary>
         /// <returns>敵との距離でソートしたターゲットとの距離とターゲットの辞書</returns>
         private SortedDictionary<float, IHitable> CaluculateEnemysDistance(Transform origin)
@@ -219,7 +218,7 @@ namespace Enemys
 
         public IHitable GetBossEnemy()
         {
-            return this._bossEnemy;
+            return _bossEnemy;
         }
     }
 }
