@@ -2,6 +2,9 @@
 
 namespace Character
 {
+    /// <summary>
+    /// コックピットのボタンのアニメーションを管理
+    /// </summary>
     public class ButtonAnimationManager : MonoBehaviour
     {
         [SerializeField] private Animator animator;
