@@ -53,9 +53,9 @@ namespace GameManagers.ScoreCalculater
     {
         private readonly BattleResultData _battleResultData;
 
-        private Score _score;
-
         private readonly ScoreWeight _scoreWeight;
+
+        private Score _score;
 
         public ScoreCalculater(BattleResultData data, ScoreWeight scoreWeight)
         {

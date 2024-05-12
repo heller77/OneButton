@@ -12,9 +12,9 @@ namespace UI
     /// </summary>
     public class AudioVolumeSlider : MonoBehaviour, IPointerUpHandler
     {
+        private readonly Subject<float> _sliderSubject = new Subject<float>();
         private AudioVolume _audioVolume;
         private Slider _seslider;
-        private readonly Subject<float> _sliderSubject = new Subject<float>();
 
         public Observable<float> sliderObservable
         {

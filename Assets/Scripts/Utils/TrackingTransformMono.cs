@@ -10,14 +10,14 @@ namespace Utils
     {
         [SerializeField] private float positionSpeed = 5.0f;
 
+        private readonly bool isUpdate = true;
+
         private Transform _trackingTarget;
 
         /// <summary>
         ///     最初の場所
         /// </summary>
         private Vector3 initPos;
-
-        private readonly bool isUpdate = true;
 
         private void Start()
         {

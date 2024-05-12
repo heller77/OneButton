@@ -1,13 +1,12 @@
-﻿using System;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
 
 namespace Enemys.Animations
 {
     /// <summary>
-    /// ボスのゲート
-    /// ゲートを開ける演出を管理
+    ///     ボスのゲート
+    ///     ゲートを開ける演出を管理
     /// </summary>
     public class BossGateAnimation : MonoBehaviour
     {
@@ -31,24 +30,24 @@ namespace Enemys.Animations
         public void Initialize()
         {
             gatesize = GateTransform.localScale;
-            this.GateTransform.localScale = Vector3.zero;
+            GateTransform.localScale = Vector3.zero;
             boss.SetActive(false);
 
             //マテリアルのパラメータ初期化
-            this.gateMaterial.SetFloat("_NormalMove", 0);
-            gateMaterial.SetVector("_gatePos", this.GateTransform.position);
+            gateMaterial.SetFloat("_NormalMove", 0);
+            gateMaterial.SetVector("_gatePos", GateTransform.position);
             gateMaterial.SetFloat("_rotation", 0.0f);
         }
 
         /// <summary>
-        /// ゲートを空ける
+        ///     ゲートを空ける
         /// </summary>
         public async UniTask GateOpenAsync()
         {
             await GateTransform.DOScale(gatesize, gateOpenAnimTime);
             boss.SetActive(true);
 
-            await this.gateMaterial.DOFloat(gatematerial_normalMove, "_NormalMove", gate_break_time);
+            await gateMaterial.DOFloat(gatematerial_normalMove, "_NormalMove", gate_break_time);
             gateMaterial.SetFloat("_rotation", 100.0f);
         }
     }

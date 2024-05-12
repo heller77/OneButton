@@ -47,19 +47,19 @@ namespace TitleScene
 
         //ローディング画面でのFade時間
         private readonly float _blackscreenFadeTime = 1;
+        private readonly float _gaugeStart = 1.6f;
         readonly float _loadingGaugeAnimationTime = 5;
 
         private readonly string _materialPropertyGauge = "_gauge";
+
+        readonly Subject<Unit> endCameraMoveSubject = new Subject<Unit>();
         private float _gaugeEnd = 0.5f;
-        private readonly float _gaugeStart = 1.6f;
         private CinemachineTrackedDolly _locadingcameradolly;
 
         //集中線マテリアルのプロパティブロック
         // private MaterialPropertyBlock concentrationLineMaterialPropertyBlock;
         // private int concentrationLineMaterial_PropertyID;
         private Material concentrationLineMaterial;
-
-        readonly Subject<Unit> endCameraMoveSubject = new Subject<Unit>();
         private GameInputs input;
 
         private void Start()

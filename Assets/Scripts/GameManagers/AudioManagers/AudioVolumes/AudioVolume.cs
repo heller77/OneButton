@@ -8,9 +8,8 @@ namespace GameManagers.SeManagers.AudioVolumes
     /// </summary>
     public class AudioVolume
     {
-        private float volume = 0.1f;
-
         private readonly string volumeText = "volume";
+        private float volume = 0.1f;
 
         public void Initialize()
         {
