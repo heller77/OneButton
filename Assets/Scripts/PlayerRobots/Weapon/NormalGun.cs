@@ -1,14 +1,16 @@
-﻿using System;
-using Character.Weapon.Lasers;
+﻿using Character.Weapon.Lasers;
 using Cysharp.Threading.Tasks;
 using Enemys;
 using GameManagers;
-using GameManagers.SeManagers;
+using GameManagers.AudioManagers;
 using R3;
 using UnityEngine;
 
 namespace Character.Weapon
 {
+    /// <summary>
+    ///     通常銃
+    /// </summary>
     public class NormalGun : MonoBehaviour
     {
         [SerializeField] private GameObject bulletPrefab;
@@ -20,11 +22,11 @@ namespace Character.Weapon
         [SerializeField] private Transform ta;
 
         /// <summary>
-        /// 
+        ///     攻撃
         /// </summary>
         public async void Attack(IHitable target, float attackPower)
         {
-            AudioManager.Instance.PlaySe(SeVariable.normalbulletFireSE, this.transform.position, 0.05f);
+            AudioManager.Instance.PlaySe(SeVariable.normalbulletFireSE, transform.position, 0.05f);
 
             // var bulletInstance = Instantiate(bulletPrefab, bulletInstancePosition.position, Quaternion.identity);
             //
@@ -62,7 +64,7 @@ namespace Character.Weapon
             // transform.LookAt(target.GetTransform());
 
             //敵までの距離を計算
-            var distance = Vector3.Distance(target.GetTransform().position, this.transform.position);
+            var distance = Vector3.Distance(target.GetTransform().position, transform.position);
 
             transform.LookAt(target.GetTransform().position);
             _laser.LaunchLaser(target.GetTransform(), attackPower);

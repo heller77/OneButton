@@ -3,19 +3,24 @@
 namespace Character.LockOns
 {
     /// <summary>
-    /// ロボットに乗った時に
+    ///     敵を選択するカーソル
     /// </summary>
     public class Cursor : MonoBehaviour
     {
-        [SerializeField] private GameObject cursorGameObject;
-        [SerializeField] private Animator _animator;
         private static readonly int Decide = Animator.StringToHash("decide");
         private static readonly int Selectmode = Animator.StringToHash("selectmode");
+        [SerializeField] private GameObject cursorGameObject;
+        [SerializeField] private Animator _animator;
 
         [SerializeField] private EnemyDisplayWindow enemyDisplayWindowGameObject;
 
+        private void Update()
+        {
+            BillBoard();
+        }
+
         /// <summary>
-        /// カーソルを表示する
+        ///     カーソルを表示する
         /// </summary>
         public void Display()
         {
@@ -28,7 +33,7 @@ namespace Character.LockOns
         }
 
         /// <summary>
-        /// カーソルを非表示にする
+        ///     カーソルを非表示にする
         /// </summary>
         public void Hide()
         {
@@ -42,11 +47,11 @@ namespace Character.LockOns
 
         public void Move(Vector3 position)
         {
-            this.cursorGameObject.transform.position = position;
+            cursorGameObject.transform.position = position;
         }
 
         /// <summary>
-        /// カーソルを敵を選択する時の見た目にする
+        ///     カーソルを敵を選択する時の見た目にする
         /// </summary>
         public void ChangeVisualizeToSelectMode()
         {
@@ -55,7 +60,7 @@ namespace Character.LockOns
         }
 
         /// <summary>
-        /// カーソルを敵を決定状態の見た目ににする
+        ///     カーソルを敵を決定状態の見た目ににする
         /// </summary>
         public void ChangeVisualizeToDecisionMode()
         {
@@ -64,18 +69,13 @@ namespace Character.LockOns
         }
 
         /// <summary>
-        /// カメラをずっと見てる
+        ///     カメラをずっと見てる
         /// </summary>
         private void BillBoard()
         {
-            var cameraposition = UnityEngine.Camera.main.transform.position;
+            var cameraposition = Camera.main.transform.position;
             cameraposition.y = transform.position.y;
             transform.LookAt(cameraposition);
-        }
-
-        private void Update()
-        {
-            BillBoard();
         }
     }
 }

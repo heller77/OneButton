@@ -1,12 +1,14 @@
-﻿using System;
-using Enemys;
+﻿using Enemys;
 using UnityEngine;
 
 namespace Character.Weapon.Lasers
 {
+    /// <summary>
+    ///     レイで攻撃するクラス
+    /// </summary>
     public class RayAttacker
     {
-        private static float radius = 10.0f;
+        private static readonly float radius = 10.0f;
 
         public static void RayAttack(Transform origin, Transform end, float damage)
         {

@@ -12,7 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91f3328e635f4ad4aeeab73d9ce3cee2, type: 3}
   m_Name: sedata
   m_EditorClassIdentifier: 
-  bulletse: {fileID: 8300000, guid: 70a6c39317949ba48b666395b8ef5768, type: 3}
-  robotOnSe: {fileID: 8300000, guid: 31cafa3d359be2f42952a0634a113a68, type: 3}
-  canonSe: {fileID: 8300000, guid: df35b64d289f894458c214cc6c372a4e, type: 3}
-  enemyDeathSe: {fileID: 8300000, guid: a29d2e893ba81ba4a86f7c8238b62e48, type: 3}
+  seList:
+  - soundType: 0
+    audioClip: {fileID: 8300000, guid: 965345f92a5728c4f8863c19d12be97b, type: 3}
+  - soundType: 1
+    audioClip: {fileID: 8300000, guid: 31cafa3d359be2f42952a0634a113a68, type: 3}
+  - soundType: 2
+    audioClip: {fileID: 8300000, guid: 345e9d12ef185a84aa70ad5e692ab7f4, type: 3}
+  - soundType: 3
+    audioClip: {fileID: 8300000, guid: a29d2e893ba81ba4a86f7c8238b62e48, type: 3}

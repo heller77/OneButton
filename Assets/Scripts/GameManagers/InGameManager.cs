@@ -5,13 +5,14 @@ using Cinemachine;
 using Cysharp.Threading.Tasks;
 using Enemys;
 using Enemys.Animations;
+using GameManagers.AudioManagers;
 using GameManagers.EventImplements;
 using GameManagers.EventImplements.PlayerDetector;
 using GameManagers.ResultDisplays;
 using GameManagers.ScoreCalculater;
-using GameManagers.SeManagers;
 using R3;
 using TMPro;
+using Tutorials;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
@@ -20,7 +21,7 @@ using unityroom.Api;
 namespace GameManagers
 {
     /// <summary>
-    /// インゲームのシーン遷移を管理（シーンといってもunityのシーンではなく、乗り物に乗るとかイベントを再生する的な意味）
+    ///     インゲームのシーン遷移を管理（シーンといってもunityのシーンではなく、乗り物に乗るとかイベントを再生する的な意味）
     /// </summary>
     public class InGameManager : MonoBehaviour
     {
@@ -35,13 +36,42 @@ namespace GameManagers
 
         [SerializeField] private LockOn _lockOn;
 
+        [SerializeField] private TutorialUiManager _tutorialUiManager;
+
+        [SerializeField] private PlayableDirector _playerdetector_ridingAndRobotPowerOn;
+
+        [SerializeField] private PlayerDetector _playerDetector_beyondDoor;
+
+        [SerializeField] private PlayableDirector robotdepartureDirector;
+
+        [SerializeField] private PlayerDetector arriveDetector_endPoint;
+
+        /// <summary>
+        ///     バトルモードが始まる場所
+        /// </summary>
+        [SerializeField] private PlayerDetector battlemodeStartPoint;
+
+        /// <summary>
+        ///     プレイヤーがここまでくるとボスが登場する場所
+        /// </summary>
+        [SerializeField] private PlayerDetector bossAppearPoint;
+
+        [SerializeField] private BossGateAnimation _bossGateAnimation;
+
+        [SerializeField] private CinemachineVirtualCamera getoutofvirtualCamera;
+
+        [SerializeField] private ResultDisplay _resultDisplay;
+        [SerializeField] private ScoreWeight _scoreWeight;
+        [SerializeField] private float bgmStopFadeTime;
+        private AudioPlayerID _bgmPlayerID;
+
         private void Start()
         {
             StartGame();
         }
 
         /// <summary>
-        /// ゲームを始める
+        ///     ゲームを始める
         /// </summary>
         private async void StartGame()
         {
@@ -57,25 +87,20 @@ namespace GameManagers
             SceneManager.LoadScene("Title");
         }
 
-        [SerializeField] private PlayableDirector _playerdetector_ridingAndRobotPowerOn;
-        private AudioPlayerID _bgmPlayerID;
-
         /// <summary>
-        /// 乗って、ロボットの電源が付く
+        ///     乗って、ロボットの電源が付く
         /// </summary>
         private async UniTask RidingAndRobotPowerOn()
         {
-            this._playerRobotManager.PowerOn();
+            _playerRobotManager.PowerOn();
 
             _playerdetector_ridingAndRobotPowerOn.Play();
             AudioManager.Instance.PlaySe(SeVariable.RobotOnSE, Vector3.zero, 0.1f);
             await UniTask.WaitForSeconds((float)_playerdetector_ridingAndRobotPowerOn.duration);
         }
 
-        [SerializeField] private PlayerDetector _playerDetector_beyondDoor;
-
         /// <summary>
-        /// 最初のドアを開ける
+        ///     最初のドアを開ける
         /// </summary>
         private async UniTask StartOpenStartDoorScene()
         {
@@ -91,10 +116,8 @@ namespace GameManagers
             // this._playerRobotManager.StopMove();
         }
 
-        [SerializeField] private PlayableDirector robotdepartureDirector;
-
         /// <summary>
-        /// 出発前の説明
+        ///     出発前の説明
         /// </summary>
         private async UniTask IntroductionDeparture()
         {
@@ -102,22 +125,8 @@ namespace GameManagers
             await UniTask.WaitForSeconds(1.0f);
         }
 
-        [SerializeField] private PlayerDetector arriveDetector_endPoint;
-
         /// <summary>
-        /// バトルモードが始まる場所
-        /// </summary>
-        [SerializeField] private PlayerDetector battlemodeStartPoint;
-
-        /// <summary>
-        /// プレイヤーがここまでくるとボスが登場する場所
-        /// </summary>
-        [SerializeField] private PlayerDetector bossAppearPoint;
-
-        [SerializeField] private BossGateAnimation _bossGateAnimation;
-
-        /// <summary>
-        /// 出発
+        ///     出発
         /// </summary>
         private async UniTask Departure()
         {
@@ -130,8 +139,23 @@ namespace GameManagers
 
             battlemodeStartPoint.playerDetect.Subscribe(_ =>
             {
+                //ターゲット探索開始
+                _lockOn.StartAutoChangeCursor();
+                _playerRobotManager.Initialize();
                 //プレイヤーが攻撃できるように
                 _playerRobotManager.StartBattleMode();
+                _tutorialUiManager.DisplaySpaceKeyForSelectEnemy();
+                //最初に敵を選択した時
+                _playerRobotManager.SelectEnemy.Take(1).Subscribe(_ =>
+                {
+                    _tutorialUiManager.ExecuteFirstSpaceClickForSelectEnemy();
+                    _tutorialUiManager.DisplaySpaceKeyForAttackEnemy();
+                });
+                //最初に敵を攻撃した時
+                _playerRobotManager.Attack.Take(1).Subscribe(_ =>
+                {
+                    _tutorialUiManager.ExecuteSpaceClickForAttackEnemy();
+                });
             });
 
             //ボス登場箇所までプレイヤーが来たら、ボスを登場させる
@@ -158,10 +182,8 @@ namespace GameManagers
             return arriveDetector_endPoint;
         }
 
-        [SerializeField] private CinemachineVirtualCamera getoutofvirtualCamera;
-
         /// <summary>
-        /// 終了地点についたので、乗り物に降りる
+        ///     終了地点についたので、乗り物に降りる
         /// </summary>
         public async UniTask GetOutOfRobot()
         {
@@ -184,13 +206,9 @@ namespace GameManagers
             _playerRobotManager.StopBattleMode();
         }
 
-        [SerializeField] private ResultDisplay _resultDisplay;
-        [SerializeField] private ScoreWeight _scoreWeight;
-        [SerializeField] private float bgmStopFadeTime;
-
         public async UniTask DisplayScore()
         {
-            AudioManager.Instance.StopSound(this._bgmPlayerID, bgmStopFadeTime);
+            AudioManager.Instance.StopSound(_bgmPlayerID, bgmStopFadeTime);
 
             var battledata = BattleResultManager.GetInstance().GetBattleResultData();
             // Debug.Log(battledata);

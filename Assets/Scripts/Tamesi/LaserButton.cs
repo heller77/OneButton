@@ -1,5 +1,4 @@
-﻿using System;
-using Character.Weapon.Lasers;
+﻿using Character.Weapon.Lasers;
 using R3;
 using UnityEngine;
 using UnityEngine.UI;

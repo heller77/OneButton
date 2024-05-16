@@ -1,10 +1,12 @@
-﻿using System;
-using DG.Tweening;
+﻿using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Splines;
 
 namespace Utils
 {
+    /// <summary>
+    ///     スプライン上を移動させるクラス
+    /// </summary>
     [ExecuteAlways]
     public class MoverOnSpline : MonoBehaviour
     {
@@ -14,10 +16,10 @@ namespace Utils
         [SerializeField, Range(0.001f, 0.999f)]
         private float _t;
 
-        [SerializeField] private bool isPlay = false;
+        [SerializeField] private bool isPlay;
         [SerializeField] private float completetime = 1.0f;
 
-        private float splineLength = 0.0f;
+        private float splineLength;
 
         private void Start()
         {
@@ -35,20 +37,6 @@ namespace Utils
                 MoveOnSpline();
             }
         }
-#if UNITY_EDITOR
-
-        // インスペクターから編集されたとき
-        private void OnValidate()
-        {
-            MoveOnSpline();
-        }
-
-        public float GetT()
-        {
-            return this._t;
-        }
-
-#endif
 
         public void MoveOnSpline()
         {
@@ -73,16 +61,16 @@ namespace Utils
         }
 
         /// <summary>
-        /// 別のスプラインに乗る場合
+        ///     別のスプラインに乗る場合
         /// </summary>
         /// <param name="newsplienvalue"></param>
         /// <param name="new_spline"></param>
         /// <param name="movetime_tonewspline"></param>
         public void ChangeSpline(SplineContainer new_spline, float movetime_tonewspline)
         {
-            this.spline = new_spline;
+            spline = new_spline;
             var newsplienvalue =
-                SplineUtility.GetNearestPoint(new_spline.Spline, this.transform.position, out var position, out var t);
+                SplineUtility.GetNearestPoint(new_spline.Spline, transform.position, out var position, out var t);
 
             //移動方向をみル
             transform.DOLookAt(position, 0.1f);
@@ -91,5 +79,19 @@ namespace Utils
             transform.DOMove(position, duration);
             transform.DOLookAt(position, 0.1f);
         }
+#if UNITY_EDITOR
+
+        // インスペクターから編集されたとき
+        private void OnValidate()
+        {
+            MoveOnSpline();
+        }
+
+        public float GetT()
+        {
+            return _t;
+        }
+
+#endif
     }
 }

@@ -1,19 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Enemys.Boids;
+using GameLoops;
 using R3;
 using UnityEngine;
 
 namespace Enemys
 {
-    public class EnemyManager : MonoBehaviour
+    /// <summary>
+    ///     敵を管理する
+    /// </summary>
+    public class EnemyManager : MonoBehaviour, ITickable
     {
         [SerializeField] private List<MobEnemy> _mobEnemies = new List<MobEnemy>();
         [SerializeField] private BossEnemy _bossEnemy;
 
-        private Subject<Unit> _enemyDestroy = new Subject<Unit>();
         [SerializeField] private List<BoidsManager> _boidsManager = new List<BoidsManager>();
+
+        private readonly Subject<Unit> _enemyDestroy = new Subject<Unit>();
+
+        public Observable<Unit> enemyDestroy
+        {
+            get { return _enemyDestroy; }
+        }
+
+        /// <summary>
+        ///     毎フレーム呼ばれる
+        /// </summary>
+        public void Tick()
+        {
+            MoveBoid();
+        }
 
         public void StartMoveEnemys()
         {
@@ -23,23 +40,36 @@ namespace Enemys
             }
         }
 
+        /// <summary>
+        ///     boidsmanagerのTickを呼び出す
+        /// </summary>
+        public void MoveBoid()
+        {
+            foreach (var manager in _boidsManager)
+            {
+                manager.Tick();
+            }
+        }
+
+        /// <summary>
+        ///     boidsManagerを追加
+        /// </summary>
         public void AddBoidManager(BoidsManager boidsManager)
         {
             _boidsManager.Add(boidsManager);
         }
 
-        public Observable<Unit> enemyDestroy
-        {
-            get { return this._enemyDestroy; }
-        }
-
-        public void Add(MobEnemy mobEnemy)
+        /// <summary>
+        ///     敵を追加
+        /// </summary>
+        /// <param name="mobEnemy"></param>
+        public void AddMobEnemy(MobEnemy mobEnemy)
         {
             _mobEnemies.Add(mobEnemy);
         }
 
         /// <summary>
-        /// 敵のリストから引数で指定した敵を削除
+        ///     敵のリストから引数で指定した敵を削除
         /// </summary>
         /// <param name="mobEnemy"></param>
         /// <returns></returns>
@@ -49,27 +79,26 @@ namespace Enemys
             return _mobEnemies.Remove(mobEnemy);
         }
 
+        /// <summary>
+        ///     ボスを削除
+        /// </summary>
         public void RemoveBoss()
         {
-            this._bossEnemy = null;
+            _bossEnemy = null;
         }
 
+        /// <summary>
+        ///     全ての敵を削除
+        ///     todo : 管理対象から消すだけで敵は居なくならない
+        /// </summary>
         public void RemoveAllEnemy()
         {
-            // foreach (var mobEnemy in _mobEnemies)
-            // {
-            //     mobEnemy.DontDisplay();
-            // }
-
             _mobEnemies.Clear();
         }
 
         /// <summary>
-        /// カメラの向きにある
+        ///     カメラの向きにある敵を取得
         /// </summary>
-        /// <param name="origin"></param>
-        /// <param name="cameraDir"></param>
-        /// <returns></returns>
         public IHitable GetMostNearEnemyInCameraDirection(Transform origin, Vector3 cameraDir)
         {
             var distanceDict = CaluculateEnemysDistance(origin);
@@ -87,22 +116,18 @@ namespace Enemys
                     }
                 }
 
-                //todo 意味が分からなかったのでコメントアウト。何もターゲットがいなければnullにすべきでは
-                // return distanceDict.FirstOrDefault().Value;
                 return null;
             }
-            else
-            {
-                return null;
-            }
+
+            return null;
         }
 
         /// <summary>
-        /// 敵を探す
+        ///     指定距離以内の敵すべｔを取得
         /// </summary>
-        /// <param name="origin"></param>
-        /// <param name="searchDistance"></param>
-        /// <returns></returns>
+        /// <param name="origin">探索の中心</param>
+        /// <param name="searchDistance">検索距離</param>
+        /// <returns> 指定距離以内の敵のリスト</returns>
         public List<IHitable> SearchEnemy(Transform origin, float searchDistance)
         {
             //searchDistance以内に居る敵のリスト
@@ -121,11 +146,11 @@ namespace Enemys
         }
 
         /// <summary>
-        /// カメラにtargetが映っているかを判定
+        ///     カメラにtargetが映っているかを判定
         /// </summary>
-        /// <param name="camera"></param>
-        /// <param name="target"></param>
-        /// <returns></returns>
+        /// <param name="camera">カメラ</param>
+        /// <param name="target">ターゲット</param>
+        /// <returns>映っているかどうか</returns>
         public static bool JudgeTargetisInCamera(Camera camera, IHitable target)
         {
             // オブジェクトのワールド座標をビューポート座標に変換
@@ -164,9 +189,9 @@ namespace Enemys
         }
 
         /// <summary>
-        /// 有効な敵との距離を計算し、辞書を返す
+        ///     有効なターゲットとの距離を計算し、辞書を返す
         /// </summary>
-        /// <returns></returns>
+        /// <returns>敵との距離でソートしたターゲットとの距離とターゲットの辞書</returns>
         private SortedDictionary<float, IHitable> CaluculateEnemysDistance(Transform origin)
         {
             SortedDictionary<float, IHitable>　enemyanddistanceDict = new SortedDictionary<float, IHitable>();
@@ -193,7 +218,7 @@ namespace Enemys
 
         public IHitable GetBossEnemy()
         {
-            return this._bossEnemy;
+            return _bossEnemy;
         }
     }
 }

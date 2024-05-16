@@ -1,20 +1,21 @@
 ﻿using System;
 using Character.Weapon.CannonBulletExplosions;
 using Cysharp.Threading.Tasks;
-using DG.Tweening;
 using Enemys;
 using GameManagers;
-using GameManagers.SeManagers;
+using GameManagers.AudioManagers;
 using R3;
-using Unity.Mathematics;
 using UnityEngine;
 
 namespace Character.Weapon
 {
+    /// <summary>
+    ///     大砲
+    /// </summary>
     public class Cannon : MonoBehaviour
     {
         /// <summary>
-        /// 弾を発射する時のエフェクト（煙）
+        ///     弾を発射する時のエフェクト（煙）
         /// </summary>
         [SerializeField] private ParticleSystem fireEffect;
 
@@ -28,7 +29,7 @@ namespace Character.Weapon
 
         public async void Attack(IHitable target, float attackPower)
         {
-            AudioManager.Instance.PlaySe(SeVariable.CanonSe, this.transform.position, 0.1f);
+            AudioManager.Instance.PlaySe(SeVariable.CanonSe, transform.position, 0.1f);
 
             fireEffect.Play();
             var bulletInstance = Instantiate(bullet, bulletInstatiatePosition.position, Quaternion.identity);
@@ -56,7 +57,7 @@ namespace Character.Weapon
 
             target.Hitted(attackPower);
             GenerateExpolosion(target);
-            
+
             //スコア追加
             BattleResultManager.GetInstance().AddConsumeBullet();
         }
@@ -64,7 +65,7 @@ namespace Character.Weapon
         private void GenerateExpolosion(IHitable target)
         {
             var cannonExplosion = Instantiate(ExplosionEffect, target.GetTransform().position,
-                    Quaternion.LookRotation(target.GetTransform().position - this.transform.position))
+                    Quaternion.LookRotation(target.GetTransform().position - transform.position))
                 .GetComponent<CannonBulletExplosion>();
             cannonExplosion.SetEnemyManager(_enemyManager);
             cannonExplosion.Explosion();

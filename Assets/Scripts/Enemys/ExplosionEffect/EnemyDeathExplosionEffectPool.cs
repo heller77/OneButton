@@ -1,11 +1,10 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Pool;
 
 namespace Enemys.ExplosionEffect
 {
     /// <summary>
-    /// Enemyが倒れた時のエフェクトを生成する
+    ///     Enemyが倒れた時のエフェクトを生成する
     /// </summary>
     public class EnemyDeathExplosionEffectPool : MonoBehaviour
     {
@@ -13,20 +12,15 @@ namespace Enemys.ExplosionEffect
         [SerializeField] private int poolDefaultCapacity;
         [SerializeField] private int poolMaxSize;
 
-        private static EnemyDeathExplosionEffectPool _instance;
+        private IObjectPool<GameObject> _objectPool;
 
         //シングルトンのインスタンスを返す。（nullの事は考えてないので注意）
-        public static EnemyDeathExplosionEffectPool Instance
-        {
-            get { return _instance; }
-        }
+        public static EnemyDeathExplosionEffectPool Instance { get; private set; }
 
         private void Awake()
         {
-            _instance = this;
+            Instance = this;
         }
-
-        private IObjectPool<GameObject> _objectPool;
 
         public void Start()
         {
@@ -40,11 +34,17 @@ namespace Enemys.ExplosionEffect
                 maxSize: poolMaxSize);
         }
 
+        /// <summary>
+        ///     エフェクトを取得(objectpoolで管理)
+        /// </summary>
         public GameObject GetExplosionEffectPool()
         {
             return _objectPool.Get();
         }
 
+        /// <summary>
+        ///     エフェクトを解放（objectpool）
+        /// </summary>
         public void Release(GameObject releaseTarget)
         {
             _objectPool.Release(releaseTarget);

@@ -1,8 +1,10 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Character
 {
+    /// <summary>
+    ///     コックピットのボタンのアニメーションを管理
+    /// </summary>
     public class ButtonAnimationManager : MonoBehaviour
     {
         [SerializeField] private Animator animator;
@@ -12,10 +14,10 @@ namespace Character
 
         [SerializeField] private Material pushedMaterial;
         [SerializeField] private Light buttonLight;
-        
 
         private void Update()
         {
+            //todo : touch操作に対応できてないので、inputsystemを使う様に
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 animator.SetBool("push", true);
