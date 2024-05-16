@@ -6691,7 +6691,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: 06dd5a21a584b144eba584500a3925c7, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -19881,6 +19881,11 @@ MonoBehaviour:
   weaponParent: {fileID: 9018039072225326524}
   _button: {fileID: 4456278448904357687}
   _cockpitDiplayManager: {fileID: 1443592355733012956}
+  robotTransform: {fileID: 0}
+  robotTarget: {fileID: 0}
+  cameraTarget: {fileID: 0}
+  selectTargetAudioClip: {fileID: 0}
+  cameramoveDuration: 2
 --- !u!1 &5259677503214348339
 GameObject:
   m_ObjectHideFlags: 0
@@ -25245,7 +25250,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 4815338767766845539, guid: 5922ddc624400d445ae544c723e3a70c, type: 3}
   bulletFirePosition: {fileID: 7622338000801813656}
-  cannon: {fileID: 7251318411975430098}
   normalGun: {fileID: 5533857890546750533}
   chargePercentage: 0
   chargeSpeed: 0.3
